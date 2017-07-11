@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+################################
+# Shows current keyboard layout.
+# Allows layout toggling.
+#
+# Dependencies:
+# - [Ross' key script](https://github.com/rosshadden/dotfiles/blob/master/src/lib/keys.sh)
+#
+# @return {String}: Current keyboard layout
+################################
+
+keys=$HOME/bin/keys
+
+full=""
+short=""
+status=0
+
+case $BLOCK_BUTTON in
+	# right click: toggle key variant
+	3) $keys toggle ;;
+esac
+
+layout=$($keys get)
+
+full=$layout
+short=${layout:0:1}
+
+echo $full
+echo $short
+exit $status
