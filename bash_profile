@@ -1,6 +1,16 @@
+# load env vars
+source ~/.env
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+[ -e "/etc/DIR_COLORS" ] && DIR_COLORS="/etc/DIR_COLORS"
+[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+[ -e "$DIR_COLORS" ] || DIR_COLORS=""
+eval "`dircolors -b $DIR_COLORS`"
+
 # Load Git functions
 source ~/.git-prompt.sh
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Syntactic sugar for ANSI escape sequences
 NORMAL2="- [\u] @ \h:\W \\$ \[\e[0m\]"
@@ -41,12 +51,22 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
+exitcode() {
+    local ex=$?
+
+    if [[ "$ex" -eq 0 ]]; then
+       echo ""
+    else
+       echo "[$txtred$ex$NORMAL] "
+    fi
+}
+
 # Prompt variables
 PROMPT_BEFORE="┏ $GREEN\u [ $RED\h: $NORMAL\w$GREEN ] # $NORMAL\n┗ ●"
 PROMPT_AFTER=" "
 
 # Prompt command
-PROMPT_COMMAND='__git_ps1 "$PROMPT_BEFORE" "$PROMPT_AFTER"'
+PROMPT_COMMAND='__git_ps1 "$PROMPT_BEFORE" "$PROMPT_AFTER$(exitcode)"'
 
 # Git prompt features (read ~/.git-prompt.sh for reference)
 export GIT_PS1_SHOWDIRTYSTATE="true"
@@ -76,14 +96,16 @@ export GIT_PS1_SHOWCOLORHINTS="true"
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
 
-alias uberspacesql='ssh -L 3306:127.0.0.1:3306 uberspace'  # Baut Tunnel zu Uberspace um ueber localhost:3306 auf mysql DB zuzugreifen 
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FGlA'                       # Preferred 'ls' implementation
-alias ls='ls -G'                       # Preferred 'ls' implementation
-alias lsa='ls -aG'                       # Preferred 'ls' implementation
-alias la='ls -laG'                       # Preferred 'ls' implementation
+alias ll='ls -FGlA $LS_OPTIONS'                       # Preferred 'ls' implementation
+alias ls='ls -G $LS_OPTIONS'                       # Preferred 'ls' implementation
+alias lsa='ls -aG $LS_OPTIONS'                       # Preferred 'ls' implementation
+alias la='ls -laG $LS_OPTIONS'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)

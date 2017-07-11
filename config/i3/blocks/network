@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+################################
+# Shows IP address of a given interface
+#
+# @param {String} interface: The network interface to check
+# @return {String(IP)}: IP address of the interface
+################################
+
+dir=$(dirname $0)
+source "$dir/util.sh"
+
+full=""
+short=""
+status=0
+
+interface=${BLOCK_INSTANCE:-eth0}
+
+netPath=/sys/class/net
+interfacePath=$(echo $netPath/$interface)
+# Expand wildcard interfaces
+interface=${interfacePath#$netPath/}
+
+state=$(cat $interfacePath/operstate)
+
+if [ $state == "up" ]; then
+	ips=$(ip addr show $interface | perl -n -e'/inet (.+)\// && print $1')
+	ip=${ips:-0.0.0.0}
+
+	full=$ip
+	short=$full
+fi
+
+echo "$full"
+echo "$short"
+exit $status
