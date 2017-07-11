@@ -4,6 +4,8 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+gaps inner 10
+gaps outer 7
 
 # Define colors
 set $bg-color            #2f343f
@@ -44,7 +46,7 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec tilix --new-process
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec termite -c $HOME/.config/termite.conf
 
 
 # kill focused window
@@ -236,6 +238,9 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
+# Polybar launch
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 # bar
 bar {
   status_command i3blocks -c $i3/i3blocks.conf
@@ -276,15 +281,8 @@ bindsym F12 exec tilix -q -p Quake
 # Execute on login #
 ####################
 #
-exec --no-startup-id ~/.screenlayout/twomonitor.sh
-# exec docky
-exec --no-startup-id nm-applet
-exec --no-startup-id thunderbird
-exec --no-startup-id dropbox
-exec --no-startup-id owncloud
-exec --no-startup-id megasync
 # exec --no-startup-id xfce4-panel --disable-wm-check
-exec --no-startup-id compton -f
+exec --no-startup-id /usr/bin/compton --config $HOME/.config/compton.conf
 # exec --no-startup-id "setxkbmap -model pc105 -layout us,de -variant intl, -option grp:ctrl_alt_toggle"
 # exec --no-startup-id spotify
 
