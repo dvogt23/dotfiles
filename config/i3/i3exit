@@ -1,6 +1,6 @@
 #!/bin/sh
 lock() {
-    i3lock #--color "$bg-color"
+    lock #--color "$bg-color"
 }
 
 case "$1" in
