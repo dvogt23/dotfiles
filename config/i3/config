@@ -203,7 +203,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Escape mode "$mode_syst:m"
+bindsym $mod+Escape mode "$mode_system"
 
 set $mode_menu (a)randr (b)leachbit fil(e)s (f)irefox (h)top (k)eybase gi(m)p (p)ulseaudio (s)potify (v)lc
 mode "$mode_menu" {
