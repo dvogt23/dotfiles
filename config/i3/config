@@ -20,7 +20,7 @@ set $i3 $HOME/.config/i3
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -116,37 +116,59 @@ bindsym $mod+space focus mode_toggle
 # focus the child container
 # bindsym $mod+d focus child
 
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws10 "10 "
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 ""
+
+# use workspaceR on different monitors
+
+workspace $ws1 output VGA-1
+workspace $ws2 output VGA-1
+workspace $ws3 output VGA-1
+workspace $ws4 output VGA-1
+workspace $ws5 output VGA-1
+workspace $ws6 output VGA-2
+workspace $ws7 output VGA-2
+workspace $ws8 output VGA-2
+workspace $ws9 output VGA-2
+workspace $ws10 output VGA-2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
 
 # Force app to workspaceSpotify
 # assign [class="Spotify"] $ws10
 for_window [class="Spotify"] move to workspace $ws10
+for_window [class="Chromium"] move to workspace $ws1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -244,6 +266,10 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 # bar
 bar {
+  # status_command py3status -c $i3/i3status.conf
+  # tray_output none
+  # #tray_output primary
+  # position top
   status_command i3blocks -c $i3/i3blocks.conf
   # status_command i3status
   colors {

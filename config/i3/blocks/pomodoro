@@ -1,0 +1,156 @@
+#!/bin/bash
+set -a
+# set -ex
+# icons:   
+SLEEPTIME=(1 5)
+THISHOUR=$(date +%H)
+if [ ${THISHOUR} -ge ${SLEEPTIME[0]} ] && [ ${THISHOUR} -le ${SLEEPTIME[1]} ]
+then
+  echo "There is no way you can healthily work at this time"
+  echo "There is no way you can healthily work at this time"
+  exit 33
+fi
+
+SPRINTS=${SPRINTS:-4}
+WORK=${WORK:-25}
+SHORTBREAK=${SHORTBREAK:-5}
+LONGBREAK=${LONGBREAK:-15}
+STATUS_FILE=${STATUS_FILE:-"/tmp/pomodoro_blocklet_status"}
+
+write_file() {
+  echo -e "TYPE=${TYPE}\nSPRINT=${SPRINT}\nSTARTED=${STARTED}\n" >${STATUS_FILE}
+}
+
+if [ ! -f ${STATUS_FILE} ]
+then
+  TYPE=${TYPE:-NOTHING}
+  SPRINT=${SPRINT:-0}
+  STARTED=${STARTED:-$(date +%s)}
+  write_file
+fi
+
+source ${STATUS_FILE}
+
+calc_times() {
+  ELAPSED=$((($(date +%s) - ${STARTED}) / 60))
+  OF=$(echo ${!TYPE:-0})
+  if [ ${ELAPSED} -le ${OF} ] && [ ${TYPE} == 'WORK' -o ${TYPE} == 'SHORTBREAK' -o ${TYPE} == 'LONGBREAK' ]
+  then
+    PERIOD_ENDED=no
+  else
+    PERIOD_ENDED=yes
+  fi
+}
+
+calc_times
+
+shorten_1min() {
+  STARTED=$((${STARTED}-60))
+  write_file
+}
+
+prolong_1min() {
+  STARTED=$((${STARTED}+60))
+  write_file
+}
+
+start_period() {
+  if [ "${PERIOD_ENDED}" == 'yes' ]
+  then
+    STARTED=$(date +%s)
+    calc_times
+    write_file
+  fi
+}
+
+
+next_period() {
+  if [ "${PERIOD_ENDED}" == 'yes' ]
+  then
+    case ${TYPE} in
+      WORK)
+        if [ ${SPRINT} -ge ${SPRINTS} ]
+        then
+          TYPE="LONGBREAK"
+        else
+          TYPE="SHORTBREAK"
+        fi
+      ;;
+
+      SHORTBREAK)
+        ((SPRINT++))
+        TYPE="WORK"
+      ;;
+
+      LONGBREAK)
+        SPRINT=1
+        TYPE="WORK"
+      ;;
+
+      *)
+        TYPE="WORK"
+        SPRINT=1
+      ;;
+    esac
+    start_period
+  fi
+}
+
+reset() {
+  rm -f ${STATUS_FILE}
+  unset BLOCK_BUTTON TYPE SPRINT STARTED
+  exec $0
+}
+
+middle_button() {
+  reset
+}
+
+right_button() {
+  next_period
+}
+
+wheel_up() {
+  shorten_1min
+  calc_times
+}
+
+wheel_down() {
+  prolong_1min
+  calc_times
+}
+
+case ${BLOCK_BUTTON} in
+    2)
+      middle_button
+    ;;
+    3)
+      right_button
+    ;;
+    4)
+      wheel_up
+    ;;
+    5)
+      wheel_down
+    ;;
+esac
+
+output() {
+  WHAT=${TYPE}
+  if [ ${TYPE} == "WORK"]
+  then
+    WHAT+=" ${SPRINT}"
+  fi
+  #echo -e "${WHAT} / ${ELAPSED} of ${OF}"
+  echo -e "${WHAT} ${ELAPSED}"
+  echo -e "${WHAT} ${ELAPSED}"
+  write_file
+  if [ ${PERIOD_ENDED} = 'yes' ]
+  then
+    exit 33
+  else
+    exit 0
+  fi
+}
+
+output
