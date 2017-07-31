@@ -425,3 +425,4 @@ export PATH
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
+export PATH="$PATH:/opt/mssql-tools/bin"
