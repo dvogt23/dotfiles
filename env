@@ -7,7 +7,7 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 #export GREP_OPTIONS='—color=auto'
 
 # Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob 
+#shopt -s nocaseglob 
 
 # Autocorrect typos in path names when using `cd`
-shopt -s cdspell
+#shopt -s cdspell
