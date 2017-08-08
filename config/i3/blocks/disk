@@ -56,11 +56,11 @@ esac
 usage=$(df -h $disk | sed -n '2 p')
 usage=($usage)
 
-if [ ${usage[4]%?} -ge 90 ]; then
+if [ ${usage[3]%?} -ge 90 ]; then
 	status=33
 fi
 
-full="$disk ${usage[4]}"
+full="$disk ${usage[3]}"
 short="$full"
 
 echo $full
