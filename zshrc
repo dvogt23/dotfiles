@@ -87,10 +87,10 @@ alias v='vim'                           # Preferred 'cp' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FlA $LS_OPTIONS'                       # Preferred 'ls' implementation
-alias ls='ls $LS_OPTIONS'                       # Preferred 'ls' implementation
-alias lsa='ls -aG $LS_OPTIONS'                       # Preferred 'ls' implementation
-alias la='ls -laG $LS_OPTIONS'                       # Preferred 'ls' implementation
+alias ll='exa -l'                       # Preferred 'ls' implementation
+alias ls='exa'                       # Preferred 'ls' implementation
+alias lsa='exa -ls'                       # Preferred 'ls' implementation
+alias la='exa -la'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)

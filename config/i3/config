@@ -282,7 +282,7 @@ bar {
 	 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
   }
   tray_output none
-  #tray_output primary
+  tray_output primary
   position top
 }
 
@@ -311,6 +311,9 @@ bindsym F12 exec tilix -q -p Quake
 #
 # exec --no-startup-id xfce4-panel --disable-wm-check
 exec --no-startup-id /usr/bin/compton --config $HOME/.config/compton.conf
+exec --no-startup-id $HOME/.screenlayout/1920x1080x2.sh
+exec --no-startup-id VBoxClient-all
+exec --no-startup-id numlockx
 # exec --no-startup-id "setxkbmap -model pc105 -layout us,de -variant intl, -option grp:ctrl_alt_toggle"
 # exec --no-startup-id spotify
 

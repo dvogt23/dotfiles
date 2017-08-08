@@ -1,7 +1,5 @@
-VBoxClient-all
-exec $HOME/.screenlayout/1920x1080x2.sh
 exec i3
-numlockx
+#numlockx &
 
 # Fondo
-[[ -f $HOME/.fehbg ]] && sh $HOME/.fehbg
+#[[ -f $HOME/.fehbg ]] && sh $HOME/.fehbg &

@@ -27,8 +27,10 @@ echo "$full"
 echo "$short"
 
 case $BLOCK_BUTTON in
-	# right click: show packages
-	3) notify-send "Pacman packages" "$packages" ;;
+	# left click: show packages
+	1) notify-send "Pacman packages" "$packages" ;;
+	# right click
+	3) notify-send "Update with:" "sudo pacman -Syuu\nyaourt -Syyua"
 esac
 
 exit $status
