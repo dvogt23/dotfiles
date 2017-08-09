@@ -30,8 +30,8 @@ case $BLOCK_BUTTON in
 	# right click: show details
 	# TODO: fix
 	3)
-		local summary=$(du -h --max-depth=1 $disk)
-		notify-send "Disk usage" "$summary"
+		#local summary=$(du -h --max-depth=1 $disk)
+		#notify-send "Disk usage" "$summary"
 	;;
 	# scroll up: cycle disks
 	4)
