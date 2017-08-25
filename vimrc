@@ -89,6 +89,8 @@ set autoread
 set wildmenu
 set scrolloff=3
 set mouse=a
+set number
+set rnu
 "set noesckeys
 "set modifiable
 
@@ -233,10 +235,8 @@ Plug 'sjl/gundo.vim',                          { 'on': 'GundoToggle' }
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-Plug 'Shougo/deoplete.nvim',                   { 'do': function('DoRemote') }
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
-Plug 'SirVer/ultisnips'
 Plug 'ervandew/supertab'
 Plug 'gioele/vim-autoswap'
 Plug 'jiangmiao/auto-pairs'
@@ -324,9 +324,6 @@ let g:startify_bookmarks = [
             \ { 'z': '~/.zshrc' },
             \ ]
 
-let g:startify_custom_header =
-          \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['']
-
 hi StartifyHeader  ctermfg=114
 
 let g:startify_change_to_dir = 0
@@ -374,16 +371,10 @@ endif
 "}}}
 
 " Snippets {{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsEditSplit="vertical"
-
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " }}}
 
 " React and JSX {{{
@@ -438,10 +429,6 @@ let g:gundo_right = 1
 
 " You Complete Me {{{
 "autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
-"}}}
-
-" Deoplete {{{
-let g:deoplete#enable_at_startup = 1
 "}}}
 
 " fzf vim {{{
