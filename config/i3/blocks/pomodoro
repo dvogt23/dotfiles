@@ -1,7 +1,8 @@
 #!/bin/bash
 set -a
 # set -ex
-# icons:   
+# icons:          
+
 SLEEPTIME=(1 5)
 THISHOUR=$(date +%H)
 if [ ${THISHOUR} -ge ${SLEEPTIME[0]} ] && [ ${THISHOUR} -le ${SLEEPTIME[1]} ]
