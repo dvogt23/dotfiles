@@ -130,6 +130,7 @@
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
+	template = /home/dvogt/.gitcommittemplate
 
 [diff]
 
@@ -163,3 +164,5 @@
 	signingkey = DDFBD79E
 	name = dvogt23
 	email = divogt@live.de
+[credential]
+	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring

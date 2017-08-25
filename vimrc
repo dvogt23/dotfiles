@@ -1,3 +1,7 @@
+if !has('nvim')
+  set ttymouse=xterm2
+endif
+
 " Type :so % to refresh .vimrc after making changes
 
 " Use Vim settings, rather then Vi settings. This setting must be as early as

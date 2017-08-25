@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+################################
+# Shows info about a specified mount point
+#
+# Dependencies:
+# - [notify-send]
+#
+# @param {String} disk: The mount point to check
+# @return {Number(%)}: Space used on the disk
+################################
+
+dir=$(dirname $0)
+
+full=""
+status=0
+
+# iterate arguments. start by second
+for i in "${@:1}" ; do
+	disks+="${i}\n"
+done
+
+let numDisks=$(echo -e "$disks" | wc -l)
+
+for i in ${disks} ; do
+	echo -e $i
+done
+
+echo "num: $numDisks"
+
+case $BLOCK_BUTTON in
+	# scroll up: cycle disks
+	4)
+		diskNum=$[$(getCache) - 1]
+		if (( diskNum <= 0 )); then
+			diskNum=$numDisks
+		fi
+		setCache $diskNum
+		disk=$(getDisk)
+	;;
+	5)
+	# scroll down: cycle disks
+		diskNum=$[$(getCache) + 1]
+		if (( diskNum >= numDisks + 1 )); then
+			diskNum=1
+		fi
+		setCache $diskNum
+		disk=$(getDisk)
+	;;
+esac
+
+#full="$disks"
+
+#echo $full
+exit $status
