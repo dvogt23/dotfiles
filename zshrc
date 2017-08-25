@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/dvogt/.oh-my-zsh
+export ZSH=/home/dvogt/.oh-my-zsh
 
 source ~/.dotfiles/env
 
@@ -85,8 +85,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias v='vim'                           # Preferred 'cp' implementation
-alias vi='vim'                           # Preferred 'cp' implementation
+alias v='nvim'                           # Preferred 'cp' implementation
+alias vi='nvim'                           # Preferred 'cp' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
