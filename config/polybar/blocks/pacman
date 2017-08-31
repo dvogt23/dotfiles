@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+################################
+# Shows pacman packages that need updated.
+#
+# dependencies:
+# - checkupdates
+# - [notify-send]
+#
+# @return {Number}: Outdated packages
+################################
+
+dir=$(dirname "$0")
+source $dir/util.sh
+
+full=""
+short=""
+status=0
+
+packages=$(checkupdates)
+numPackages=$(numLines "$packages")
+
+full=$numPackages
+short=$full
+
+echo "$full"
+echo "$short"
+
+case $BLOCK_BUTTON in
+	# left click: show packages
+	1) notify-send "Pacman packages" "$packages" ;;
+	# right click
+	3) notify-send "Update with:" "sudo pacman -Syuu\nyaourt -Syyua"
+esac
+
+exit $status

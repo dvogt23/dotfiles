@@ -83,8 +83,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="source ~/.zshrc"
+#alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v='nvim'                           # Preferred 'cp' implementation
 alias vi='nvim'                           # Preferred 'cp' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
@@ -95,7 +95,6 @@ alias ls='exa'                       # Preferred 'ls' implementation
 alias lsa='exa -ls'                       # Preferred 'ls' implementation
 alias la='exa -la'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
-#cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
@@ -119,5 +118,17 @@ trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the 
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
+function chpwd() {
+    emulate -L zsh
+    ls -a
+}
+
+function swap()         
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
