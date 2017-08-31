@@ -196,6 +196,8 @@ Plug 'mhinz/vim-startify'
 Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
+"Plug 'scrooloose/nerdcommenter'
+"Plug 'gorodinskiy/vim-coloresque'
 
 "languages
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
@@ -320,7 +322,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Startify {{{
 let g:startify_bookmarks = [
             \ { 'v': '~/.vimrc' },
-            \ { 't': '~/.tmux.conf' },
+            \ { 'i': '~/.config/i3/config' },
             \ { 'z': '~/.zshrc' },
             \ ]
 
@@ -490,8 +492,8 @@ let g:indentLine_leadingSpaceChar = '·'
 "}}}
 
 " Notes {{{
-:let g:notes_directories = ['~/Google Drive/learn/notes']
-:let g:notes_suffix = '.txt'
+:let g:notes_directories = ['~/.dotfiles/notes']
+:let g:notes_suffix = '.md'
 " }}}
 
 " Ag {{{
@@ -501,7 +503,7 @@ let g:indentLine_leadingSpaceChar = '·'
 
 " Helpers {{{
 
-" remove trailing white sapce on save
+" remove trailing white space on save
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge

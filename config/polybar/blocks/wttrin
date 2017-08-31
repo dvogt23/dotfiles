@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+
+################################
+# Shows info about the weather from wttr.in/<location>
+#
+# Dependencies:
+# - [notify-send]
+#
+# @return {temp(C)}: weather
+################################
+
+# icons:     
+
+if [ -z $1 ]; then
+	echo
+	echo "USAGE: wttrin <locationname>"
+	echo
+	exit 0;
+fi
+
+LOCATION=$1
+if [ ! -z $2 ]; then
+	TEXTMODE=$2
+fi
+
+# 113:                                    : Clear
+# 113:                                    : Sunny
+# 116:                                    : Partly cloudy
+# 119:                                    : Cloudy
+# 122:                                    : Overcast
+# 143:                                    : Mist
+# 176:                                    : Patchy rain possible
+# 179:                                    : Patchy snow possible
+# 182:                                    : Patchy sleet possible
+# 185:                                    : Patchy freezing drizzle possible
+# 200:                                    : Thundery outbreaks possible
+# 227:                                    : Blowing snow
+# 230:                                    : Blizzard
+# 248:                                    : Fog
+# 260:                                    : Freezing fog
+# 263:                                    : Patchy light drizzle
+# 266:                                    : Light drizzle
+# 281:                                    : Freezing drizzle
+# 284:                                    : Heavy freezing drizzle
+# 293:                                    : Patchy light rain
+# 296:                                    : Light rain
+# 299:                                    : Moderate rain at times
+# 302:                                    : Moderate rain
+# 305:                                    : Heavy rain at times
+# 308:                                    : Heavy rain
+# 311:                                    : Light freezing rain
+# 314:                                    : Moderate or heavy freezing rain
+# 317:                                    : Light sleet
+# 320:                                    : Moderate or heavy sleet
+# 323:                                    : Patchy light snow
+# 326:                                    : Light snow
+# 329:                                    : Patchy moderate snow
+# 332:                                    : Moderate snow
+# 335:                                    : Patchy heavy snow
+# 338:                                    : Heavy snow
+# 350:                                    : Ice pellets
+# 353:                                    : Light rain shower
+# 356:                                    : Moderate or heavy rain shower
+# 359:                                    : Torrential rain shower
+# 362:                                    : Light sleet showers
+# 365:                                    : Moderate or heavy sleet showers
+# 368:                                    : Light snow showers
+# 371:                                    : Moderate or heavy snow showers
+# 386:                                    : Patchy light rain with thunder
+# 389:                                    : Moderate or heavy rain with thunder
+# 392:                                    : Patchy light snow with thunder
+# 395:                                    : Moderate or heavy snow with thunder
+
+refresh() {
+	unset TEMP
+	unset ICON
+
+	# regex for digit(temp) search
+	re='^[0-9]+$'
+	reWord='^[a-zA-Z0-9]{4,10}$'
+
+	# fetch weather data
+	values=$(curl -s http://wttr.in/${LOCATION}?0QT | grep -oE "\w+")
+	#values=$(./weather.py ${LOCATION} --unit C --position 2 | grep -Eo "\w+")
+
+	# get icon and temp
+	for v in $values; do
+
+		if [[ ${v} =~ ${re} ]]; then
+			if [[ -z ${TEMP} ]]; then
+				TEMP="${v}"
+			else
+				TEMP="${TEMP}-${v}"
+			fi
+		fi
+
+		if [[ ${v} = 'C' ]]; then
+			break
+		fi
+
+		if [ ! -z $TEXTMODE ]; then
+			continue
+		fi
+
+		if [ ${v,,} = 'sunny' ]; then
+			ICON=""
+		fi
+
+		if [ ${v,,} = 'cloudy' ]; then
+			ICON=""
+		fi
+
+		if [ ${v,,} = 'rain' ]; then
+			ICON=""
+		fi
+
+		if [ ${v,,} = 'snow' ]; then
+			ICON=""
+		fi
+
+	done
+
+	# if icon not defined
+	if [[ -z ${ICON} ]]; then
+		for i in $values; do
+			if [[ ${i} =~ ${re} ]]; then
+				break
+			fi
+			if [[ -z ${ICON} ]]; then
+				if [[ ${i} =~ ${reWord} ]]; then
+					ICON="${i}"
+				fi
+			else
+				if [[ ${i} =~ ${reWord} ]]; then
+					ICON="${ICON} ${i}"
+				fi
+			fi
+		done
+	fi
+}
+
+right_button() {
+	refresh
+}
+
+case ${BLOCK_BUTTON} in
+	# right click
+	3) right_button;;
+esac
+
+output() {
+	# on start
+	if [[ -z $OUTPUT ]]; then
+		refresh
+	fi
+
+	# print output
+	echo "${ICON} ${TEMP} °C"
+}
+
+# run main
+output

@@ -264,28 +264,28 @@ client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 # Polybar launch
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/polybar.sh
 
 # bar
-bar {
-  # status_command py3status -c $i3/i3status.conf
-  # tray_output none
-  # #tray_output primary
-  # position top
-  status_command i3blocks -c $i3/i3blocks.conf
-  # status_command i3status
-  colors {
-	 background $bg-color
-	 separator #757575
-	 #                  border             background         text
-	 focused_workspace  $bg-color          $bg-color          $text-color
-	 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-	 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-  }
-  tray_output none
-  tray_output primary
-  position top
-}
+#bar {
+#  # status_command py3status -c $i3/i3status.conf
+#  # tray_output none
+#  # #tray_output primary
+#  # position top
+#  status_command i3blocks -c $i3/i3blocks.conf
+#  # status_command i3status
+#  colors {
+#	 background $bg-color
+#	 separator #757575
+#	 #                  border             background         text
+#	 focused_workspace  $bg-color          $bg-color          $text-color
+#	 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#	 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#  }
+#  tray_output none
+#  tray_output primary
+#  position top
+#}
 
 
 # Pulse Audio controls
