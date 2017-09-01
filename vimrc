@@ -198,6 +198,7 @@ Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
 "Plug 'scrooloose/nerdcommenter'
 "Plug 'gorodinskiy/vim-coloresque'
+Plug 'Suave/vim-colors-guardian'
 
 "languages
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
@@ -323,6 +324,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:startify_bookmarks = [
             \ { 'v': '~/.vimrc' },
             \ { 'i': '~/.config/i3/config' },
+            \ { 'b': '~/.config/polybar/config' },
             \ { 'z': '~/.zshrc' },
             \ ]
 
