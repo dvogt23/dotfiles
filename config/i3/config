@@ -125,8 +125,8 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 ""
-set $ws10 ""
+set $ws9 "9"
+set $ws10 "0"
 
 # use workspaceR on different monitors
 

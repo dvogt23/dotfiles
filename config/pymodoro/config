@@ -1,0 +1,26 @@
+[DEFAULT]
+oneline = false
+
+[General]
+autohide = false
+session = "~/.pomodoro_session"
+oneline = false
+
+[Labels]
+pomodoro_prefix = " "
+pomodoro_suffix = ""
+break_prefix = " "
+break_suffix = ""
+
+[Progress Bar]
+left_to_right = false
+total_marks = 10
+session_character = ""
+break_character = ""
+empty_character = ""
+
+[Sound]
+enable = true
+tick = false
+command = aplay -q %s &
+
