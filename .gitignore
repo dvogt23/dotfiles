@@ -3,3 +3,6 @@ config/sublime-text-3
 vim/plugged
 config/chromium
 config/pulse
+config/Slack
+config/Turtl
+

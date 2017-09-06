@@ -550,4 +550,9 @@ iabbrev classname className
 iabbrev componnet component
 " }}}
 
+" Personal {{{
+filetype plugin indent on
+let maplocalleader = "\\"
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0

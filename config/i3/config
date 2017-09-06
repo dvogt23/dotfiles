@@ -229,18 +229,17 @@ mode "$mode_system" {
 
 bindsym $mod+Escape mode "$mode_system"
 
-set $mode_menu (a)randr (b)leachbit fil(e)s (f)irefox (h)top (k)eybase gi(m)p (p)ulseaudio (s)potify (v)lc
+set $mode_menu (a)randr (t)hunar fil(e)s (c)hromium (h)top (k)eybase gi(m)p (p)ulseaudio (s)ubl
 mode "$mode_menu" {
   bindsym a exec arandr, mode "default"
   bindsym b exec bleachbit, mode "default"
-  bindsym e exec pantheon-files, mode "default"
-  bindsym f exec firefox, mode "default"
+  bindsym t exec thunar, mode "default"
+  bindsym c exec chromeium, mode "default"
   bindsym h exec htop, mode "default"
   bindsym k exec keybase, mode "default"
   bindsym m exec gimp, mode "default"
   bindsym p exec pulseaudio, mode "default"
-  bindsym s exec spotify, mode "default"
-  bindsym v exec vlc, mode "default"
+  bindsym s exec subl, mode "default"
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
