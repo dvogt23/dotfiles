@@ -72,7 +72,7 @@ font-5 = Termsynu:size=7;0
 
 
 modules-left = i3
-modules-center = clock date pomodoro
+modules-center = date clock pomodoro
 modules-right = opensetup cpu filesystem eth downspeed upspeed
 
 scroll-up = i3wm-wsnext
@@ -109,8 +109,8 @@ font-4 = Pomicons:size=5;0
 font-5 = Termsynu:size=7;0
 
 modules-left = i3
-modules-center = clock date pomodoro
-modules-right = wttr pkg cpu filesystem eth downspeed upspeed bitcoin powermenu
+modules-center = date clock pomodoro
+modules-right = weather pkg cpu filesystem eth downspeed upspeed bitcoin powermenu
 
 tray-position = right
 tray-padding = 2
@@ -347,13 +347,14 @@ accumulate-stats = true
 
 [module/date]
 type = custom/script
-exec = LC_ALL=de_DE.utf8 date "+%a %d. %b %Y"
+exec = LC_ALL=de_DE.utf8 date "+%V - %a %d. %b %Y"
 interval = 1800
 ;format-underline = #268bd2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-dark}
-label-foreground = ${colors.foreground-dark}
+format-prefix-foreground = #b2b2b2
+label-foreground = #b2b2b2
 click-right = gsimplecal &kill
+click-left = gsimplecal &kill
 
 [module/clock]
 type = internal/date
@@ -367,8 +368,7 @@ time-alt = %H:%M:%S
 ;format-prefix = 
 ;format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #0a6cf5
-
-label = %time%
+label =  %time%
 label-foreground = ${colors.foreground}
 ;label-underline = #9f78e1
 ;click-right = "gsimplecal &"
@@ -558,6 +558,15 @@ label-foreground = ${colors.foreground}
 tail = true
 format-prefix-foreground = ${colors.foreground}
 exec = ~/.config/polybar/blocks/wttrin Rheine
+
+[module/weather]
+type = custom/script
+interval = 900
+format = <label>
+label-foreground = ${colors.foreground}
+tail = true
+format-prefix-foreground = ${colors.foreground}
+exec = ~/.config/polybar/blocks/weather.py 22269367 --unit C --format '{text} {temp} °{unit_temperature}'
 
 [module/pkg]
 type = custom/script

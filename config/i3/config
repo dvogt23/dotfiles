@@ -4,9 +4,6 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-smart_gaps on
-gaps inner 10
-gaps outer 7
 
 # Define colors
 set $bg-color            #2f343f
@@ -44,12 +41,14 @@ hide_edge_borders both
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Disable title and borders for all windows
+for_window [class="^.*"] border pixel 1
+
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec tilix --new-process
 #bindsym $mod+Return exec termite -c $HOME/.config/termite.conf
-bindsym $mod+Return exec terminator
-
+bindsym $mod+Return exec --no-startup-id terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -304,6 +303,11 @@ bindsym XF86AudioPrev exec playerctl previous
 
 bindsym F12 exec tilix -q -p Quake
 
+# Gaps settings
+smart_gaps on
+gaps inner 10
+gaps outer 7
+bindsym $mod+g exec $i3/toggle_gaps
 
 ####################
 # Execute on login #
