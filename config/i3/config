@@ -5,6 +5,8 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+# get window name: xprop WM_CLASS | grep -o '"[^"]*"' | head -n 1
+
 # Define colors
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
@@ -44,11 +46,16 @@ floating_modifier $mod
 # Disable title and borders for all windows
 for_window [class="^.*"] border pixel 1
 
+for_window [instance="__scratchpad"] move scratchpad
+for_window [instance="__scratchpad"] scratchpad show
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec tilix --new-process
 #bindsym $mod+Return exec termite -c $HOME/.config/termite.conf
 bindsym $mod+Return exec --no-startup-id terminator
+bindsym $mod+Shift+Return exec --no-startup-id terminator -e nvim
+bindsym $mod+T exec --no-startup-id $i3/floating.sh
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -125,7 +132,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "0"
+set $ws10 "10"
 
 # use workspaceR on different monitors
 

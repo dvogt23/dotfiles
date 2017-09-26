@@ -24,7 +24,6 @@ nmap <leader>vk :res -10<cr>
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
 nmap <leader>ev :vsp $MYVIMRC<cr>
-nmap <leader>et :vsp ~/.tmux.conf<cr>
 nmap <leader>ez :vsp ~/.zshrc<cr>
 nmap <leader>ea :Ag <c-r><c-w><cr>
 nmap <leader>sv :source $MYVIMRC<cr>
@@ -60,9 +59,12 @@ nnoremap Q <Nop>
 nnoremap U <Nop>
 nnoremap J <Nop>
 nnoremap <leader>d :bp<cr>:bd #<cr>
-nnoremap <cr> :noh<cr><cr>
+noremap <cr> :noh<cr><cr>
 "nnoremap J <Nop>
-"nnoremap K <Nop>
+"nnoremap
+" Moving characters
+nno L xp
+nno H Xph
 
 inoremap <c-j> <Esc>/<+\w*+><CR><Esc>cf>
 inoremap <c-k> <Esc>?<+\w*+><CR><Esc>cf>
@@ -91,6 +93,8 @@ set scrolloff=3
 set mouse=a
 set number
 set rnu
+set list
+set listchars=tab:→\ ,trail:·,precedes:«,extends:»
 "set noesckeys
 "set modifiable
 
@@ -198,14 +202,10 @@ Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
 "Plug 'scrooloose/nerdcommenter'
 "Plug 'gorodinskiy/vim-coloresque'
+Plug 'chrisbra/Colorizer'
 Plug 'Suave/vim-colors-guardian'
 
 "languages
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript',                { 'for': 'javascript' }
-Plug 'jelera/vim-javascript-syntax',           { 'for': 'javascript' }
-Plug 'othree/yajs.vim',                        { 'for': 'javascript' }
-Plug 'mxw/vim-jsx',                            { 'for': 'javascript' }
 "Plug 'hail2u/vim-css3-syntax',                 { 'for': [ 'css', 'less', 'scss' ] }
 "Plug 'groenewege/vim-less',                    { 'for': 'less' }
 Plug 'mattn/emmet-vim',                        { 'for': [ 'html', 'handlebars'] }
@@ -214,6 +214,8 @@ Plug 'suan/vim-instant-markdown',              { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
 Plug 'fatih/vim-go',                           { 'for': 'go' }
 "plug 'klen/python-mode',                       { 'for': 'python' }
+Plug 'rust-lang/rust.vim'
+Plug 'timonv/vim-cargo'
 Plug 'gregsexton/MatchTag',
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
@@ -276,7 +278,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme = 'one'
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+   let g:airline_symbols = {}
 endif
 
 " unicode symbols
@@ -310,7 +312,7 @@ let g:NERDCustomDelimiters = { 'hbs': { 'left': '<!--','right': '-->' } }
 let g:NERDCustomDelimiters = { 'js': { 'left': '{/*','right': '*/}' } }
 " }}}
 
-" NEEDTree {{{
+" NERDTree {{{
 "autocmd FileType nerdtree noremap <buffer> <leader>q <nop>
 autocmd FileType nerdtree noremap <buffer> <leader>l <nop>
 autocmd FileType nerdtree noremap <buffer> <leader>h <nop>
@@ -335,16 +337,6 @@ let g:ctrlp_reuse_window = 'startify'
 
 " }}}
 
-" Emmet {{{
-let g:user_emmet_expandabbr_key = '<c-y>'
-"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-let g:user_emmet_settings = {
-\  'javascript' : {
-\      'extends' : 'jsx',
-\  },
-\}
-" }}}
-
 " Syntastic {{{
 
 if !has('nvim')
@@ -366,6 +358,15 @@ endif
 
 " Neomake {{{
 
+" Enable Neomake to run cargo asynchronously on saving rust files
+autocmd! BufWritePost *.rs Neomake! cargo
+
+" NeoMake: Enable messages
+"let g:neomake_verbose = 3
+
+" NeoMake: Open the list of errors without moving the cursor
+let g:neomake_open_list = 2
+
 "if has('nvim')
   "let g:neomake_open_list = 2
   "let g:neomake_javascript_enabled_makers = ['eslint']
@@ -379,11 +380,6 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" }}}
-
-" React and JSX {{{
-let g:jsx_ext_required = 0
-let g:javascript_plugin_flow = 1
 " }}}
 
 " Autocmd {{{
