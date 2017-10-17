@@ -98,6 +98,10 @@ set listchars=tab:→\ ,trail:·,precedes:«,extends:»
 "set noesckeys
 "set modifiable
 
+" copy indent from previous line: useful when using tabs for indentation
+" and spaces for alignment
+set copyindent
+
 " style of divider
 autocmd ColorScheme * hi VertSplit cterm=NONE ctermbg=NONE ctermfg=green
 
@@ -126,9 +130,24 @@ set smartindent
 set magic
 
 " clipboard, yank, paste
-set clipboard=unnamed
+set clipboard+=unnamedplus
 set nopaste
 set pastetoggle=<F2>
+
+" " Copy to clipboard
+"vnoremap  <leader>y  "+y
+"nnoremap  <leader>Y  "+yg_
+"nnoremap  <leader>y  "+y
+"nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+"nnoremap <leader>p "+p
+"nnoremap <leader>P "+P
+"vnoremap <leader>p "+p
+"vnoremap <leader>P "+P
+
+" map double ESC to nohl
+nnoremap <silent> <Esc><Esc> :nohl<CR>
 
 " errorbells
 set noerrorbells
@@ -194,6 +213,7 @@ Plug 'nightsense/vim-crunchbang'
 Plug 'flazz/vim-colorschemes'
 "Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'luochen1990/rainbow'
+Plug 'dpc/vim-smarttabs'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify'
 "Plug 'timakro/vim-searchant'
