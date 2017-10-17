@@ -1,0 +1,53 @@
+URxvt.termName:         rxvt-256color
+URxvt.font:             xft:Inconsolata Nerd Fonts:pixelsize=12
+URxvt.perl-ext-common:  default,matcher
+URxvt.urlLauncher:      opera
+URxvt.matcher.button:   1
+URxvt.scrollstyle:      plain
+URxvt.borderColor:      #000030
+URxvt.internalBorder:   0
+URxvt.saveLines:        4095
+URxvt.letterSpace:      1
+
+! Low contrast theme, based on Zenburn <http://slinky.imukuppi.org/zenburnpage/>
+! Modified from <https://gist.github.com/564084>
+URxvt.foreground:       #eeeeee
+URxvt.color0:           #3f3f3f
+URxvt.color1:           #705050
+URxvt.color2:           #00b45a
+URxvt.color3:           #dfcf8f
+URxvt.color4:           #506070
+URxvt.color5:           #dc8cc3
+URxvt.color6:           #8cd0d3
+URxvt.color7:           #dcdccc
+URxvt.color8:           #709080
+URxvt.color9:           #cc5454
+URxvt.color10:          #4d9f4d
+URxvt.color11:          #f0dfaf
+URxvt.color12:          #4186be
+URxvt.color13:          #ec93d3
+URxvt.color14:          #93e0e3
+URxvt.color15:          #ffffff
+
+!! Keycode fixes for Ctrl+direction in Vim
+!URxvt.keysym.C-Up:     \033[1;5A
+!URxvt.keysym.C-Down:   \033[1;5B
+!URxvt.keysym.C-Right:  \033[1;5C
+!URxvt.keysym.C-Left:   \033[1;5D
+!URxvt.keysym.C-Prior:  \033[5;5~
+!URxvt.keysym.C-Next:   \033[6;5~
+!URxvt.keysym.C-Home:   \033[7;5~
+!URxvt.keysym.C-End:    \033[8;5~
+
+!Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode
+URxvt.iso14755:         False
+
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/4444
+
+
+URxvt*transparent:true
+URxvt.shading:20
+URxvt*scrollBar: false
+#URxvt*borderLess: true
+URxvt*foreground: White
