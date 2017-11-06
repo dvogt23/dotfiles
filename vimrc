@@ -57,10 +57,8 @@ nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
 nnoremap Q <Nop>
 nnoremap U <Nop>
-nnoremap J <Nop>
 nnoremap <leader>d :bp<cr>:bd #<cr>
 noremap <cr> :noh<cr><cr>
-"nnoremap J <Nop>
 "nnoremap
 " Moving characters
 nno L xp
