@@ -237,9 +237,17 @@ Plug 'timonv/vim-cargo'
 Plug 'gregsexton/MatchTag',
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
+Plug 'rust-lang/rust.vim',      { 'for': 'rust' } " Rust filetype * CHECK OPTIONS *
+Plug 'racer-rust/vim-racer',    { 'for': 'rust' }
+Plug 'timonv/vim-cargo',      { 'for': 'rust' }
+Plug 'cespare/vim-toml',      { 'for': 'toml' }
+
 if has('nvim')
   Plug 'benekastah/neomake'
+  Plug ('Shougo/deoplete.nvim'),      { 'do': ':UpdateRemotePlugins' } " Code completion
+  Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 else
+  Plug 'Valloric/YouCompleteMe',      { 'do': './install.py --racer-completer' }
   Plug 'scrooloose/syntastic',                 { 'on': 'SyntasticCheck' }
 endif
 
@@ -285,6 +293,12 @@ colorscheme ThemerVim
 " Vim inside Tmux might need these color settings
 "set t_8b=^[[48;2;%lu;%lu;%lum
 "set t_8f=^[[38;2;%lu;%lu;%lum
+
+"}}}
+
+" Rust {{{
+
+let g:rustfmt_autosave = 1
 
 "}}}
 
@@ -374,24 +388,38 @@ endif
 
 " }}}
 
+" Deoplete - Completion framework {{{
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+
+    " Rust
+    let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
+    let g:deoplete#sources#rust#rust_source_path='$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+    let g:deoplete#sources#rust#show_duplicates=1
+    let g:deoplete#sources#rust#disable_keymap=1
+    let g:deoplete#sources#rust#documentation_max_height=20
+endif
+
+" }}}
 " Neomake {{{
 
-" Enable Neomake to run cargo asynchronously on saving rust files
-autocmd! BufWritePost *.rs Neomake! cargo
+if has('nvim')
+  " Enable Neomake to run cargo asynchronously on saving rust files
+  " autocmd! BufWritePost *.rs Neomake! cargo
+  autocmd! BufWritePost,BufEnter * Neomake
 
-" NeoMake: Enable messages
-"let g:neomake_verbose = 3
-
-" NeoMake: Open the list of errors without moving the cursor
-let g:neomake_open_list = 2
-
-"if has('nvim')
-  "let g:neomake_open_list = 2
-  "let g:neomake_javascript_enabled_makers = ['eslint']
-  "autocmd! BufWritePost,BufEnter * Neomake
-"endif
+  " NeoMake: Enable messages
+  let g:neomake_verbose = 3
+endif
 
 "}}}
+
+" Provider {{{
+
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+" }}}
 
 " Snippets {{{
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
