@@ -394,13 +394,14 @@ if has('nvim')
 
     " Rust
     let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
-    let g:deoplete#sources#rust#rust_source_path='$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+    let g:deoplete#sources#rust#rust_source_path='$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
     let g:deoplete#sources#rust#show_duplicates=1
     let g:deoplete#sources#rust#disable_keymap=1
     let g:deoplete#sources#rust#documentation_max_height=20
 endif
 
 " }}}
+
 " Neomake {{{
 
 if has('nvim')
@@ -416,8 +417,8 @@ endif
 
 " Provider {{{
 
-let g:python2_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python2_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " }}}
 
