@@ -1,8 +1,17 @@
 [alias]
 
+    # Reset things
+    unstage = reset HEAD
+    uncommit = reset --soft HEAD^
+
+    # Verbose view
+    b = branch -v
+    r = remote -v
+    t = tag -l
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-	ll = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+	ll = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%ce)>%Creset' --abbrev-commit --all
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -106,7 +115,11 @@
 
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = auto
 
 [color "branch"]
 
@@ -131,7 +144,7 @@
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = true
-	template = /home/dvogt/.gitcommittemplate
+	template = ~/.gitcommittemplate
 
 [diff]
 
@@ -152,6 +165,7 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+    summary = true
 
 [push]
 

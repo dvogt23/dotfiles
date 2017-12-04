@@ -4,6 +4,8 @@ adwaita-icon-theme
 alsa-lib
 alsa-plugins
 alsa-utils
+apr
+apr-util
 apvlv
 arandr
 arc-gtk-theme
@@ -71,6 +73,7 @@ dhcpcd
 dialog
 diffutils
 djvulibre
+dkms
 dmenu
 dmraid
 dmxproto
@@ -191,6 +194,7 @@ i3lock
 i3status
 iana-etc
 icu
+iftop
 imagemagick
 imlib2
 inetutils
@@ -230,7 +234,7 @@ kconfigwidgets
 kcoreaddons
 kcrash
 kdbusaddons
-keybase
+keybase-bin
 keyutils
 kglobalaccel
 kguiaddons
@@ -444,6 +448,7 @@ lsof
 lua
 lua51
 lua52
+luajit
 lvm2
 lz4
 lzo
@@ -482,7 +487,9 @@ neovim
 nerd-fonts-complete
 net-tools
 netctl
+nethogs
 nettle
+nettop
 network-manager-applet
 networkmanager
 nitrogen
@@ -566,7 +573,10 @@ python-chardet
 python-cryptography
 python-dbus-common
 python-gobject
+python-greenlet
 python-idna
+python-msgpack
+python-neovim
 python-packaging
 python-pip
 python-ply
@@ -580,14 +590,19 @@ python2
 python2-appdirs
 python2-cairo
 python2-dbus
+python2-futures
 python2-gobject
 python2-gobject2
+python2-greenlet
+python2-msgpack
+python2-neovim
 python2-packaging
 python2-pip
 python2-psutil
 python2-pyparsing
 python2-setuptools
 python2-six
+python2-trollius
 qt4
 qt5-base
 qt5-declarative
@@ -612,7 +627,7 @@ rofi
 rsync
 rtkit
 rtmpdump
-rust
+rustup
 rxvt-unicode
 rxvt-unicode-terminfo
 s-nail
@@ -628,6 +643,7 @@ sdl2
 seahorse
 sed
 semver
+serf
 shadow
 shared-mime-info
 simplescreenrecorder
@@ -646,6 +662,7 @@ startup-notification
 stow
 strace
 sublime-text-dev
+subversion
 sudo
 sysfsutils
 systemd
@@ -667,6 +684,7 @@ tre
 tree
 tslib
 ttf-dejavu
+ttf-mac-fonts
 ttf-roboto-mono
 tzdata
 udisks2
@@ -684,7 +702,8 @@ videoproto
 vim
 vim-runtime
 vimpager
-virtualbox-guest-modules-arch
+virtualbox
+virtualbox-guest-dkms
 virtualbox-guest-utils
 volume_key
 vte-common

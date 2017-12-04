@@ -1,9 +1,9 @@
-# 1 . Install LTS kernel
+# 10things_arch
 
 Check your current kernel:
 umane -r
 
-Install an LTS kernel and reconfigure grub:
+# 1. Install an LTS kernel and reconfigure grub:
 sudo pacman -S linux-lts
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -25,7 +25,7 @@ For AMD processors install linux-firmware package.
 # 3. Disable GRUB delay
 
 Add the following to /etc/default/grub:
-# achieve the fastest possible boot:
+achieve the fastest possible boot:
 GRUB_FORCE_HIDDEN_MENU="true"
 
 Then put file 31_hold_shift to /etc/grub.d/.
@@ -97,12 +97,12 @@ sudo pacman -Rns $(pacman -Qtdq)
 
 sudo pacman-optimize
 
-9. Check for errors
+# 9. Check for errors
 
 sudo systemctl --failed
 sudo journalctl -p 3 -xb
 
 
-10. Backup the system
+# 10. Backup the system
 
 sudo rsync -aAXvP --delete --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* --exclude=/run/* --exclude=/mnt/* --exclude=/media/* --exclude=/lost+found --exclude=/home/.ecryptfs / /mnt/backupDestination/

@@ -1,5 +1,8 @@
+# env vars !printenv
+
 # Defaults
 export DOTFILES_DIR="$HOME/.dotfiles"
+export PROJECT_DIR="$HOME/Projects"
 export PATH="$HOME/.scripts:$PATH"
 export BROWSER="/usr/bin/chromium"
 export GIT_EDITOR="nvim"
