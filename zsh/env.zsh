@@ -39,3 +39,4 @@ export FZF_ALT_C_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {
 #export PASSWORD_STORE_DIR='.private/'
 #export PASSWORD_STORE_GIT=''
 export PASSWORD_STORE_CLIP_TIME=15
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
