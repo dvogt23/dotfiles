@@ -179,6 +179,7 @@ for_window [class="Spotify"] move to workspace $ws10
 for_window [class="Firefox"] move to workspace $ws1
 for_window [class="Chromium"] move to workspace $ws1
 for_window [class="Slack"] move to workspace $ws9
+for_window [class="jetbrains-idea-ce"] move to workspace $ws2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

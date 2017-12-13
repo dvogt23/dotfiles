@@ -95,7 +95,9 @@ set list
 set listchars=tab:→\ ,trail:·,precedes:«,extends:»
 "set noesckeys
 "set modifiable
-
+:set noexpandtab
+:set preserveindent
+:set softtabstop=0
 " copy indent from previous line: useful when using tabs for indentation
 " and spaces for alignment
 set copyindent
@@ -130,7 +132,6 @@ set magic
 " clipboard, yank, paste
 set clipboard+=unnamedplus
 set nopaste
-set pastetoggle=<F2>
 
 " " Copy to clipboard
 "vnoremap  <leader>y  "+y
@@ -222,6 +223,7 @@ Plug 'dylanaraps/ryuuko'
 "Plug 'gorodinskiy/vim-coloresque'
 Plug 'chrisbra/Colorizer'
 Plug 'Suave/vim-colors-guardian'
+Plug 'terryma/vim-multiple-cursors'
 
 "languages
 "Plug 'hail2u/vim-css3-syntax',                 { 'for': [ 'css', 'less', 'scss' ] }
@@ -274,7 +276,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
-Plug 'svermeulen/vim-easyclip'
+"Plug 'svermeulen/vim-easyclip'
 Plug 'vim-scripts/Rename'
 Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
