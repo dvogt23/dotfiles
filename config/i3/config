@@ -64,14 +64,14 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec rofi -show drun
 #bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 30 -bw 0 -font "NotoSans-Regular 10" #-bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" 
-# bindsym $mod+d exec rofi -show combi -lines 6 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "NotoSans-Regular 16"
+ #bindsym $mod+d exec rofi -show combi -lines 6 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "NotoSans-Regular 16"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Execute programs
-# bindsym $mod+x exec env GTK_THEME=Adwaita:light firefox
+#bindsym $mod+x exec env GTK_THEME=Adwaita:light firefox
 bindsym $mod+x exec chromium
 
 # change focus

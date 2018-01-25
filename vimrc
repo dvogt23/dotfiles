@@ -104,6 +104,11 @@ set copyindent
 
 " style of divider
 autocmd ColorScheme * hi VertSplit cterm=NONE ctermbg=NONE ctermfg=green
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " line break
 set linebreak
@@ -219,7 +224,7 @@ Plug 'mhinz/vim-startify'
 Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
-"Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 "Plug 'gorodinskiy/vim-coloresque'
 Plug 'chrisbra/Colorizer'
 Plug 'Suave/vim-colors-guardian'
@@ -291,6 +296,7 @@ set termguicolors
 
 set background=dark
 colorscheme ThemerVim
+"colorscheme apprentice
 
 " Vim inside Tmux might need these color settings
 "set t_8b=^[[48;2;%lu;%lu;%lum
