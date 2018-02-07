@@ -202,3 +202,8 @@ remote = green
 added = yellow
 changed = green
 untracked = cyan
+
+# stop track git
+[oh-my-zsh]
+	hide-dirty = 1
+	#hide-status = 1
