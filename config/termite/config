@@ -1,5 +1,5 @@
 [options]
-font = Monospace 9
+font = Iosevka Term 11
 crollback_lines=10000
 clickable_url=true
 dynamic_title=true

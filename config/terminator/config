@@ -19,7 +19,7 @@
     background_type = transparent
     copy_on_selection = True
     cursor_color = "#FFFFFF"
-    font = InconsolataGo Nerd Font 12
+    font = Iosevka Term 11
     foreground_color = "#ffffff"
     scrollback_lines = 5000
     scrollbar_position = hidden

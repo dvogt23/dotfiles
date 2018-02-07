@@ -44,7 +44,7 @@ hide_edge_borders both
 floating_modifier $mod
 
 # Disable title and borders for all windows
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
 
 for_window [instance="__scratchpad"] move scratchpad
 for_window [instance="__scratchpad"] scratchpad show
