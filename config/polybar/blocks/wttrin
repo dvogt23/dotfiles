@@ -76,11 +76,11 @@ refresh() {
 	unset ICON
 
 	# regex for digit(temp) search
-	re='^[0-9]+$'
-	reWord='^[a-zA-Z0-9]{4,10}$'
+	re='^[-0-9]+$'
+	reWord='^[-a-zA-Z0-9]{4,10}$'
 
 	# fetch weather data
-	values=$(curl -s http://wttr.in/${LOCATION}?0QT | grep -oE "\w+")
+	values=$(curl -s http://wttr.in/${LOCATION}?0QT | grep -oE -- "-?\w+")
 	#values=$(./weather.py ${LOCATION} --unit C --position 2 | grep -Eo "\w+")
 
 	# get icon and temp
@@ -88,9 +88,9 @@ refresh() {
 
 		if [[ ${v} =~ ${re} ]]; then
 			if [[ -z ${TEMP} ]]; then
-				TEMP="${v}"
+				TEMP="${v//-/–}"
 			else
-				TEMP="${TEMP}-${v}"
+				TEMP="${TEMP}-${v//-/–}"
 			fi
 		fi
 
