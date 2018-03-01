@@ -107,6 +107,11 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# take screenshots
+bindsym Print exec scrot $HOME/Pictures/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
+bindsym $mod+Print exec scrot -u $HOME/Pictures/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
+bindsym $mod+Shift+Print exec scrot -s $HOME/Pictures/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
