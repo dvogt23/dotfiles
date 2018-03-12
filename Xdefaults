@@ -1,5 +1,5 @@
-URxvt.termName:         rxvt-256color
-URxvt.font:             xft:Inconsolata Nerd Fonts:pixelsize=11
+URxvt.termName:         rxvt-unicode-256color
+URxvt.font:             xft:Iosevka Term:size=12
 URxvt.perl-ext-common:  default,matcher
 URxvt.urlLauncher:      chromium
 URxvt.matcher.button:   1
@@ -8,25 +8,45 @@ URxvt.borderColor:      #000030
 URxvt.internalBorder:   0
 URxvt.saveLines:        4095
 
-! Low contrast theme, based on Zenburn <http://slinky.imukuppi.org/zenburnpage/>
-! Modified from <https://gist.github.com/564084>
-URxvt.foreground:       #eeeeee
-URxvt.color0:           #3f3f3f
-URxvt.color1:           #705050
-URxvt.color2:           #00b45a
-URxvt.color3:           #dfcf8f
-URxvt.color4:           #506070
-URxvt.color5:           #dc8cc3
-URxvt.color6:           #8cd0d3
-URxvt.color7:           #dcdccc
-URxvt.color8:           #709080
-URxvt.color9:           #cc5454
-URxvt.color10:          #4d9f4d
-URxvt.color11:          #f0dfaf
-URxvt.color12:          #4186be
-URxvt.color13:          #ec93d3
-URxvt.color14:          #93e0e3
-URxvt.color15:          #ffffff
+*background: #002b36
+*foreground: #657b83
+!!*fading: 40
+*fadeColor: #002b36
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
+
+!! black dark/light
+*color0: #073642
+*color8: #002b36
+
+!! red dark/light
+*color1: #dc322f
+*color9: #cb4b16
+
+!! green dark/light
+*color2: #859900
+*color10: #586e75
+
+!! yellow dark/light
+*color3: #b58900
+*color11: #657b83
+
+!! blue dark/light
+*color4: #268bd2
+*color12: #839496
+
+!! magenta dark/light
+*color5: #d33682
+*color13: #6c71c4
+
+!! cyan dark/light
+*color6: #2aa198
+*color14: #93a1a1
+
+!! white dark/light
+*color7: #eee8d5
+*color15: #fdf6e3
 
 !! Keycode fixes for Ctrl+direction in Vim
 !URxvt.keysym.C-Up:     \033[1;5A

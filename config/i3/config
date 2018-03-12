@@ -46,16 +46,18 @@ floating_modifier $mod
 # Disable title and borders for all windows
 for_window [class="^.*"] border pixel 3
 
-for_window [instance="__scratchpad"] move scratchpad
-for_window [instance="__scratchpad"] scratchpad show
+#for_window [instance="__scratchpad"] move scratchpad
+#for_window [instance="__scratchpad"] scratchpad show
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec tilix --new-process
 #bindsym $mod+Return exec termite -c $HOME/.config/termite.conf
-bindsym $mod+Return exec --no-startup-id terminator
+bindsym $mod+Return exec --no-startup-id urxvtc
 bindsym $mod+Shift+Return exec --no-startup-id terminator -e nvim
-bindsym $mod+T exec --no-startup-id $i3/floating.sh
-
+#bindsym $mod+T exec --no-startup-id $i3/floating.sh
+# Scratchpad terminal
+for_window [title="^scratchpad$"] move scratchpad
+bindsym $mod+T [instance="scratchpad"] scratchpad show; sticky enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -340,3 +342,4 @@ exec --no-startup-id numlockx
 #  Execute always  #
 ####################
 exec_always --no-startup-id feh --bg-fill ~/Bilder/wallpaper.jpg
+exec_always --no-startup-id urxvtd -f && urxvtc -name scratchpad
