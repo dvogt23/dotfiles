@@ -1,2 +1,2 @@
 #include "/usr/share/rofi/themes/Monokai.theme"
-rofi.theme: /usr/share/rofi/themes//android_notification.rasi
+rofi.theme: /usr/share/rofi/themes/paper-float.rasi

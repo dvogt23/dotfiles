@@ -41,6 +41,7 @@ for config ($ZSHRC/**/*.zsh) source $config
 
 # Load fzf for zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /etc/profile.d/autojump.sh ] && source /etc/profile.d/autojump.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
