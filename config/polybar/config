@@ -73,7 +73,7 @@ font-5 = Termsynu:size=7;0
 
 modules-left = i3
 modules-center = date clock pomodoro
-modules-right = opensetup cpu filesystem eth downspeed upspeed
+modules-right = cpu filesystem eth downspeed upspeed opensetup opensetup_fail xkeyboard
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -110,7 +110,7 @@ font-5 = Termsynu:size=7;0
 
 modules-left = i3
 modules-center = date clock pomodoro
-modules-right = weather pkg cpu filesystem eth downspeed upspeed iota bitcoin
+modules-right = weather pkg cpu filesystem eth downspeed upspeed xkeyboard iota bitcoin
 
 tray-position = right
 tray-padding = 2
@@ -188,14 +188,16 @@ blacklist-0 = num lock
 
 format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
-format-prefix-underline = ${colors.underline-c}
+;format-prefix-underline = ${colors.underline-c}
 
 label-layout = %layout%
-label-layout-underline = ${colors.underline-c}
+;label-layout-underline = ${colors.underline-c}
 
+label-indicator =  CAPS
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.underline-c}
+label-indicator-foreground = ${colors.foreground}
+;label-indicator-background = ${colors.underline-c}
 ;label-indicator-underline = ${colors.underline-a}
 
 
@@ -557,10 +559,22 @@ exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 type = custom/script
 interval = 900
 format = <label>
+format-prefix =  
 tail = true
 label-foreground = ${colors.foreground}
 format-prefix-foreground = ${colors.foreground}
 exec = ~/.config/polybar/blocks/opensetup_count.sh
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/opensetup_fail]
+type = custom/script
+interval = 900
+format = <label>
+format-prefix = 
+tail = true
+label-foreground = ${colors.foreground-dark}
+format-prefix-foreground = ${colors.foreground-dark}
+exec = ~/.config/polybar/blocks/opensetup_count_fail.sh
 exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 
 [module/wttr]

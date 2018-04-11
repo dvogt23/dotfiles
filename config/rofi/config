@@ -1,2 +1,4 @@
 #include "/usr/share/rofi/themes/Monokai.theme"
-rofi.theme: /usr/share/rofi/themes/paper-float.rasi
+rofi.theme:                         spoti.rasi
+rofi.modi:                          combi,calc:calc -t
+rofi.combi-modi:                    window,drun
