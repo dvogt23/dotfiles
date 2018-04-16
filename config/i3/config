@@ -74,6 +74,10 @@ bindsym $mod+Shift+o exec rofi-pass --last-used
 # installed.
 bindsym $mod+d exec rofi -show combi
 
+# greenclip in rofi
+bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+Shift+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 1 && xdotool type $(xclip -o -selection clipboard)
+
 # Execute programs
 #bindsym $mod+x exec env GTK_THEME=Adwaita:light firefox
 bindsym $mod+x exec chromium
@@ -191,7 +195,7 @@ for_window [class="Slack"] move to workspace $ws9
 for_window [class="jetbrains-idea-ce"] move to workspace $ws2
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+#bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
