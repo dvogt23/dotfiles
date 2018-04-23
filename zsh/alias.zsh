@@ -1,9 +1,11 @@
 # For a full list of active aliases, run `alias`.
+alias a="alias | rg "
 
 alias zshconfig="source ~/.zshrc"
 #alias ohmyzsh="mate ~/.oh-my-zsh"
 alias e='emacsclient -t'
 alias ew='emacsclient'
+alias cc='calcurse'
 alias v='nvim'                           # Preferred 'cp' implementation
 alias vi='nvim'                           # Preferred 'cp' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation

@@ -1,4 +1,4 @@
 #include "/usr/share/rofi/themes/Monokai.theme"
 rofi.theme:                         spoti.rasi
-rofi.modi:                          combi,calc:calc -t
+rofi.modi:                          combi,run
 rofi.combi-modi:                    window,drun

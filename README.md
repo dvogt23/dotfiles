@@ -3,12 +3,13 @@
 ##### Summary
 | OS       | Arch Linux x86_64 |
 | -------- | ----------------- |
-| Shell    | zsh 5.4.2         |
-| WM       | i3                |
+| Shell    | [zsh](https://github.com/zsh-users/zsh) 5.4.2         |
+| WM       | [i3-gaps](https://github.com/Airblader/i3)           |
 | Theme    | Arc-Dark [GTK2/3] |
 | Icons    | Adwaita [GTK2/3]  |
-| Terminal | terminator        |
-| Font     | Iosevka           |
+| Terminal | [st - LukeSmith](https://github.com/LukeSmithxyz/st)        |
+| Font     | [Iosevka](https://be5invis.github.io/Iosevka/)           |
+| Rofi     | [Spoti](https://github.com/dvogt23/dotfiles/blob/master/config/rofi/spoti.rasi)           |
 ---
 ##### Screenshot
 ![Screenshot][screenshot]
