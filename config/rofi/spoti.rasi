@@ -7,6 +7,9 @@
  * config: rofi.modi: combi,calc:calc -t
  *         rofi.combi-modi: window,drun
  * run:    rofi -show combi
+ *
+ * Add in compton.conf for opacity:
+ * opacity-rule = ["85:class_g = 'rofi'"];
  */
 
 configuration {
@@ -61,6 +64,7 @@ configuration {
     spacing: 0;
     children:  [vertb, mainbox];
     orientation: horizontal;
+    width: 30%;
 }
 
 #mainbox {

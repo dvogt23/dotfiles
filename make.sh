@@ -1,23 +1,42 @@
-#/bin/bash
+#/usr/bin/env bash
 
-dir=~/.dotfiles
-olddir=~/.dotfiles.backup
-files="bash_profile gitattirbutes gitconfig gitignore gitattributes hushlogin vim vimrc"
+# colors
+YEL='\e[93m'
+GRN='\e[32m'
+RED='\e[31m'
+NC='\033[0m'
 
-##########
+# set dry to active: only simulate
+[[ ! -z $1 ]] && [[ $1 == "dry" ]] && echo -e "${GRN}run dry${NC}\n" && DRY=1
+
+# dotfile dir
+DIR=$(pwd)
+PARENTDIR="$(dirname "$DIR")"
+# backup dir
+OLDDIR=$PARENTDIR/.dotfiles.backup
+# files to link
+FILES="gitcommittemplate gitconfig gitignore gitattributes hushlogin vim vimrc scripts calcurse notes zsh zshrc tmux.conf vimpagerrc screenlayout todo"
+
+################ START ####################################
 
 # create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
+[[ ! -d $OLDDIR ]] && echo -e "Creating $OLDDIR for backup\n"
+[[ -z $DRY ]] && mkdir -p $OLDDIR
 
-# change to the dotfiles directory
-echo "Changing to the $dir directory"
-cd $dir
-
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
-for file in $files; do
-    echo "Moving $file to $olddir"
-    mv ~/.$file ~/$olddir/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+# move any existing dotfiles backup dir and create link to dotfile
+for file in $FILES; do
+    if [ -f $file ] || [ -d $file ]; then
+        if [ -L ~/.$file ]; then
+            echo -e "${YEL}$file link already exists${NC}"
+        else
+            [[ -f ~/.$file ]] || [[ -d ~/.$file ]] && echo "Move ~./$file to $OLDDIR"
+            [[ -z $DRY ]] && { [ -f ~/.$file ] || [ -d ~/.$file ]; } && mv ~/.$file $OLDDIR/ && echo -e "${GRN}~/.$file moved${NC}"
+            echo "Create link ~/.$file to $DIR/$file"
+            [[ -z $DRY ]] && ln -s $DIR/$file ~/.$file && echo -e "${GRN}Link ~/.$file created${NC}"
+            echo
+        fi
+    else
+        echo -e "${RED}$file not in $DIR${NC}"
+        echo
+    fi
 done

@@ -215,6 +215,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nightsense/vim-crunchbang'
 Plug 'flazz/vim-colorschemes'
+Plug 'ayu-theme/ayu-vim' " or other package manager
+Plug 'ayu-theme/ayu-vim-airline'
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+
 "Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'luochen1990/rainbow'
 Plug 'dpc/vim-smarttabs'
@@ -250,7 +256,7 @@ Plug 'timonv/vim-cargo',      { 'for': 'rust' }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
 
 if has('nvim')
-  Plug 'benekastah/neomake'
+  "Plug 'benekastah/neomake'
   Plug ('Shougo/deoplete.nvim'),      { 'do': ':UpdateRemotePlugins' } " Code completion
   Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 else
@@ -295,12 +301,13 @@ call plug#end()
 set termguicolors
 
 set background=dark
-colorscheme ThemerVim
+colorscheme ayu
+"colorscheme ThemerVim
 "colorscheme apprentice
 
 " Vim inside Tmux might need these color settings
-"set t_8b=^[[48;2;%lu;%lu;%lum
-"set t_8f=^[[38;2;%lu;%lu;%lum
+set t_8b=^[[48;2;%lu;%lu;%lum
+set t_8f=^[[38;2;%lu;%lu;%lum
 
 "}}}
 
@@ -315,7 +322,7 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme = 'one'
+let g:airline_theme = 'ayu'
 
 if !exists('g:airline_symbols')
    let g:airline_symbols = {}
@@ -412,14 +419,14 @@ endif
 
 " Neomake {{{
 
-if has('nvim')
-  " Enable Neomake to run cargo asynchronously on saving rust files
-  " autocmd! BufWritePost *.rs Neomake! cargo
-  autocmd! BufWritePost,BufEnter * Neomake
+"if has('nvim')
+  "" Enable Neomake to run cargo asynchronously on saving rust files
+  "" autocmd! BufWritePost *.rs Neomake! cargo
+  "autocmd! BufWritePost,BufEnter * Neomake
 
-  " NeoMake: Enable messages
-  let g:neomake_verbose = 3
-endif
+  "" NeoMake: Enable messages
+  "let g:neomake_verbose = 3
+"endif
 
 "}}}
 
