@@ -43,6 +43,9 @@ for config ($ZSHRC/**/*.zsh) source $config
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /etc/profile.d/autojump.sh ] && source /etc/profile.d/autojump.sh
 
+source ~/.zplug/init.zsh
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'

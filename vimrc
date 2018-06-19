@@ -255,15 +255,6 @@ Plug 'racer-rust/vim-racer',    { 'for': 'rust' }
 Plug 'timonv/vim-cargo',      { 'for': 'rust' }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
 
-if has('nvim')
-  "Plug 'benekastah/neomake'
-  Plug ('Shougo/deoplete.nvim'),      { 'do': ':UpdateRemotePlugins' } " Code completion
-  Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-else
-  Plug 'Valloric/YouCompleteMe',      { 'do': './install.py --racer-completer' }
-  Plug 'scrooloose/syntastic',                 { 'on': 'SyntasticCheck' }
-endif
-
 "tools
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
@@ -399,20 +390,6 @@ if !has('nvim')
 
   " dispaly all errors for mutiple checkers
   let g:syntastic_aggregate_errors = 1
-endif
-
-" }}}
-
-" Deoplete - Completion framework {{{
-if has('nvim')
-    let g:deoplete#enable_at_startup = 1
-
-    " Rust
-    let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
-    let g:deoplete#sources#rust#rust_source_path='$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-    let g:deoplete#sources#rust#show_duplicates=1
-    let g:deoplete#sources#rust#disable_keymap=1
-    let g:deoplete#sources#rust#documentation_max_height=20
 endif
 
 " }}}

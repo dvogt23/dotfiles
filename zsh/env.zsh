@@ -9,7 +9,7 @@ export GIT_EDITOR="nvim"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export CLICOLOR=1
-export TERM=screen-256color
+export TERM=tmux-256color
 
 # Rust for vim ide
 # Arch path

@@ -341,11 +341,11 @@ exec --no-startup-id /usr/bin/compton --config $HOME/.config/compton.conf
 #exec --no-startup-id $HOME/.screenlayout/1920x1080x2.sh
 #exec --no-startup-id VBoxClient-all
 exec --no-startup-id numlockx
-exec --no-startup-id "setxkbmap -model pc105 -layout us,de -variant intl, -option grp:lalt_lshift_toggle"
+exec --no-startup-id "setxkbmap -model pc105 -layout de"
 # exec --no-startup-id spotify
 
 ####################
 #  Execute always  #
 ####################
-exec_always --no-startup-id feh --bg-fill ~/Bilder/wallpaper.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/tetons-at-night.png
 #exec_always --no-startup-id urxvtd -f && urxvtc -name scratchpad

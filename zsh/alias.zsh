@@ -39,4 +39,4 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; cd `cat $HOME/.
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
 # unalias
-unalias rm
+#unalias rm
