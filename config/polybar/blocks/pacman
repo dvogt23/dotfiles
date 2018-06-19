@@ -17,7 +17,7 @@ full=""
 short=""
 status=0
 
-packages=$(checkupdates)
+packages=$(pacaur -Qu)
 numPackages=$(numLines "$packages")
 
 full=$numPackages

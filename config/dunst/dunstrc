@@ -1,5 +1,5 @@
 [global]
-    font = Iosevka Term 12
+    font = Roboto Mono 12
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -70,6 +70,8 @@
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
     transparency = 15
+    
+    corner_radius = 5
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.

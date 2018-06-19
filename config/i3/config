@@ -16,6 +16,9 @@ set $urgent-bg-color     #E53935
 
 # i3 config file (v4)
 set $i3 $HOME/.config/i3
+
+# scripts dir
+set $SCRIPTS $HOME/.scripts
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
@@ -46,6 +49,7 @@ floating_modifier $mod
 # Disable title and borders for all windows
 for_window [class="^.*"] border pixel 3
 
+for_window [class="^albert.*"] border pixel 0
 for_window [instance="__scratchpad"] move scratchpad
 for_window [instance="__scratchpad"] scratchpad show
 # start a terminal
@@ -72,11 +76,12 @@ bindsym $mod+Shift+o exec rofi-pass --last-used
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec rofi -show combi
+bindsym $mod+d exec LANG=en_US.UTF-8 rofi -show combi
+#bindsym $mod+d exec albert toggle
 
 # greenclip in rofi
 bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-bindsym $mod+Shift+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 1 && xdotool type $(xclip -o -selection clipboard)
+#bindsym $mod+Shift+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 1 && xdotool type $(xclip -o -selection clipboard)
 
 # Execute programs
 #bindsym $mod+x exec env GTK_THEME=Adwaita:light firefox
