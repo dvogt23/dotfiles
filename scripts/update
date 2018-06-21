@@ -1,0 +1,56 @@
+
+#!/bin/bash
+# System Update
+# ---------------------------
+# Snapshot - Rollback - Btrfs
+# ---------------------------
+
+MV=/usr/bin/mv
+BTRFS=/usr/bin/btrfs
+SED=/usr/bin/sed
+PACMAN=/usr/bin/pacman
+PACAUR=/usr/bin/pacaur
+CP=/usr/bin/cp
+REFLECTOR=/usr/bin/reflector
+SUDO=/usr/bin/sudo
+
+# ---------------------------
+#	   Snapshot System
+# ---------------------------
+
+# -------- OLDSTABLE --------
+
+$SUDO $BTRFS subvolume delete /.snapshots/OLDSTABLE
+$SUDO $MV /.snapshots/STABLE /.snapshots/OLDSTABLE
+$SUDO $SED -i 's/STABLE/OLDSTABLE/g' /.snapshots/OLDSTABLE/etc/fstab
+$SUDO $CP /boot/vmlinuz-linux-stable /boot/vmlinuz-linux-oldstable
+$SUDO $CP /boot/initramfs-linux-stable.img /boot/initramfs-linux-oldstable.img
+
+# --------- STABLE ----------
+
+$SUDO $BTRFS subvolume snapshot / /.snapshots/STABLE
+$SUDO $SED -i 's/TESTING/STABLE/g' /.snapshots/STABLE/etc/fstab
+$SUDO $CP /boot/vmlinuz-linux /boot/vmlinuz-linux-stable
+$SUDO $CP /boot/initramfs-linux.img /boot/initramfs-linux-stable.img
+
+# ---------------------------
+#	   Update System
+# ---------------------------
+
+$SUDO $REFLECTOR --verbose -l 5 -p https --sort rate --save /etc/pacman.d/mirrorlist
+$PACAUR -Syyu
+
+# ---------------------------
+#	 Balance Filesystem
+# --------------------------
+
+$SUDO $BTRFS balance start -dusage=5 /btrfs
+
+# ---------------------------
+#	 Update Misc
+# --------------------------
+
+rustup update stable
+cargo install-update -a
+# pip freeze --local | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 $SUDO pip install -U
+nvim +PlugUpdate +qall

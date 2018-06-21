@@ -67,7 +67,7 @@ font-4 = Pomicons:size=5;0
 font-5 = Termsynu:size=7;0
 
 modules-left = i3
-modules-center = date clock
+modules-center = date clock pomodoro
 modules-right = volume pkg cpu filesystem battery wlan downspeed upspeed iota bitcoin
 
 tray-position = right
