@@ -13,7 +13,12 @@ nmap <leader>h :bprevious<cr>
 nmap <leader>p :CtrlP ~/docs/<cr>
 nmap <leader>g :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
+nmap <leader>nh <Plug>GitGutterNextHunk
+nmap <leader>ph <Plug>GitGutterPrevHunk
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterUndoHunk
 nmap <leader>f :FZF<cr>
+nmap <leader>j <Plug>(easymotion-bd-f)
 nmap <leader>d :bd<cr>
 nmap <leader>o o<ESC>
 nmap <leader>O O<ESC>
@@ -217,6 +222,7 @@ Plug 'nightsense/vim-crunchbang'
 Plug 'flazz/vim-colorschemes'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'ayu-theme/ayu-vim-airline'
+Plug 'lokaltog/vim-easymotion'
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version of theme
 let ayucolor="dark"   " for dark version of theme
