@@ -245,13 +245,12 @@ Plug 'suan/vim-instant-markdown',              { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
 Plug 'fatih/vim-go',                           { 'for': 'go' }
 "plug 'klen/python-mode',                       { 'for': 'python' }
-Plug 'rust-lang/rust.vim'
 Plug 'timonv/vim-cargo'
 Plug 'gregsexton/MatchTag',
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim',      { 'for': 'rust' } " Rust filetype * CHECK OPTIONS *
-Plug 'racer-rust/vim-racer',    { 'for': 'rust' }
+"Plug 'racer-rust/vim-racer',    { 'for': 'rust' }
 Plug 'timonv/vim-cargo',      { 'for': 'rust' }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
 
@@ -283,6 +282,19 @@ Plug 'vim-scripts/Rename'
 Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace',         { 'on': 'StripWhitespace' }
+Plug 'roxma/nvim-completion-manager'
+if has('nvim')
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+    
+    " (Optional) Multi-entry selection UI.
+    Plug 'junegunn/fzf'
+    
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
 call plug#end()
 " }}}
 
@@ -307,6 +319,34 @@ set t_8f=^[[38;2;%lu;%lu;%lum
 let g:rustfmt_autosave = 1
 
 "}}}
+
+" << LSP >> {{{
+let g:LanguageClient_autoStart = 1
+nnoremap <leader>lcs :LanguageClientStart<CR>
+" if you want it to turn on automatically
+" let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'go': ['go-langserver'] }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
+noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
+noremap <silent> R :call LanguageClient_textDocument_rename()<CR>
+noremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ }
+
+" }}}
 
 " Airline {{{
 set laststatus=2
