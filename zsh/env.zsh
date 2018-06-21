@@ -42,4 +42,4 @@ export PASSWORD_STORE_CLIP_TIME=15
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 # VI Mode
-set -o vi
+#set -o vi

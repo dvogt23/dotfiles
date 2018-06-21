@@ -1,5 +1,8 @@
 #/usr/bin/env bash
 
+DOTFILES="$HOME/.dotfiles"
+FILES="$(cat "$DOTFILES"/dotfilesrc)"
+
 # colors
 YEL='\e[93m'
 GRN='\e[32m'
@@ -14,8 +17,6 @@ DIR=$(pwd)
 PARENTDIR="$(dirname "$DIR")"
 # backup dir
 OLDDIR=$PARENTDIR/.dotfiles.backup
-# files to link
-FILES="gitcommittemplate gitconfig gitignore gitattributes hushlogin vim vimrc scripts calcurse notes zsh zshrc tmux.conf vimpagerrc screenlayout todo gtkrc-2.0"
 
 ################ START ####################################
 

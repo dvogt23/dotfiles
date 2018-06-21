@@ -403,6 +403,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Startify {{{
 let g:startify_bookmarks = [
             \ { 'v': '~/.vimrc' },
+            \ { 't': '~/.tmux.conf' },
             \ { 'i': '~/.config/i3/config' },
             \ { 'b': '~/.config/polybar/config' },
             \ { 'z': '~/.zshrc' },
