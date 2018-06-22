@@ -223,8 +223,10 @@ Plug 'flazz/vim-colorschemes'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'ayu-theme/ayu-vim-airline'
 Plug 'lokaltog/vim-easymotion'
+"Plug 'Shougo/denite.nvim'
+"Plug 'Shougo/vimfiler.vim'
 "let ayucolor="light"  " for light version of theme
-"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="mirage" " for mirage version Shougo/denite.nvimof theme
 let ayucolor="dark"   " for dark version of theme
 
 "Plug 'junegunn/rainbow_parentheses.vim'
@@ -289,6 +291,7 @@ Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './insta
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace',         { 'on': 'StripWhitespace' }
 Plug 'roxma/nvim-completion-manager'
+Plug 'sheerun/vim-polyglot'
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
@@ -308,7 +311,7 @@ call plug#end()
 
 " Nvim 0.1.5 true color support
 set termguicolors
-
+"set colorcolumn=80
 set background=dark
 colorscheme ayu
 "colorscheme ThemerVim

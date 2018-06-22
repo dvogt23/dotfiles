@@ -253,19 +253,19 @@ bar-used-empty-foreground = #44
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlan0
 interval = 3.0
 
 format-connected =  <label-connected>
 ;format-connected-underline = ${colors.underline-b}
-label-connected = "%essid% %signal%%  -  %local_ip%"
+label-connected = %essid% %signal%%
 
 format-disconnected = 
 label-disconnected-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
-interface = wlp2s0
+interface = wlan0
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -281,7 +281,7 @@ format-disconnected =
 ;
 [module/downspeed]
 type = internal/network
-interface = wlp2s0
+interface = wlan0
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -294,7 +294,7 @@ accumulate-stats = true
 
 [module/upspeed]
 type = internal/network
-interface = wlp2s0
+interface = wlan0
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -497,7 +497,7 @@ interval = 900
 format = <label>
 format-prefix = " "
 tail = true
-label-foreground = ${colors.foreground-dark}
+label-foreground = ${colors.foreground}
 format-prefix-foreground = ${colors.foreground}
 exec = ~/.config/polybar/blocks/btc
 exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
@@ -508,7 +508,7 @@ interval = 900
 format = <label>
 format-prefix = " "
 tail = true
-label-foreground = ${colors.foreground-dark}
+label-foreground = ${colors.foreground}
 format-prefix-foreground = ${colors.foreground}
 exec = ~/.config/polybar/blocks/iot
 exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"

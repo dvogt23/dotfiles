@@ -11,7 +11,8 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        i3lock-fancy && systemctl suspend
+        systemctl suspend
+        #i3lock-fancy && systemctl suspend
         ;;
     hibernate)
         i3lock-fancy && systemctl hibernate
