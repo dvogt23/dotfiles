@@ -17,7 +17,8 @@ nmap <leader>nh <Plug>GitGutterNextHunk
 nmap <leader>ph <Plug>GitGutterPrevHunk
 nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterUndoHunk
-nmap <leader>f :FZF<cr>
+nmap <leader>f :FZFNeigh<cr>
+nmap <leader>ff :FZF<cr>
 nmap <leader>j <Plug>(easymotion-bd-f)
 nmap <leader>d :bd<cr>
 nmap <leader>o o<ESC>
@@ -34,7 +35,7 @@ nmap <leader>ea :Ag <c-r><c-w><cr>
 nmap <leader>sv :source $MYVIMRC<cr>
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>u :GundoToggle<cr>
-nmap <leader>n :NERDTreeToggle<cr>
+nmap <leader>n :Lexplore<cr>
 nmap <leader>ew :StripWhitespace<cr>
 nmap <leader>t :IndentLinesToggle<cr>
 nmap <leader>a :Ag<cr>
@@ -261,6 +262,8 @@ Plug 'rust-lang/rust.vim',      { 'for': 'rust' } " Rust filetype * CHECK OPTION
 "Plug 'racer-rust/vim-racer',    { 'for': 'rust' }
 Plug 'timonv/vim-cargo',      { 'for': 'rust' }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
+Plug 'udalov/kotlin-vim'
+Plug 'avakhov/vim-yaml'
 
 "tools
 Plug 'xolox/vim-misc'
@@ -271,7 +274,6 @@ Plug 'jceb/vim-orgmode'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'scrooloose/nerdtree',                    { 'on':  'NERDTreeToggle' }
 Plug 'sjl/gundo.vim',                          { 'on': 'GundoToggle' }
 "Plug 'Valloric/YouCompleteMe',                 { 'do': './install.py' }
 function! DoRemote(arg)
@@ -392,6 +394,18 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 " }}}
 
+" NetRW {{{
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+"augroup ProjectDrawer
+   "autocmd!
+   "autocmd VimEnter * :Vexplore
+"augroup END
+" }}}
+
 " Commenters {{{
 let g:NERDCustomDelimiters = { 'handlebars': { 'left': '<!--','right': '-->' } }
 let g:NERDCustomDelimiters = { 'hbs': { 'left': '<!--','right': '-->' } }
@@ -399,17 +413,31 @@ let g:NERDCustomDelimiters = { 'hbs': { 'left': '<!--','right': '-->' } }
 let g:NERDCustomDelimiters = { 'js': { 'left': '{/*','right': '*/}' } }
 " }}}
 
-" NERDTree {{{
-"autocmd FileType nerdtree noremap <buffer> <leader>q <nop>
-autocmd FileType nerdtree noremap <buffer> <leader>l <nop>
-autocmd FileType nerdtree noremap <buffer> <leader>h <nop>
-autocmd FileType nerdtree noremap <buffer> <leader>f <nop>
-" disable nerdtree and ctlrp split
-autocmd User Startified setlocal buftype=
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" }}}
-
 " Startify {{{
+autocmd User Startified setlocal cursorline
+
+let g:startify_files_number = 8
+
+let g:startify_change_to_dir = 1
+let g:startify_change_to_vcs_root = 1
+let g:startify_relative_path = 1
+
+let g:ctrlp_reuse_window = 'startify'
+let g:startify_fortune_use_unicode = 1
+
+let g:startify_session_dir = '~/.local/share/nvim/sessions'
+let g:startify_session_persistence = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_session_sort = 1
+
+let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
+
+let g:startify_lists = [
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+\ ]
 let g:startify_bookmarks = [
             \ { 'v': '~/.vimrc' },
             \ { 't': '~/.tmux.conf' },
@@ -424,6 +452,20 @@ let g:startify_change_to_dir = 0
 let g:ctrlp_reuse_window = 'startify'
 
 " }}}
+
+" Sessions {{{
+command! -nargs=1 SessionSave call Mks(<f-args>)
+function! Mks(name)
+    execute 'mksession! ~/.local/share/nvim/sessions/' . a:name . '-session.vim'
+endfunction
+
+command! -nargs=1 SessionRemove call Rms(<f-args>)
+command! -complete=file -nargs=1 SessionRemove :echo '~/.local/share/nvim/sessions/' . a:name . '-session.vim'.' '.(delete('~/.local/share/nvim/sessions/' . <f-args> . '-session.vim') == 0 ? 'SUCCEEDED' : 'FAILED')
+function! Rms(name)
+    delete('~/.local/share/nvim/sessions/' . a:name . '-session.vim')
+endfunction
+" }}} Sessions
+" }}} Sessions
 
 " Syntastic {{{
 
@@ -563,6 +605,20 @@ function! s:fzf_statusline()
 endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+function! s:fzf_neighbouring_files()
+  let current_file =expand("%")
+  let cwd = fnamemodify(current_file, ':p:h')
+  let command = 'ag -g "" -f ' . cwd
+
+  call fzf#run({
+        \ 'source': command,
+        \ 'sink':   'e',
+        \ 'options': '-m -x +s',
+        \ 'down': '30%'})
+endfunction
+
+command! FZFNeigh call s:fzf_neighbouring_files()
 "}}}
 
 " IndentLine {{{
@@ -579,7 +635,7 @@ let g:indentLine_leadingSpaceChar = '·'
 "}}}
 
 " Notes {{{
-:let g:notes_directories = ['~/.dotfiles/notes']
+:let g:notes_directories = ['~/.notes']
 :let g:notes_suffix = '.md'
 " }}}
 

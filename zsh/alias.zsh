@@ -38,5 +38,21 @@ alias r='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; cd `cat $HOME/.config/ranger/rangerdir`'
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
+
+ # Opens a note
+ ne() {
+   nvim -c ":Note $*"
+ }
+
+ ## New Note: calls vim notes plugin
+ n() {
+   nvim -c :Note
+ }
+
+ # Searches Notes
+ nls() {
+   exa ~/.notes/ | egrep -i "$*"
+ }
+ 
 # unalias
 #unalias rm
