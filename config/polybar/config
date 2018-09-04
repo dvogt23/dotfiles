@@ -70,8 +70,8 @@ font-4 = Pomicons:size=5;0
 font-5 = Termsynu:size=7;0
 
 modules-left = i3
-modules-center = date clock
-modules-right = volume pkg cpu filesystem battery wlan downspeed upspeed iota bitcoin
+modules-center = date clock neueswort
+modules-right = weather pkg cpu filesystem eth downspeed upspeed xkeyboard iota bitcoin
 
 tray-position = right
 tray-padding = 2
@@ -122,6 +122,14 @@ tray-padding =
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
+
+[module/neueswort]
+type = custom/script
+exec = ~/.config/polybar/blocks/neueswort
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+label = %{F#d01515}%output%%{F-}
+interval = 6000
+click-left = notify-send "Description:" "$(~/.config/polybar/blocks/neueswort -d)"
 
 [module/pomodoro]
 type = custom/script
