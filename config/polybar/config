@@ -6,6 +6,9 @@
 ;   The README contains alot of information
 ;
 ;=====================================================
+[personal]
+; wifi device
+wifi = wlan0
 
 [colors]
 ; background = #262626
@@ -67,7 +70,7 @@ font-4 = Pomicons:size=5;0
 font-5 = Termsynu:size=7;0
 
 modules-left = i3
-modules-center = date clock pomodoro
+modules-center = date clock
 modules-right = volume pkg cpu filesystem battery wlan downspeed upspeed iota bitcoin
 
 tray-position = right
@@ -253,7 +256,7 @@ bar-used-empty-foreground = #44
 
 [module/wlan]
 type = internal/network
-interface = wlan0
+interface = ${personal.wifi}
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -265,7 +268,7 @@ label-disconnected-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
-interface = wlan0
+interface = ${personal.wifi}
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -281,7 +284,7 @@ format-disconnected =
 ;
 [module/downspeed]
 type = internal/network
-interface = wlan0
+interface = ${personal.wifi}
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -294,7 +297,7 @@ accumulate-stats = true
 
 [module/upspeed]
 type = internal/network
-interface = wlan0
+interface = ${personal.wifi}
 interval = 3.0
 
 format-connected =  <label-connected>

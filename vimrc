@@ -29,10 +29,10 @@ nmap <leader>vj :res +10<cr>
 nmap <leader>vk :res -10<cr>
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
-nmap <leader>ev :vsp $MYVIMRC<cr>
+nmap <leader>ev :vsp ~/.vimrc<cr>
 nmap <leader>ez :vsp ~/.zshrc<cr>
 nmap <leader>ea :Ag <c-r><c-w><cr>
-nmap <leader>sv :source $MYVIMRC<cr>
+nmap <leader>sv :source ~/.vimrc<cr>
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>u :GundoToggle<cr>
 nmap <leader>n :Lexplore<cr>
@@ -229,7 +229,7 @@ Plug 'lokaltog/vim-easymotion'
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version Shougo/denite.nvimof theme
 let ayucolor="dark"   " for dark version of theme
-
+Plug 'JamshedVesuna/vim-markdown-preview'
 "Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'luochen1990/rainbow'
 Plug 'dpc/vim-smarttabs'
@@ -264,6 +264,12 @@ Plug 'timonv/vim-cargo',      { 'for': 'rust' }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
 Plug 'udalov/kotlin-vim'
 Plug 'avakhov/vim-yaml'
+
+if has('nvim')
+  "Plug 'benekastah/neomake'
+  "Plug ('Shougo/deoplete.nvim'),      { 'do': ':UpdateRemotePlugins' } " Code completion
+  Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+endif
 
 "tools
 Plug 'xolox/vim-misc'
@@ -312,16 +318,21 @@ call plug#end()
 " Colors and Schemes {{{
 
 " Nvim 0.1.5 true color support
-set termguicolors
 "set colorcolumn=80
+if has('nvim')
+  set termguicolors
+endif
+
 set background=dark
 colorscheme ayu
 "colorscheme ThemerVim
 "colorscheme apprentice
 
 " Vim inside Tmux might need these color settings
-set t_8b=^[[48;2;%lu;%lu;%lum
-set t_8f=^[[38;2;%lu;%lu;%lum
+if has('nvim')
+ set t_8b=^[[48;2;%lu;%lu;%lum
+ set t_8f=^[[38;2;%lu;%lu;%lum
+endif
 
 "}}}
 
@@ -344,10 +355,7 @@ let g:LanguageClient_serverCommands = {
     \ 'go': ['go-langserver'] }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
-noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
-noremap <silent> R :call LanguageClient_textDocument_rename()<CR>
-noremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
+noremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
@@ -469,7 +477,7 @@ endfunction
 
 " Syntastic {{{
 
-if !has('nvim')
+if has('nvim')
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*

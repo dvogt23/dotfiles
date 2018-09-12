@@ -1,6 +1,12 @@
 Linux commands
 @linux @bash
 
+### Search in git history
+```
+git rev-list —all | xargs git grep '<YOUR REGEX>' # regex
+git rev-list —all | xargs git grep -F '<YOUR STRING>' # non-regex
+```
+
 ### Find file from iNode Number
 ```
 find ~/ -inum 123456
