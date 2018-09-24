@@ -1,0 +1,94 @@
+set mbox_type   = Maildir
+set sendmail    = /usr/bin/msmtp
+
+set folder      = ~/.mail/Gmail
+set spoolfile   = "+INBOX"
+set mbox        = "+[Gmail]/All Mail"
+set postponed   = "+[Gmail]/Drafts"
+unset record
+
+mailboxes +INBOX
+
+macro index D \
+    "<save-message>+[Gmail]/Trash<enter>" \
+    "move message to the trash"
+
+macro index S \
+    "<save-message>+[Gmail]/Spam<enter>" \
+    "mark message as spam"
+
+# main options
+set realname   = "D. Vogt"
+set from       = "mail2dima@gmail.com"
+set mail_check = 0
+set envelope_from
+
+bind index,pager i noop
+bind index,pager g noop
+bind index \Cf noop
+source etc/muttcol
+source etc/aliases
+#source personal.muttrc
+set sleep_time = 0
+set sort = 'reverse-date'
+set editor = $EDITOR
+#set copy = no
+set timeout = "5"
+set mail_check = "10"
+set mailcap_path = ~/.config/mutt/etc/mailcap
+set date_format="%y/%m/%d %I:%M"
+set index_format="%2C %zs %?X?A& ? %D %-15.15F %s (%-4.4c)"
+set markers = no
+set mark_old = no
+set mime_forward = yes
+set smtp_authenticators = 'gssapi:login'
+set wait_key = no
+auto_view text/html
+auto_view application/pdf
+alternative_order text/plain text/enriched text/html
+set rfc2047_parameters = yes
+
+# General remappings
+bind editor <space> noop
+bind index G last-entry
+bind index gg first-entry
+bind pager j next-line
+bind pager k previous-line
+bind pager gg top
+bind pager G bottom
+bind index d half-down
+bind index u half-up
+bind index D delete-message
+bind index U undelete-message
+bind index F search
+bind index,pager R group-reply
+macro index,pager S '<sync-mailbox><shell-escape>pkill -RTMIN+12 i3blocks<enter>'
+macro index,pager \Cu |urlview\n
+macro index,pager ,, |urlview\n
+
+# View attachments properly.
+bind attach <return> view-mailcap
+set fast_reply           # skip to compose when replying
+set fcc_attach           # save attachments with the body
+unset mime_forward       # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set forward_quote                    # include message in forwards
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+
+#Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+#sync email
+macro index O "<shell-escape>$HOME/.config/mutt/etc/mailsync.sh<enter>" "run offlineimap to sync all mail"
+macro index o "<shell-escape>$HOME/.config/mutt/etc/mailsync.sh -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+#copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# Notmuch searching
+macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+macro index A "<limit>all\n" "show all messages (undo limit)"
+

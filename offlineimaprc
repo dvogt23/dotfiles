@@ -1,0 +1,23 @@
+[general]
+ui = ttyui
+accounts = Gmail
+
+# Path to file with arbitrary Python code to be loaded
+pythonfile = ~/.offlineimap.py
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/.mail/Gmail
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = mail2dima@gmail.com
+remotepasseval = get_pass("Google/mail2dima@gmail.com-mutt")
+realdelete = no
+maxconnections = 3
+ssl_version=tls1_2
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
