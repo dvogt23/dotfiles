@@ -1,33 +1,16 @@
 set mbox_type   = Maildir
 set sendmail    = /usr/bin/msmtp
 
-set folder      = ~/.mail/Gmail
-set spoolfile   = "+INBOX"
-set mbox        = "+[Gmail]/All Mail"
-set postponed   = "+[Gmail]/Drafts"
-unset record
+source ~/.config/mutt/gmailrc
 
-mailboxes +INBOX
-
-macro index D \
-    "<save-message>+[Gmail]/Trash<enter>" \
-    "move message to the trash"
-
-macro index S \
-    "<save-message>+[Gmail]/Spam<enter>" \
-    "mark message as spam"
-
-# main options
-set realname   = "D. Vogt"
-set from       = "mail2dima@gmail.com"
-set mail_check = 0
-set envelope_from
+macro index <F2> '<sync-mailbox><enter-command>source ~/.config/mutt/gmailrc<enter><change-folder>!<enter>'
+macro index <F3> '<sync-mailbox><enter-command>source ~/.config/mutt/outlookrc<enter><change-folder>!<enter>'
 
 bind index,pager i noop
 bind index,pager g noop
 bind index \Cf noop
-source etc/muttcol
-source etc/aliases
+source ~/.config/mutt/etc/muttcol
+source ~/.config/mutt/etc/aliases
 #source personal.muttrc
 set sleep_time = 0
 set sort = 'reverse-date'

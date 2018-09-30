@@ -224,64 +224,48 @@ Plug 'flazz/vim-colorschemes'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'ayu-theme/ayu-vim-airline'
 Plug 'lokaltog/vim-easymotion'
-"Plug 'Shougo/denite.nvim'
-"Plug 'Shougo/vimfiler.vim'
-"let ayucolor="light"  " for light version of theme
-"let ayucolor="mirage" " for mirage version Shougo/denite.nvimof theme
 let ayucolor="dark"   " for dark version of theme
 Plug 'JamshedVesuna/vim-markdown-preview'
-"Plug 'junegunn/rainbow_parentheses.vim'
-"Plug 'luochen1990/rainbow'
 Plug 'dpc/vim-smarttabs'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify'
-"Plug 'timakro/vim-searchant'
 Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'gorodinskiy/vim-coloresque'
 Plug 'chrisbra/Colorizer'
 Plug 'Suave/vim-colors-guardian'
 Plug 'terryma/vim-multiple-cursors'
 
 "languages
-"Plug 'hail2u/vim-css3-syntax',                 { 'for': [ 'css', 'less', 'scss' ] }
-"Plug 'groenewege/vim-less',                    { 'for': 'less' }
 Plug 'mattn/emmet-vim',                        { 'for': [ 'html', 'handlebars'] }
 Plug 'othree/html5.vim',                       { 'for': 'html' }
 Plug 'suan/vim-instant-markdown',              { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
 Plug 'fatih/vim-go',                           { 'for': 'go' }
-"plug 'klen/python-mode',                       { 'for': 'python' }
 Plug 'timonv/vim-cargo'
 Plug 'gregsexton/MatchTag',
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim',      { 'for': 'rust' } " Rust filetype * CHECK OPTIONS *
-"Plug 'racer-rust/vim-racer',    { 'for': 'rust' }
 Plug 'timonv/vim-cargo',      { 'for': 'rust' }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
 Plug 'udalov/kotlin-vim'
 Plug 'avakhov/vim-yaml'
 
 if has('nvim')
-  "Plug 'benekastah/neomake'
-  "Plug ('Shougo/deoplete.nvim'),      { 'do': ':UpdateRemotePlugins' } " Code completion
   Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 endif
 
 "tools
+Plug 'vimwiki/vimwiki'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
+"Plug 'xolox/vim-notes'
 Plug 'jceb/vim-orgmode'
-"Plug 'mileszs/ack.vim'
-"Plug 'rking/ag.vim'
 Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'sjl/gundo.vim',                          { 'on': 'GundoToggle' }
-"Plug 'Valloric/YouCompleteMe',                 { 'do': './install.py' }
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
@@ -293,12 +277,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
-"Plug 'svermeulen/vim-easyclip'
 Plug 'vim-scripts/Rename'
 Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace',         { 'on': 'StripWhitespace' }
-Plug 'roxma/nvim-completion-manager'
 Plug 'sheerun/vim-polyglot'
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {
@@ -310,6 +292,9 @@ if has('nvim')
     Plug 'junegunn/fzf'
     
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_refresh_always = 1
+    let g:deoplete#auto_complete_delay = 10
 endif
 
 call plug#end()
@@ -350,10 +335,13 @@ nnoremap <leader>lcs :LanguageClientStart<CR>
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
+    \ 'cpp': ['cquery'],
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'go': ['go-langserver'] }
 
+set completefunc=LanguageClient#complete
+set formatexpr=LanguageClient_textDocument_rangeFormatting()
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 noremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 
@@ -514,13 +502,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " }}}
 
-" Snippets {{{
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" }}}
-
 " Autocmd {{{
 " disbale format comments options
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -565,10 +546,6 @@ let g:gundo_width = 80
 let g:gundo_preview_height = 30
 let g:gundo_right = 1
 " }}}
-
-" You Complete Me {{{
-"autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
-"}}}
 
 " fzf vim {{{
 
@@ -643,8 +620,10 @@ let g:indentLine_leadingSpaceChar = '·'
 "}}}
 
 " Notes {{{
-:let g:notes_directories = ['~/.notes']
-:let g:notes_suffix = '.md'
+set nocompatible
+syntax on
+":let g:notes_directories = ['~/.notes']
+":let g:notes_suffix = '.md'
 " }}}
 
 " Ag {{{
