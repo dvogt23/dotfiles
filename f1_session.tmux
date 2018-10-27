@@ -6,7 +6,7 @@
 rename-session DEOS_dev
 rename-window main
 send "pacaur -Qu" ENTER
-split-window -h -p 50
+split-window -h -p 30
 send "dmesg -w" ENTER
 split-window -v -p 50
 send "htop -s PERCENT_CPU" ENTER

@@ -1,0 +1,15 @@
+!xmodmap -pke -> prints all default keys
+!xev show the keycodes
+clear lock
+clear control
+!map CAPS to CONTROL
+add control = Caps_Lock Control_L Control_R
+!map CAPS to CONTROL
+!map SHIFT CAPS to CAPS
+keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+
+! clear Lock
+! keysym Caps_Lock = Escape
+! add Lock = Caps_Lock
+! remove Lock = Caps_Lock
+! keysym Caps_Lock = Escape

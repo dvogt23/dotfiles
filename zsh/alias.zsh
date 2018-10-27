@@ -15,6 +15,17 @@ alias ll='exa -l --group-directories-first'                       # Preferred 'l
 alias ls='exa --group-directories-first'                       # Preferred 'ls' implementation
 alias lsa='exa -ls --group-directories-first'                       # Preferred 'ls' implementation
 alias la='exa -la --group-directories-first'                       # Preferred 'ls' implementation
+alias cat='bat'
+alias pc='sudo pacman'
+alias pcu='sudo pacman -Syyu'
+alias pcS='pacman -Ss'
+alias pcs='pacman -S'
+alias pca='yay'
+alias pcau='yay -Syyua'
+alias pcaS='yay -Ss'
+alias pcas='yay -S'
+alias sc='systemctl'
+alias scu='systemctl --user'
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
@@ -46,7 +57,7 @@ alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file
 
  ## New Note: calls vim notes plugin
  n() {
-   nvim -c :Note
+   nvim ~/.notes/SUMMARY.md
  }
 
  # Searches Notes

@@ -49,6 +49,7 @@ floating_modifier $mod
 # Disable title and borders for all windows
 for_window [class="^.*"] border pixel 3
 
+for_window [instance="mutt"] floating enable, move absolute position center
 for_window [class="^Connman.*"] floating enable
 for_window [class="^TeamViewer.*"] floating enable
 for_window [class="^albert.*"] border pixel 0
@@ -61,6 +62,7 @@ for_window [instance="__scratchpad"] scratchpad show
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+Return exec --no-startup-id alacritty -e nvim
 bindsym $mod+T exec --no-startup-id $i3/floating.sh
+bindsym $mod+M exec --no-startup-id $HOME/.config/mutt/etc/mailsync.sh
 # Scratchpad terminal
 #for_window [title="^scratchpad$"] move scratchpad
 #bindsym $mod+T [instance="scratchpad"] scratchpad show; sticky enable
