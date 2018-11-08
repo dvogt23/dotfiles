@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM="$HOME/.zsh/custom"
 
 if [[ ! -d $ZSH ]]; then
 	git clone git://github.com/robbyrussell/oh-my-zsh.git $ZSH
