@@ -17,7 +17,7 @@ full=""
 short=""
 status=0
 
-packages=$(pacaur -Qu)
+packages=$(checkupdates)
 numPackages=$(numLines "$packages")
 
 full=$numPackages
@@ -30,7 +30,7 @@ case $BLOCK_BUTTON in
 	# left click: show packages
 	1) notify-send "Pacman packages" "$packages" ;;
 	# right click
-	3) notify-send "Update with:" "sudo pacman -Syuu\nyaourt -Syyua"
+	3) notify-send "Update with:" "sudo pacman -Syuu\nyay -Syyua"
 esac
 
 exit $status

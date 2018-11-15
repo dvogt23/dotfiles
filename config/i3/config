@@ -62,7 +62,7 @@ for_window [instance="__scratchpad"] scratchpad show
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+Return exec --no-startup-id alacritty -e nvim
 bindsym $mod+T exec --no-startup-id $i3/floating.sh
-bindsym $mod+M exec --no-startup-id $HOME/.config/mutt/etc/mailsync.sh
+bindsym $mod+Shift+M exec --no-startup-id $HOME/.config/mutt/etc/mailsync.sh
 # Scratchpad terminal
 #for_window [title="^scratchpad$"] move scratchpad
 #bindsym $mod+T [instance="scratchpad"] scratchpad show; sticky enable
@@ -125,9 +125,12 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # take screenshots
-bindsym Print exec scrot $HOME/Pictures/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
-bindsym $mod+Print exec scrot -u $HOME/Pictures/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
-bindsym $mod+Shift+Print exec scrot -s $HOME/Pictures/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
+bindsym Print exec scrot $(xdg-user-dir PICTURES)/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
+bindsym $mod+Print exec scrot -u $(xdg-user-dir PICTURES)/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
+bindsym $mod+Shift+Print exec scrot -s $(xdg-user-dir PICTURES)/screenshot-`date +%Y-%m-%d_%H_%M_%S`.png
+
+# emoji search
+bindsym $mod+y exec $HOME/.scripts/emoji
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -201,7 +204,7 @@ for_window [class="Spotify"] move to workspace $ws10
 for_window [class="Firefox"] move to workspace $ws1
 for_window [class="Chromium"] move to workspace $ws1
 for_window [class="Slack"] move to workspace $ws9
-for_window [class="jetbrains-idea-ce"] move to workspace $ws2
+#for_window [class="jetbrains-idea-ce"] move to workspace $ws2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -260,24 +263,24 @@ mode "$mode_system" {
 
 bindsym $mod+Escape mode "$mode_system"
 
-set $mode_menu (a)randr (t)hunar fil(e)s (c)hromium (h)top (k)eybase gi(m)p (p)ulseaudio (s)ubl
-mode "$mode_menu" {
-  bindsym a exec arandr, mode "default"
-  bindsym b exec bleachbit, mode "default"
-  bindsym t exec thunar, mode "default"
-  bindsym c exec chromeium, mode "default"
-  bindsym h exec htop, mode "default"
-  bindsym k exec keybase, mode "default"
-  bindsym m exec gimp, mode "default"
-  bindsym p exec pulseaudio, mode "default"
-  bindsym s exec subl, mode "default"
+#set $mode_menu (a)randr (t)hunar fil(e)s (c)hromium (h)top (k)eybase gi(m)p (p)ulseaudio (s)ubl
+#mode "$mode_menu" {
+  #bindsym a exec arandr, mode "default"
+  #bindsym b exec bleachbit, mode "default"
+  #bindsym t exec thunar, mode "default"
+  #bindsym c exec chromeium, mode "default"
+  #bindsym h exec htop, mode "default"
+  #bindsym k exec keybase, mode "default"
+  #bindsym m exec gimp, mode "default"
+  #bindsym p exec pulseaudio, mode "default"
+  #bindsym s exec subl, mode "default"
 
-  # back to normal: Enter or Escape
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
+  ## back to normal: Enter or Escape
+  #bindsym Return mode "default"
+  #bindsym Escape mode "default"
+#}
 
-bindsym $mod+z mode "$mode_menu"
+#bindsym $mod+z mode "$mode_menu"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -298,23 +301,23 @@ exec_always --no-startup-id $HOME/.config/polybar/polybar.sh
 
 # bar
 #bar {
-#  # status_command py3status -c $i3/i3status.conf
-#  # tray_output none
-#  # #tray_output primary
-#  # position top
-#  status_command i3blocks -c $i3/i3blocks.conf
-#  # status_command i3status
-#  colors {
-#	 background $bg-color
-#	 separator #757575
-#	 #                  border             background         text
-#	 focused_workspace  $bg-color          $bg-color          $text-color
-#	 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-#	 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-#  }
-#  tray_output none
-#  tray_output primary
-#  position top
+  ## status_command py3status -c $i3/i3status.conf
+  ## tray_output none
+  ## #tray_output primary
+  ## position top
+  #status_command i3blocks -c $i3/i3blocks.conf
+  ## status_command i3status
+  #colors {
+     #background #000000
+     #separator #757575
+     ##                  border             background         text
+     #focused_workspace  $bg-color          $bg-color          $text-color
+     #inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+     #urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+  #}
+  #tray_output none
+  #tray_output primary
+  #position top
 #}
 
 
@@ -337,8 +340,8 @@ bindsym F12 exec tilix -q -p Quake
 
 # Gaps settings
 smart_gaps on
-gaps inner 10
-gaps outer 7
+gaps inner 7
+gaps outer 0
 bindsym $mod+g exec $i3/toggle_gaps
 
 ####################
@@ -355,6 +358,9 @@ exec --no-startup-id xss-lock -- i3lock-fancy&
 ####################
 #  Execute always  #
 ####################
-exec_always --no-startup-id feh --bg-fill ~/Pictures/tetons-at-night.png
+exec_always --no-startup-id feh --bg-fill ~/Pictures/1.png
+# support touchpad gestures
+exec --no-startup-id unclutter
+exec --no-startup-id /usr/bin/libinput-gestures-setup start
 #exec_always --no-startup-id urxvtd -f && urxvtc -name scratchpad
 

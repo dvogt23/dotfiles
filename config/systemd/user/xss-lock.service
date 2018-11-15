@@ -5,8 +5,9 @@ After=display-manager.service
 ;Before=suspend.target
 
 [Service]
-ExecStart=/usr/bin/xss-lock -- /usr/share/i3lock-fancy/lock&
+ExecStart=/usr/bin/xss-lock -- /usr/bin/i3lock-fancy
 Restart=always
 
 [Install]
 WantedBy=sleep.target
+WantedBy=suspend.target

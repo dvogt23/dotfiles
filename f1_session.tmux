@@ -5,7 +5,7 @@
 
 rename-session DEOS_dev
 rename-window main
-send "pacaur -Qu" ENTER
+send "yay -Qu" ENTER
 split-window -h -p 30
 send "dmesg -w" ENTER
 split-window -v -p 50

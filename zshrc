@@ -7,7 +7,7 @@ if [[ ! -d $ZSH ]]; then
 fi
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="dima"
+ZSH_THEME="bira"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"

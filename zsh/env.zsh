@@ -5,12 +5,13 @@ export DOTFILES_DIR="$HOME/.dotfiles"
 export PROJECT_DIR="$HOME/Projects"
 export PATH="$HOME/.scripts:$PATH"
 export BROWSER="/usr/bin/firefox"
+export NOTES_DIR="$HOME/Nextcloud/Notes"
 export GIT_EDITOR="nvim"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export CLICOLOR=1
 export TERM=tmux-256color
-
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 # Rust for vim ide
 # Arch path
 RUST_SRC="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"

@@ -8,8 +8,7 @@
 ;=====================================================
 [personal]
 ; wifi device
-;wifi = wlan0
-wifi = wlp2s0
+wifi = wlan0
 
 [colors]
 ; background = #262626
@@ -56,13 +55,13 @@ line-color = #f00
 border-size = 2
 border-color = ${colors.background-hi}
 
-padding-left = 1
-padding-right = 2
+padding-left = 0
+padding-right = 1
 
-module-margin-left = 2
-module-margin-right = 2
+module-margin-left = 1
+module-margin-right = 1
 
-font-0 = Dina:size=8:antialias=true;0
+font-0 = Dina:size=10:antialias=true;0
 font-1 = FontAwesome:style=Regular:size=8;0
 font-2 = "Hurmit Nerd Font:style=Medium:size=8;0"
 ;font-2 = Unifont:size=5;0
@@ -70,9 +69,12 @@ font-3 = pango:Inconsolatas:size=8;-1
 font-4 = Pomicons:size=5;0
 font-5 = Termsynu:size=7;0
 
-modules-left = i3
-modules-center = mail date clock neueswort
-modules-right = pkg cpu volume filesystem battery wlan downspeed upspeed iota bitcoin
+modules-left = i3 xwindow
+modules-center = mail date clock pkg
+modules-right = weather volume temperature cpu filesystem wlan downspeed upspeed battery iota bitcoin
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 tray-position = right
 tray-padding = 2
@@ -80,8 +82,9 @@ tray-padding = 2
 tray-maxsize = 12
 tray-scale = 1.0
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
 
 [module/neueswort]
 type = custom/script
@@ -107,27 +110,23 @@ click-right = echo "$((`cut .pomodoro_session -d ' ' -f 1`+5)) 5" > .pomodoro_se
 ; Reduce pomodoro time
 click-middle = echo "$((`cut .pomodoro_session -d ' ' -f 1`-5)) 5" > .pomodoro_session
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+;[module/xwindow]
+;type = internal/xwindow
+;label = title
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
+;format-prefix = "  "
+;format-prefix-foreground = ${colors.foreground}
+;;format-prefix-underline = ${colors.underline-c}
 
-format-prefix = "  "
-format-prefix-foreground = ${colors.foreground}
-;format-prefix-underline = ${colors.underline-c}
+;label-layout = %layout%
+;;label-layout-underline = ${colors.underline-c}
 
-label-layout = %layout%
-;label-layout-underline = ${colors.underline-c}
-
-label-indicator =  CAPS
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-foreground = ${colors.foreground}
-;label-indicator-background = ${colors.underline-c}
-;label-indicator-underline = ${colors.underline-a}
+;label-indicator =  CAPS
+;label-indicator-padding = 2
+;label-indicator-margin = 1
+;label-indicator-foreground = ${colors.foreground}
+;;label-indicator-background = ${colors.underline-c}
+;;label-indicator-underline = ${colors.underline-a}
 
 
 [module/i3]
@@ -144,7 +143,7 @@ ws-icon-default = 
 
 label-dimmed-underline = ${root.background}
 
-label-focused = %icon%  %name%
+label-focused = %icon% %name%
 ;label-focused-foreground = #f3f3f3
 label-focused-background = #3f3f3f
 ;label-focused-underline = #${colors.accent}
@@ -152,20 +151,20 @@ label-focused-underline = #c6c6c6
 label-focused-font = 4
 label-focused-padding = 3
 
-label-unfocused = %icon%  %name%
+label-unfocused = %icon% %name%
 ;label-unfocused-underline = #555555
 label-unfocused-foreground = #55ffffff
 label-unfocused-font = 4
 label-unfocused-padding = 3
 
-label-urgent = %icon%  %name%
+label-urgent = %icon% %name%
 label-urgent-foreground = #bd2c40
 ;label-urgent-background = #bd2c40
 label-urgent-underline = #bd2c40
 label-urgent-font = 4
 label-urgent-padding = 3
 
-label-visible = %icon%  %name%
+label-visible = %icon% %name%
 label-visible-foreground = #f3f3f3
 label-visible-font = 4
 label-visible-padding = 3
@@ -357,6 +356,7 @@ bar-empty-foreground = ${colors.foreground-hi}
 
 [module/battery]
 type = internal/battery
+interval = 30
 battery = BAT0
 adapter = AC
 full-at = 98
@@ -372,7 +372,6 @@ format-discharging-foreground = ${colors.foreground}
 
 format-full = 
 format-full-foreground = ${colors.foreground-dark}
-
 
 ramp-capacity-0 = " "
 ramp-capacity-0-foreground = ${colors.foreground-hi2}
@@ -434,22 +433,41 @@ label-unmounted-foreground = ${colors.foreground-hi}
 
 [module/temperature]
 type = internal/temperature
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 15
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
 thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
 warn-temperature = 60
 
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
+format = <label>
+format-underline = ${colors.background}
+format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.foreground}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
 
 [module/filesystem]
 type = custom/script
@@ -457,14 +475,14 @@ type = custom/script
 exec = df -h /dev/nvme0n1p2 | awk 'FNR > 1 { print $4 }'
 
 interval = 600
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}
 click-left = nemo &
 
 [module/mail]
 type = custom/script
-interval = l0
+interval = 120
 format = <label>
 format-prefix = " "
 tail = true
@@ -472,6 +490,7 @@ label-foreground = ${colors.foreground}
 format-prefix-foreground = #FFFF00
 click-left = ~/.config/polybar/blocks/mutt
 exec = ~/.config/polybar/blocks/mail
+;exec-if = "test -d $HOME/.mail/*/INBOX"
 
 [module/bitcoin]
 type = custom/script
@@ -539,13 +558,13 @@ exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 
 [module/pkg]
 type = custom/script
-interval = 900
+interval = 1200
 format = <label>
 label-foreground = ${colors.foreground}
 format-prefix = " "
 tail = true
-click-left = notify-send -u low "Packages: " "$(pacaur -Qu | sed -r 's/\x1b_[^\x1b]*\x1b[\]//g; s/\x1B\[[^m]*m//g')"
-click-right = notify-send "Update with:" "pacaur -Syu\nsudo pacman -Syuu\nyaourt -Syyua"
+click-left = notify-send -u low "Packages: " "$(checkupdates)"
+click-right = notify-send "Update with:" "yay -Syyua\nsudo pacman -Syyu
 format-prefix-foreground = ${colors.foreground}
 exec = ~/.config/polybar/blocks/pacman
 

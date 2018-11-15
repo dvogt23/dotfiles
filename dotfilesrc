@@ -1,7 +1,5 @@
 xmodmap
-spacemacs
 ideavimrc 
-notify-osd
 gitcommittemplate
 gitconfig
 gitignore
@@ -11,11 +9,10 @@ vim
 vimrc
 scripts
 calcurse
-notes
 zsh
 zshrc
 tmux.conf
 vimpagerrc
 screenlayout
-todo
 inputrc
+urlview

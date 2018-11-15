@@ -10,62 +10,42 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 nmap <leader>l :bnext<cr>
 nmap <leader>h :bprevious<cr>
-nmap <leader>p :CtrlP ~/docs/<cr>
-nmap <leader>g :Gstatus<cr>
-nmap <leader>gc :Gcommit<cr>
 nmap <leader>nh <Plug>GitGutterNextHunk
 nmap <leader>ph <Plug>GitGutterPrevHunk
 nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterUndoHunk
-nmap <leader>f :FZFNeigh<cr>
+nmap <leader>f :Files<cr>
 nmap <leader>ff :FZF<cr>
+nmap <leader>b :Buffers<cr>
 nmap <leader>j <Plug>(easymotion-bd-f)
 nmap <leader>d :bd<cr>
-nmap <leader>o o<ESC>
-nmap <leader>O O<ESC>
 nmap <leader>vl :vertical resize +10<cr>
 nmap <leader>vh :vertical resize -10<cr>
 nmap <leader>vj :res +10<cr>
 nmap <leader>vk :res -10<cr>
-nmap <leader>sp :setlocal spell spelllang=en_us<cr>
-nmap <leader>sp :setlocal spell!<cr>
 nmap <leader>ev :vsp ~/.vimrc<cr>
-nmap <leader>ez :vsp ~/.zshrc<cr>
-nmap <leader>ea :Ag <c-r><c-w><cr>
 nmap <leader>sv :source ~/.vimrc<cr>
 nmap <leader>pi :PlugInstall<cr>
-nmap <leader>u :GundoToggle<cr>
 nmap <leader>n :Lexplore<cr>
 nmap <leader>ew :StripWhitespace<cr>
 nmap <leader>t :IndentLinesToggle<cr>
-nmap <leader>a :Ag<cr>
-nmap <leader>i <leader>ci
-"nmap <leader>gco :Gread<cr>
-"nmap <leader>grh :Gwrite<cr>
-nmap <leader><leader> <c-^>
 nmap <leader>p :set nopaste<cr>
-nmap ,cd :cd %:p:h<cr>
 
 nnoremap j gj
 nnoremap k gk
 nnoremap 0 ^
-nnoremap K i<cr><esc>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <C-e> 5<C-e>
-nnoremap <C-q> 5<C-y>
-nnoremap <C-y> 5<C-y>
 nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
 nnoremap Q <Nop>
 nnoremap U <Nop>
-nnoremap <leader>d :bp<cr>:bd #<cr>
 noremap <cr> :noh<cr><cr>
-"nnoremap
+
 " Moving characters
 nno L xp
 nno H Xph
@@ -73,13 +53,6 @@ nno H Xph
 inoremap <c-j> <Esc>/<+\w*+><CR><Esc>cf>
 inoremap <c-k> <Esc>?<+\w*+><CR><Esc>cf>
 
-" gitgutter
-nnoremap ]h <Plug>GitGutterNextHunk
-nnoremap [h <Plug>GitGutterPrevHunk
-nnoremap <Leader>aar <Plug>GitGutterUndoHunk
-nnoremap <Leader>av <Plug>GitGutterPreviewHunk
-nnoremap <Leader>au <Plug>GitGutterRevertHunk
-nnoremap <Leader>aa <Plug>GitGutterStageHunk
 "}}}
 
 " General  {{{
@@ -97,28 +70,22 @@ set scrolloff=3
 set mouse=a
 set number
 set rnu
-set list
-set listchars=tab:→\ ,trail:·,precedes:«,extends:»
+
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+set list!
+
 "set noesckeys
 "set modifiable
-:set noexpandtab
-:set preserveindent
-:set softtabstop=0
+set noexpandtab
+set preserveindent
+set softtabstop=0
 " copy indent from previous line: useful when using tabs for indentation
 " and spaces for alignment
 set copyindent
 
-" style of divider
-autocmd ColorScheme * hi VertSplit cterm=NONE ctermbg=NONE ctermfg=green
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
 " line break
 set linebreak
-set textwidth=500
+set textwidth=80
 
 " blink speed
 set mat=1
@@ -134,8 +101,8 @@ set hlsearch
 set incsearch
 
 " indent
-set autoindent
-set smartindent
+"set autoindent
+"set smartindent
 
 " regex
 set magic
@@ -143,18 +110,6 @@ set magic
 " clipboard, yank, paste
 set clipboard+=unnamedplus
 set nopaste
-
-" " Copy to clipboard
-"vnoremap  <leader>y  "+y
-"nnoremap  <leader>Y  "+yg_
-"nnoremap  <leader>y  "+y
-"nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-"nnoremap <leader>p "+p
-"nnoremap <leader>P "+P
-"vnoremap <leader>p "+p
-"vnoremap <leader>P "+P
 
 " map double ESC to nohl
 nnoremap <silent> <Esc><Esc> :nohl<CR>
@@ -166,8 +121,8 @@ set t_vb=
 set tm=500
 
 " doc and code styles
-" set encoding=utf8
-" set ffs=unix,dos,mac
+set encoding=utf8
+set ffs=unix,dos,mac
 
 " folding
 set nofoldenable
@@ -200,7 +155,7 @@ set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.mov,*.pdf,*.psd,*.ai
 set wildignore+=*.ppt,*.pptx,*.doc,*.docx,*.xls,*.xlsx
 set wildignore=*.o,*~,*.pyc
 
-" set cursorline
+"set cursorline
 " set autochdir
 
 " remember info about open buffers on close
@@ -216,81 +171,51 @@ set wildignore=*.o,*~,*.pyc
 call plug#begin('~/.vim/plugged')
 
 "UI
-Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nightsense/vim-crunchbang'
 Plug 'flazz/vim-colorschemes'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'ayu-theme/ayu-vim-airline'
 Plug 'lokaltog/vim-easymotion'
-let ayucolor="dark"   " for dark version of theme
+let ayucolor="mirage"   " for dark version of theme
 Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'dpc/vim-smarttabs'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify'
-Plug 'rakr/vim-two-firewatch'
-Plug 'rakr/vim-one'
-Plug 'dylanaraps/ryuuko'
 Plug 'scrooloose/nerdcommenter'
-Plug 'chrisbra/Colorizer'
-Plug 'Suave/vim-colors-guardian'
 Plug 'terryma/vim-multiple-cursors'
-
+Plug 'Yggdroot/indentLine'
 "languages
-Plug 'mattn/emmet-vim',                        { 'for': [ 'html', 'handlebars'] }
-Plug 'othree/html5.vim',                       { 'for': 'html' }
-Plug 'suan/vim-instant-markdown',              { 'for': 'markdown' }
-Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
 Plug 'fatih/vim-go',                           { 'for': 'go' }
 Plug 'timonv/vim-cargo'
-Plug 'gregsexton/MatchTag',
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim',      { 'for': 'rust' } " Rust filetype * CHECK OPTIONS *
 Plug 'timonv/vim-cargo',      { 'for': 'rust' }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
-Plug 'udalov/kotlin-vim'
 Plug 'avakhov/vim-yaml'
 
 if has('nvim')
-  Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+    Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 endif
 
 "tools
 Plug 'vimwiki/vimwiki'
-Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-notes'
-Plug 'jceb/vim-orgmode'
-Plug 'sickill/vim-pasta'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-Plug 'sjl/gundo.vim',                          { 'on': 'GundoToggle' }
 function! DoRemote(arg)
-  UpdateRemotePlugins
+    UpdateRemotePlugins
 endfunction
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
-Plug 'ervandew/supertab'
-Plug 'gioele/vim-autoswap'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
-Plug 'godlygeek/tabular'
-Plug 'tpope/vim-repeat'
-Plug 'vim-scripts/Rename'
 Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'ntpeters/vim-better-whitespace',         { 'on': 'StripWhitespace' }
-Plug 'sheerun/vim-polyglot'
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
-    
+                \ 'branch': 'next',
+                \ 'do': 'bash install.sh',
+                \ }
+
     " (Optional) Multi-entry selection UI.
     Plug 'junegunn/fzf'
-    
+
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_refresh_always = 1
@@ -303,9 +228,12 @@ call plug#end()
 " Colors and Schemes {{{
 
 " Nvim 0.1.5 true color support
-"set colorcolumn=80
+highlight ColorColumn ctermbg=gray
+set colorcolumn=80
+"match ErrorMsg '\%>80v.\+'
+
 if has('nvim')
-  set termguicolors
+    set termguicolors
 endif
 
 set background=dark
@@ -315,8 +243,8 @@ colorscheme ayu
 
 " Vim inside Tmux might need these color settings
 if has('nvim')
- set t_8b=^[[48;2;%lu;%lu;%lum
- set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
+    set t_8f=^[[38;2;%lu;%lu;%lum
 endif
 
 "}}}
@@ -334,11 +262,11 @@ nnoremap <leader>lcs :LanguageClientStart<CR>
 " let g:LanguageClient_autoStart = 1
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'cpp': ['cquery'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'go': ['go-langserver'] }
+            \ 'python': ['pyls'],
+            \ 'cpp': ['cquery'],
+            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+            \ 'javascript': ['javascript-typescript-stdio'],
+            \ 'go': ['go-langserver'] }
 
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
@@ -349,9 +277,9 @@ noremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ }
+            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+            \ 'javascript': ['javascript-typescript-stdio'],
+            \ }
 
 " }}}
 
@@ -363,7 +291,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme = 'ayu'
 
 if !exists('g:airline_symbols')
-   let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 
 " unicode symbols
@@ -397,8 +325,8 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 "augroup ProjectDrawer
-   "autocmd!
-   "autocmd VimEnter * :Vexplore
+"autocmd!
+"autocmd VimEnter * :Vexplore
 "augroup END
 " }}}
 
@@ -433,7 +361,7 @@ let g:startify_lists = [
             \ { 'type': 'files',     'header': ['   MRU']            },
             \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ { 'type': 'commands',  'header': ['   Commands']       },
-\ ]
+            \ ]
 let g:startify_bookmarks = [
             \ { 'v': '~/.vimrc' },
             \ { 't': '~/.tmux.conf' },
@@ -466,34 +394,21 @@ endfunction
 " Syntastic {{{
 
 if has('nvim')
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
 
-  let g:syntastic_javascript_checkers = ['jscs']
-  let g:syntastic_html_tidy_exec = 'tidy5'
-  let jshint2_read = 1
-  let jshint2_save = 1
-  let g:syntastic_check_on_open = 1
+    let g:syntastic_javascript_checkers = ['jscs']
+    let g:syntastic_html_tidy_exec = 'tidy5'
+    let jshint2_read = 1
+    let jshint2_save = 1
+    let g:syntastic_check_on_open = 1
 
-  " dispaly all errors for mutiple checkers
-  let g:syntastic_aggregate_errors = 1
+    " dispaly all errors for mutiple checkers
+    let g:syntastic_aggregate_errors = 1
 endif
 
 " }}}
-
-" Neomake {{{
-
-"if has('nvim')
-  "" Enable Neomake to run cargo asynchronously on saving rust files
-  "" autocmd! BufWritePost *.rs Neomake! cargo
-  "autocmd! BufWritePost,BufEnter * Neomake
-
-  "" NeoMake: Enable messages
-  "let g:neomake_verbose = 3
-"endif
-
-"}}}
 
 " Provider {{{
 
@@ -507,53 +422,19 @@ let g:python3_host_prog = '/usr/bin/python3'
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " }}}
 
-" Rainbow Parenthese {{{
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-"}}}
-
 " Markdown {{{
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_no_default_key_mappings = 1
 let g:instant_markdown_autostart = 0
 "}}}
 
-" Gundo {{{
-let g:gundo_width = 80
-let g:gundo_preview_height = 30
-let g:gundo_right = 1
-" }}}
-
 " fzf vim {{{
 
 " this is the default extra key bindings
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " default fzf layout
 " - down / up / left / right
@@ -562,18 +443,18 @@ let g:fzf_layout = { 'down': '~40%' }
 
 " customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', ''],
-  \ 'fg+':     ['fg', ''],
-  \ 'bg+':     ['bg', ''],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', ''],
+            \ 'fg+':     ['fg', ''],
+            \ 'bg+':     ['bg', ''],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
@@ -582,36 +463,37 @@ let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 function! s:fzf_statusline()
-  " Override statusline as you like
-  highlight fzf1 ctermfg=161 ctermbg=251
-  highlight fzf2 ctermfg=23 ctermbg=251
-  highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+    " Override statusline as you like
+    highlight fzf1 ctermfg=161 ctermbg=251
+    highlight fzf2 ctermfg=23 ctermbg=251
+    highlight fzf3 ctermfg=237 ctermbg=251
+    setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 function! s:fzf_neighbouring_files()
-  let current_file =expand("%")
-  let cwd = fnamemodify(current_file, ':p:h')
-  let command = 'ag -g "" -f ' . cwd
+    let current_file =expand("%")
+    let cwd = fnamemodify(current_file, ':p:h')
+    let command = 'ag -g "" -f ' . cwd
 
-  call fzf#run({
-        \ 'source': command,
-        \ 'sink':   'e',
-        \ 'options': '-m -x +s',
-        \ 'down': '30%'})
+    call fzf#run({
+                \ 'source': command,
+                \ 'sink':   'e',
+                \ 'options': '-m -x +s',
+                \ 'down': '30%'})
 endfunction
 
-command! FZFNeigh call s:fzf_neighbouring_files()
+"command! FZFNeigh call s:fzf_neighbouring_files()
+command! FZFNeigh call fzf#run(dir)
 "}}}
 
 " IndentLine {{{
 let g:indentLine_char = '┆'
-let g:indentLine_enabled = 0
+let g:indentLine_enabled = 1
 
 " suppose to work here
-"let g:indentLine_color_term = 'red'
+let g:indentLine_color_term = 'red'
 
 " overwrites the default color
 let g:indentLine_color_gui = '#3f4041'
@@ -626,27 +508,23 @@ syntax on
 ":let g:notes_suffix = '.md'
 " }}}
 
-" Ag {{{
-" start searching from project root
-"let g:ag_working_path_mode="r"
-"}}}
-
 " Helpers {{{
 
 " remove trailing white space on save
 func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.rs :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 " return to last edit position when opening files
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
 
 "}}}
 

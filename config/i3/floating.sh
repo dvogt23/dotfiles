@@ -5,5 +5,5 @@ if [[ ! -z $(pgrep -f 'alacritty --class __scratchpad') ]]; then
 	i3 scratchpad show
 else
 	echo false
-	alacritty --class __scratchpad -d 200 50 &
+	alacritty --class __scratchpad -d 120 30 &
 fi

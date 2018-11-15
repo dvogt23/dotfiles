@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+# Set default directory if not set
+notes_dir=${NOTES_DIR:-$HOME/.notes}
+extention=${NOTE_EXTENTION:-".md"}
+
+# Load all notes
+notes=()
+while IFS= read -d $'\0' -r file ; do
+    notes=("${notes[@]}" "$file")
+done < <(find $notes_dir -type f -name "*$extention" -print0 | sort -z)
+
+function usage {
+    echo -e "\nNote."
+    echo -e "A simple script to manage notes."
+    echo -e "Directory: $notes_dir"
+    echo -e "Extension: $extention"
+    echo -e "\n\tUsage:"
+    echo -e "\t\tnote"
+    echo -e "\t\tnote new notename[.md]"
+    echo -e "\t\tnote open [pattern]"
+}
+
+function list_notes {
+    local notes=("$@")
+    for i in "${!notes[@]}" ; do
+        echo -e "$(( $i + 1 )) - ${notes[$i]}" | sed -e "s|$notes_dir/||g"
+    done
+}
+
+function open_note {
+    local notes=("$@")
+
+    local files=()
+    while IFS= read -d $'\0' -r file ; do
+        files=("${files[@]}" "$file")
+    done < <(list_notes "${notes[@]}" | fzf --multi --select-1 --print0)
+
+    for i in "${!files[@]}" ; do
+        files[$i]=$(echo "${files[$i]}" | sed -E "s|[0-9]* - |$notes_dir/|g")
+    done
+
+    # echo "${files[@]}"
+    [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+# function rename_note {  }
+
+function create_note {
+    local re="$extention$"
+    local file_name="$notes_dir/$1"
+    [[ $1 =~ $re ]] || {
+        file_name="$file_name$extention"
+    }
+    file_dir=$( dirname $file_name )
+    [[ -d $file_dir ]] || {
+        echo "Creating directory: $( dirname $1 )"
+        mkdir -p $file_dir
+    }
+
+    ${EDITOR:-vim} "$file_name"
+}
+
+# function delete_note {  }
+
+function find_note {
+    local notes=()
+    while IFS= read -d $'\0' -r file ; do
+        notes=("${notes[@]}" "$file")
+    done < <(find $notes_dir -type f -iname "*$1*" -print0 | sort -z)
+
+    for file in ${notes[@]} ; do
+        opts+=( -not -name $(basename "$file") )
+    done
+
+    while IFS= read -d $'\0' -r file ; do
+        notes=("${notes[@]}" "$file")
+    done < <(find "$notes_dir" -type f "${opts[@]}" -print0 | xargs -0 grep -iRHlZ "$1")
+
+    open_note "${notes[@]}"
+}
+
+[[ "$#" -eq 0 ]] && {
+    open_note "${notes[@]}"
+    exit 0
+}
+
+[[ "$1" = "-h" ]] || [[ "$1" = "--help" ]] && {
+    usage
+    exit 0
+}
+
+if [[ "$#" -eq 2 ]]; then
+    case "$1" in
+        new )
+            create_note "$2";;
+        open )
+            find_note "$2";;
+    esac
+else
+    usage
+    exit 2
+fi
