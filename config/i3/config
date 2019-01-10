@@ -51,6 +51,7 @@ for_window [class="^.*"] border pixel 3
 
 for_window [instance="mutt"] floating enable, move absolute position center
 for_window [class="^Connman.*"] floating enable
+for_window [class="^Calculator.*"] floating enable
 for_window [class="^TeamViewer.*"] floating enable
 for_window [class="^albert.*"] border pixel 0
 for_window [instance="__scratchpad"] move scratchpad
