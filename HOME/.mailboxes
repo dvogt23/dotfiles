@@ -1,0 +1,1 @@
+virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
