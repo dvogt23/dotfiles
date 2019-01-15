@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+if [ -e /tmp/shared.current ]; then
+    SOCKET="$(cat /tmp/shared.current | cut -f1 -d',')"
+    SESSION="$(cat /tmp/shared.current | cut -f2 -d',')"
+    tmux -S "$SOCKET" attach -t "$SESSION"
+fi
+[[ -e /tmp/shared ]] && tmux -S /tmp/shared attach

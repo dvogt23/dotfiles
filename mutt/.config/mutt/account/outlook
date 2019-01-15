@@ -1,0 +1,29 @@
+# vim: ft=muttrc
+set spoolfile   = "+Outlook/Inbox"
+set mbox        = "+Outlook/Archive"
+set postponed   = "+Outlook/Drafts"
+unset record
+set sendmail="/usr/bin/msmtp -a Outlook"
+
+bind index gs noop
+macro index gi "<change-folder>=Inbox<enter>" "Go to inbox"
+macro index ga "<change-folder>=Archive<enter>" "Go to all mail"
+macro index gs "<change-folder>=Sent<enter>" "Go to sent mail"
+macro index gt "<change-folder>=Deleted<enter>" "Go to trash"
+macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
+macro index gj "<change-folder>=Junk<enter>" "Go to junk"
+macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
+
+macro index D \
+    "<save-message>+Deleted<enter>" \
+    "move message to the trash"
+
+macro index S \
+    "<save-message>+Junk<enter>" \
+    "mark message as spam"
+
+# main options
+set realname   = "D. Vogt"
+set from       = "divogt@live.de"
+set mail_check = 0
+set envelope_from

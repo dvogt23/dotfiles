@@ -1,0 +1,6 @@
+mainwindow_xoffset = 0
+show_week_numbers = 1
+mainwindow_yoffset = -400
+mainwindow_position = center
+force_lang = de_DE.utf8
+close_on_unfocus = 1

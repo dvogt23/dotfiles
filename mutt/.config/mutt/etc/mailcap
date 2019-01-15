@@ -1,0 +1,12 @@
+text/plain; vim %s ;
+text/html; $BROWSER '%s' ;
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+image/*; ~/.config/mutt/etc/muttimage.sh %s ; copiousoutput
+video/*; setsid nohup mpv --quiet %s & disown; copiousoutput
+application/pdf; pdftotext '%s' -; copiousoutput;
+
+#text/html; w3m -I %{charset} -T text/html; copiousoutput; print=/usr/bin/chromium %s ;
+#text/html; mv %s %s.html && qutebrowser %s.html > /dev/null; needsterminal;
+#image/*; feh --scale-down --auto-zoom %s ; copiousoutput
+#application/pdf; /usr/bin/zathura %s ; copiousoutput
+#application/vnd.openxmlformats-officedocument.wordprocessingml.document; /usr/bin/libreoffice %s ; copiousoutput ;

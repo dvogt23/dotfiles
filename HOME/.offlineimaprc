@@ -1,0 +1,63 @@
+[general]
+ui = ttyui
+accounts = Gmail, Outlook, Dima23
+
+# Path to file with arbitrary Python code to be loaded
+pythonfile = ~/.offlineimap.py
+
+[Account Outlook]
+postsynchook = ~/.config/mutt/etc/notmuch-hook.sh
+localrepository = Outlook-Local
+remoterepository = Outlook-Remote
+
+[Repository Outlook-Local]
+type = Maildir
+localfolders = ~/.mail/Outlook
+
+[Repository Outlook-Remote]
+type = IMAP
+remotehost = imap-mail.outlook.com
+remoteuser = divogt@live.de
+remotepasseval = get_pass("outlook")
+realdelete = no
+maxconnections = 3
+ssl_version=tls1_2
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+copy_ignore_eval = lambda foldername: {'INBOX': [6798, 6800]}.get(foldername)
+
+[Account Dima23]
+postsynchook = ~/.config/mutt/etc/notmuch-hook.sh
+localrepository = Dima23-Local
+remoterepository = Dima23-Remote
+
+[Repository Dima23-Local]
+type = Maildir
+localfolders = ~/.mail/Dima23
+
+[Repository Dima23-Remote]
+type = IMAP
+remotehost = betelgeuse.uberspace.de
+remoteuser = dvogt
+remotepasseval = get_pass("dima23")
+realdelete = no
+maxconnections = 3
+ssl_version=tls1_2
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Account Gmail]
+postsynchook = ~/.config/mutt/etc/notmuch-hook.sh
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/.mail/Gmail
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = mail2dima@gmail.com
+remotepasseval = get_pass("gmail")
+realdelete = no
+maxconnections = 3
+ssl_version=tls1_2
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt

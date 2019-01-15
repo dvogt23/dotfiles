@@ -1,0 +1,24 @@
+# vim: ft=muttrc
+set spoolfile   = "+Dima23/INBOX"
+set mbox        = "+Dima23/Archiv"
+set postponed   = "+Dima23/Drafts"
+unset record
+set sendmail="/usr/bin/msmtp -a Dima23"
+
+bind index gs noop
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index gs "<change-folder>=Sent<enter>" "Go to sent mail"
+
+macro index D \
+    "<save-message>+[Gmail]/Papierkorb<enter>" \
+    "move message to the trash"
+
+macro index S \
+    "<save-message>+[Gmail]/Spam<enter>" \
+    "mark message as spam"
+
+# main options
+set realname   = "D. Vogt"
+set from       = "divogt@dima23.de"
+set mail_check = 0
+set envelope_from
