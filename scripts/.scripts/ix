@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#SERVER_USER=<your ssh user>>
+SERVER_HOST=dvogt@dima23.de
+PUBLIC_PATH="https://ix.dima23.de/"
+SERVER_PATH="/var/www/virtual/dvogt/ix"
+SERVER_FLAGS=""
+HASH=$(date +%s%N | shasum | head -c7)
+#ssh ${SERVER_USER}@${SERVER_HOST} ${SERVER_FLAGS} "cat > ${SERVER_PATH}${HASH}" && echo ${PUBLIC_PATH}${HASH}
+ssh ${SERVER_HOST} ${SERVER_FLAGS} "cat $1 > ${SERVER_PATH}${HASH}" && echo ${PUBLIC_PATH}${HASH}

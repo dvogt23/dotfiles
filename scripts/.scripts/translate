@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=de&dt=t&q=Buenas
+SELECT="$(xsel -o)"
+
+notify-send "sel: $SELECT"

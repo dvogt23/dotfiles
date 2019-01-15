@@ -1,0 +1,13 @@
+[Unit]
+Description=Run locker for systemd-events suspend, hibernate, lock-session and unlock-session
+After=display-manager.service
+;Before=sleep.target
+;Before=suspend.target
+
+[Service]
+ExecStart=/usr/bin/xss-lock -- /usr/bin/i3lock-fancy
+Restart=always
+
+[Install]
+WantedBy=sleep.target
+WantedBy=suspend.target

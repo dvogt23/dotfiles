@@ -1,0 +1,5 @@
+#!/usr/bin/wish
+pack [label .msg -text [lindex $argv 0]]
+pack [entry .ent]
+bind .ent <KeyPress-Return> { puts [.ent get]; destroy . }
+focus .ent

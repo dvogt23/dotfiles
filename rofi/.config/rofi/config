@@ -1,0 +1,6 @@
+#include "/usr/share/rofi/themes/Monokai.theme"
+rofi.theme:                         spoti.rasi
+rofi.modi:                          combi,run
+rofi.combi-modi:                    window,drun
+rofi.color-window: argb: EE000000, argb: EE000000, argb: EE000000
+rofi.color-normal: argb: 00000000, #DEDEDE, argb: 00000000, #DEDEDE

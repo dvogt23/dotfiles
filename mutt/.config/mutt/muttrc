@@ -1,0 +1,140 @@
+set mbox_type   = Maildir
+set folder = ~/.mail
+
+#set virtual_spoolfile=yes
+#set folder=~/.mail
+#source ~/.mailboxes
+
+# set signature
+#send-hook . set signature="~/.mutt/sig"
+#send-hook "~t @domain.com" set signature=~/.mutt/branded.sig
+
+source ~/.config/mutt/account/outlook
+
+source ~/.config/mutt/etc/muttcol
+source ~/.config/mutt/etc/aliases
+
+mailboxes \
+    "+Gmail/INBOX" \
+    "+Gmail/[Gmail].Drafts" \
+    "+Gmail/[Gmail].Gesendet" \
+    "+Gmail/[Gmail].Papierkorb" \
+    "+Gmail/[Gmail].Spam" \
+    "+Dima23/INBOX" \
+    "+Dima23/Sent" \
+    "+Outlook/Inbox" \
+    "+Outlook/Junk" \
+    "+Outlook/Sent" \
+    "+Outlook/Deleted" \
+    "+Outlook/Drafts"
+
+macro index <F2> '<sync-mailbox><enter-command>source ~/.config/mutt/account/gmail<enter><change-folder>!<enter>'
+macro index <F3> '<sync-mailbox><enter-command>source ~/.config/mutt/account/outlook <enter><change-folder>!<enter>' 
+macro index <F4> '<sync-mailbox><enter-command>source ~/.config/mutt/account/dima23 <enter><change-folder>!<enter>' 
+
+bind index,pager i noop
+bind index,pager g noop
+bind index \Cf noop
+
+set sleep_time = 0
+set sort = 'reverse-date'
+set editor = $EDITOR
+set timeout = "5"
+set mail_check = "10"
+set mailcap_path = ~/.config/mutt/etc/mailcap
+set date_format="%y/%m/%d %I:%M"
+set index_format="%2C %zs %?X?A& ? %D %-15.15F %s (%-4.4c)"
+set markers = no
+set mark_old = no
+set mime_forward = yes
+set smtp_authenticators = 'gssapi:login'
+set wait_key = no
+
+auto_view text/html
+auto_view application/pdf
+alternative_order text/plain text/enriched text/html
+
+set rfc2047_parameters = yes
+
+# General remappings
+bind index i  noop
+bind index g  noop # clear for next binding
+bind index gg first-entry
+bind index G  last-entry
+bind index N  search-opposite
+bind pager i  exit
+bind pager q  toggle-quoted
+bind pager /  search
+bind pager j  next-line
+bind pager k  previous-line
+bind pager g  noop # clear for next binding
+bind pager gg top
+bind pager G  bottom
+bind index,pager \# noop
+bind index,pager \& noop
+bind index,pager R group-reply
+macro index,pager \Cu |urlview\n
+macro index,pager ,, |urlview\n
+
+# View attachments properly.
+bind attach <return> view-mailcap
+set fast_reply           # skip to compose when replying
+set fcc_attach           # save attachments with the body
+unset mime_forward       # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set forward_quote                    # include message in forwards
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+
+# install notmuch-mutt; notmuch setup; notmuch new
+# notmuch macro for searhcing:
+# 'L' performs a notmuch query, showing only the results
+macro index <f9> "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+# 'a' shows all messages again (supersedes default <alias> binding)
+macro index a "<limit>all\n" "show all messages (undo limit)"
+
+#Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+#sync email
+macro index O "<shell-escape>$HOME/.config/mutt/etc/mailsync.sh<enter>" "run offlineimap to sync all mail"
+macro index o "<shell-escape>$HOME/.config/mutt/etc/mailsync.sh -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+#copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+folder-hook [Gmail]/* source ~/.config/mutt/account/gmail
+folder-hook Outlook/* source ~/.config/mutt/account/outlook
+folder-hook Dima23/* source ~/.config/mutt/account/dima23
+
+# GnuPG settings
+source gpg.rc
+set pgp_sign_as = DDFBD79E
+set pgp_use_gpg_agent = yes
+
+#set crypt_autosign = yes
+#set crypt_replyencrypt = yes
+
+# Automatically sign all outgoing messages
+set crypt_autosign=yes
+
+# Automatically verify the sig of a message when opened
+set crypt_verify_sig=yes
+
+# Automatically sign replies to messages which are signed
+# Automatically encrypt replies to messages which are encrypted
+# Automatically sign replies to messages which are encrypted
+set crypt_replysign=yes
+set crypt_replyencrypt=yes
+set crypt_replysignencrypted=yes
+
+# This enables the new PKA method of key validation via DNS. It's currently
+# very rare, but doesn't hurt to enable & test it. See the following links for
+# more details:
+#   http://lists.gnupg.org/pipermail/gnupg-devel/2005-August/022254.html
+#   https://www.df7cb.de/blog/2007/openpgp-dns.html
+#   http://www.g10code.de/docs/pka-intro.de.pdf (German PDF)
+set crypt_use_pka=yes

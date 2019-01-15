@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ACTUAL=$(echo $TMUX | cut -f1 -d',')
+
+if ! pgrep -x "sshd" > /dev/null
+then
+    echo "Start ssh daemon..." && sudo systemctl start sshd.service
+fi
+chgrp shared "$ACTUAL"
+echo "$ACTUAL" > /tmp/shared

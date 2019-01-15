@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+CURRENT=$(echo $TMUX | cut -f1 -d',')
+SESSION=$(echo $TMUX | cut -f3 -d',')
+
+if ! pgrep -x "sshd" > /dev/null
+then
+    echo "Start ssh daemon..." && sudo systemctl start sshd.service
+fi
+chgrp shared "$CURRENT"
+chgrp shared "$(dirname $CURRENT)"
+chmod 0770 -R "$(dirname $CURRENT)"
+echo "$CURRENT,$SESSION" > /tmp/shared.current

@@ -1,0 +1,111 @@
+#!/usr/bin/env sh
+
+# System Update
+
+# --------------------------- #
+# Snapshot - Rollback - Btrfs #
+# --------------------------- #
+
+BTRFS=/usr/bin/btrfs
+CHUP=/usr/bin/checkupdates
+CURL=/usr/bin/curl
+CP=/usr/bin/cp
+MV=/usr/bin/mv
+PACAUR=/usr/bin/yay
+PACMAN=/usr/bin/pacman
+REFLECTOR=/usr/bin/reflector
+SED=/usr/bin/sed
+SUDO=/usr/bin/sudo
+
+# --------------------------- #
+#       Check Updates         #
+# --------------------------- #
+
+echo -e "\nChecking for updates...\n"
+if [ "$( $CHUP )" == '' ] ; then
+    echo -e "There are no updates available. Script terminated.\n"
+    exit 0
+else
+    $CHUP
+fi
+
+echo
+read -t 30 -n 1 -p "Do you want to perform a system update [y/N]? " INPUT
+if [[ ! "$INPUT" =~ [yY] ]]; then
+    echo -e "\nProgram finished"
+    exit 0
+fi
+echo -e "\n"
+
+# Get the passwd for sudo
+$SUDO -v
+
+# Keep sudo alive through the hole script
+while true; do $SUDO -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Update pacman mirrorlist
+echo -e "Update pacman mirrorlist\n"
+$SUDO $REFLECTOR --verbose -l 5 -p https --sort rate --save /etc/pacman.d/mirrorlist
+
+
+# --------------------------- #
+#      Snapshot System        #
+# --------------------------- #
+
+# -------- OLDSTABLE -------- #
+
+$SUDO $BTRFS subvolume delete /.snapshots/OLDSTABLE
+$SUDO $MV /.snapshots/STABLE /.snapshots/OLDSTABLE
+$SUDO $SED -i 's/STABLE/OLDSTABLE/g' /.snapshots/OLDSTABLE/etc/fstab
+$SUDO $CP /boot/vmlinuz-linux-stable /boot/vmlinuz-linux-oldstable
+$SUDO $CP /boot/initramfs-linux-stable.img /boot/initramfs-linux-oldstable.img
+
+# --------- STABLE ---------- #
+
+$SUDO $BTRFS subvolume snapshot / /.snapshots/STABLE
+$SUDO $SED -i 's/CURRENT/STABLE/g' /.snapshots/STABLE/etc/fstab
+$SUDO $CP /boot/vmlinuz-linux /boot/vmlinuz-linux-stable
+$SUDO $CP /boot/initramfs-linux.img /boot/initramfs-linux-stable.img
+
+# --------------------------- #
+#       Update System         #
+# --------------------------- #
+
+$PACAUR -Syyu --noconfirm
+
+# --------------------------- #
+#     Balance Filesystem      #
+# --------------------------- #
+
+$SUDO $BTRFS balance start -dusage=5 /btrfs
+
+# --------------------------- #
+#       Update Misc           #
+# --------------------------- #
+
+rustup update
+cargo install-update -a
+nvim +PlugUpdate +qall
+
+# ---------------------------- #
+#       Update Hosts           #
+# ---------------------------- #
+
+cd $(mktemp -d)
+$CURL https://someonewhocares.org/hosts/hosts > hosts
+if ! cmp hosts /etc/hosts > /dev/null 2>&1; then
+    echo -e "hosts file is not the same as in https://someonewhocares.org."
+    read -n 1 -p "Do you want to replace it [Y/n]? " INPUT
+    echo
+    if [[ ! "$INPUT" =~ [^yY] ]]; then
+        $SUDO $MV /etc/hosts /etc/hosts.old
+        $SUDO $CP hosts /etc/hosts
+    fi
+fi
+cd -
+
+# Create file with the actual date
+
+date +%s > $HOME/.local/share/.lastupdate
+
+# vim: ft=sh

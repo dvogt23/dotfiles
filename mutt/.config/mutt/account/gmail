@@ -1,0 +1,29 @@
+# vim: ft=muttrc
+set spoolfile   = "+Gmail/INBOX"
+set mbox        = "+Gmail/[Gmail].Alle Nachrichten"
+set postponed   = "+Gmail/[Gmail].Drafts"
+unset record
+set sendmail="/usr/bin/msmtp -a Gmail"
+
+bind index gs noop
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index ga "<change-folder>=[Gmail].Alle Nachrichten<enter>" "Go to all mail"
+macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to sent mail"
+macro index gt "<change-folder>=[Gmail].Papierkorb<enter>" "Go to trash"
+macro index gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
+macro index gj "<change-folder>=[Gmail].Junk<enter>" "Go to junk"
+macro index,pager A "<save-message>=[Gmail].Alle Nachrichten<enter>" "Archive Message"
+
+macro index D \
+    "<save-message>+[Gmail]/Papierkorb<enter>" \
+    "move message to the trash"
+
+macro index S \
+    "<save-message>+[Gmail]/Spam<enter>" \
+    "mark message as spam"
+
+# main options
+set realname   = "D. Vogt"
+set from       = "mail2dima@gmail.com"
+set mail_check = 0
+set envelope_from

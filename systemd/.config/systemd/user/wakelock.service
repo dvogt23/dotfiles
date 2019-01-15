@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock the screen on resume from suspend
+
+[Service]
+User=%u
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/share/i3lock-fancy/lock
+
+[Install]
+WantedBy=sleep.target
+WantedBy=suspend.target

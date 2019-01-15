@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+test ! -z $(pgrep -f 'alacritty --class mutt') || alacritty --class mutt -d 100 30 -e neomutt
+

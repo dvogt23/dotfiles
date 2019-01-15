@@ -1,0 +1,583 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+[personal]
+; wifi device
+wifi = wlan0
+
+[colors]
+; background = #262626
+; background-alt = #d7ff87
+
+background = #222222
+background-hi = #0D0D0D
+
+background-alt = #4D585E
+background-alt-hi = #36525E
+
+; foreground = #d7ff87
+; foreground-alt = #262626
+
+foreground = #FFFFFF
+foreground-dark = #666666
+
+foreground-hi = #86D6EB
+foreground-hi2 = #86D6EB
+
+underline-a = #D3555B
+underline-b = #B4BF3A
+underline-c = #BE841A
+
+abort = #FF4040
+
+
+; primary = #87af5f secondary = #e60053
+; alert = #33609A
+
+[bar/top]
+monitor = eDP1
+width = 100%
+height = 20
+;radius = 6.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 2
+border-color = ${colors.background-hi}
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Dina:size=10:antialias=true;0
+font-1 = FontAwesome:style=Regular:size=8;0
+font-2 = "Hurmit Nerd Font:style=Medium:size=8;0"
+;font-2 = Unifont:size=5;0
+font-3 = pango:Inconsolatas:size=8;-1
+font-4 = Pomicons:size=5;0
+font-5 = Termsynu:size=7;0
+
+modules-left = i3 xwindow
+modules-center = mail date clock pkg
+modules-right = weather volume temperature cpu filesystem wlan downspeed upspeed battery iota bitcoin
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+tray-position = right
+tray-padding = 2
+;tray-transparent = false
+tray-maxsize = 12
+tray-scale = 1.0
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/neueswort]
+type = custom/script
+exec = ~/.config/polybar/blocks/neueswort
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+label = %{F#d01515}%output%%{F-}
+interval = 6000
+click-left = notify-send "Description:" "$(~/.config/polybar/blocks/neueswort -d)"
+
+[module/pomodoro]
+type = custom/script
+; Use pomodoro glyphs in Nerd fonts
+;exec = pymodoro --break-prefix " " --pomodoro-prefix " " --pomodoro "" --empty "" --break "" --length 5
+; Use default symbols
+exec = pymodoro --length 5
+label = %{F#d01515}%output%%{F-}
+tail = true
+interval = 0
+; Start or reset the timer
+click-left = if [ -e ~/.pomodoro_session ]; then rm ~/.pomodoro_session; else echo "25 5" > ~/.pomodoro_session; fi
+; Increase pomodoro time
+click-right = echo "$((`cut .pomodoro_session -d ' ' -f 1`+5)) 5" > .pomodoro_session
+; Reduce pomodoro time
+click-middle = echo "$((`cut .pomodoro_session -d ' ' -f 1`-5)) 5" > .pomodoro_session
+
+;[module/xwindow]
+;type = internal/xwindow
+;label = title
+
+;format-prefix = "  "
+;format-prefix-foreground = ${colors.foreground}
+;;format-prefix-underline = ${colors.underline-c}
+
+;label-layout = %layout%
+;;label-layout-underline = ${colors.underline-c}
+
+;label-indicator =  CAPS
+;label-indicator-padding = 2
+;label-indicator-margin = 1
+;label-indicator-foreground = ${colors.foreground}
+;;label-indicator-background = ${colors.underline-c}
+;;label-indicator-underline = ${colors.underline-a}
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+pin-workspaces = true
+
+ws-icon-0 = term;
+ws-icon-1 = web;
+ws-icon-2 = code;
+ws-icon-3 = music;
+ws-icon-4 = irssi;
+ws-icon-default = 
+
+label-dimmed-underline = ${root.background}
+
+label-focused = %icon% %name%
+;label-focused-foreground = #f3f3f3
+label-focused-background = #3f3f3f
+;label-focused-underline = #${colors.accent}
+label-focused-underline = #c6c6c6
+label-focused-font = 4
+label-focused-padding = 3
+
+label-unfocused = %icon% %name%
+;label-unfocused-underline = #555555
+label-unfocused-foreground = #55ffffff
+label-unfocused-font = 4
+label-unfocused-padding = 3
+
+label-urgent = %icon% %name%
+label-urgent-foreground = #bd2c40
+;label-urgent-background = #bd2c40
+label-urgent-underline = #bd2c40
+label-urgent-font = 4
+label-urgent-padding = 3
+
+label-visible = %icon% %name%
+label-visible-foreground = #f3f3f3
+label-visible-font = 4
+label-visible-padding = 3
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+;format = <label> <ramp-coreload>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+;format-underline = #f90000
+label = %percentage%%
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+click-right = notify-send "Top 10 CPU-eaters" "$(ps -eo pcpu,pmem,pid,comm --sort=-pcpu | head -11)"
+; click-right = notify-send "Top 10 CPU-eaters"
+;[module/memory]
+;type = internal/memory
+;interval = 2
+;format-prefix = "mem "
+;format-prefix-foreground = ${colors.foreground}
+;format = 
+;label = %percentage_used%%
+;
+;
+[module/memory]
+type = internal/memory
+interval = 0.2
+format = <label> <bar-used>
+
+label = RAM
+label-font = 3
+label-foreground = #99
+
+bar-used-width = 30
+bar-used-gradient = true
+bar-used-foreground-0 = #449f3d
+bar-used-foreground-1 = #2f8419
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ed5456
+bar-used-indicator = █
+bar-used-indicator-font = 5
+bar-used-indicator-foreground = #fff
+bar-used-fill = █
+bar-used-fill-font = 5
+bar-used-empty = █
+bar-used-empty-font = 5
+bar-used-empty-foreground = #44
+
+[module/wlan]
+type = internal/network
+interface = ${personal.wifi}
+interval = 3.0
+
+format-connected =  <label-connected>
+;format-connected-underline = ${colors.underline-b}
+label-connected = %essid% %signal%%
+
+format-disconnected = 
+label-disconnected-foreground = ${colors.foreground}
+
+[module/eth]
+type = internal/network
+interface = ${personal.wifi}
+interval = 3.0
+
+format-connected =  <label-connected>
+;format-connected-underline = #9f78e1
+label-connected = %local_ip%
+
+format-disconnected = 
+
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+;
+[module/downspeed]
+type = internal/network
+interface = ${personal.wifi}
+interval = 3.0
+
+format-connected =  <label-connected>
+; ￬ <label-down>
+;format-connected-underline = ${colors.underline-c}
+
+label-connected = %downspeed%
+
+accumulate-stats = true
+
+[module/upspeed]
+type = internal/network
+interface = ${personal.wifi}
+interval = 3.0
+
+format-connected =  <label-connected>
+; ￬ <label-down>
+;format-connected-underline = ${colors.underline-c}
+
+label-connected = %upspeed%
+
+accumulate-stats = true
+
+[module/date]
+type = custom/script
+exec = LC_ALL=de_DE.utf8 date "+%V - %a %d. %b %Y"
+interval = 1800
+;format-underline = #268bd2
+format-prefix = " "
+format-prefix-foreground = #b2b2b2
+label-foreground = #b2b2b2
+click-right = gsimplecal &kill
+click-left = gsimplecal &kill
+
+[module/clock]
+type = internal/date
+interval = 1
+
+date = " %a %d. %b %Y [%V]"
+date-alt = " %a %d. %b %Y [%V]"
+
+time = %H:%M
+time-alt = %H:%M:%S
+;format-prefix = 
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #0a6cf5
+label =  %time%
+label-foreground = ${colors.foreground}
+;label-underline = #9f78e1
+;click-right = "gsimplecal &"
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume>
+
+label-volume = 
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = ""
+format-muted-foreground = ${colors.foreground}
+label-muted = "muted"
+
+;bar-volume-width = 10
+;bar-volume-foreground-0 = #55aa55
+;bar-volume-foreground-1 = #55aa55
+;bar-volume-foreground-2 = #55aa55
+;bar-volume-foreground-3 = #55aa55
+;bar-volume-foreground-4 = #55aa55
+;bar-volume-foreground-5 = #f5a70a
+;bar-volume-foreground-6 = #ff5555
+;bar-volume-gradient = false
+;bar-volume-indicator = |
+;bar-volume-indicator-font = 0
+;bar-volume-fill = ─
+;bar-volume-fill-font = 0
+;bar-volume-empty = ─
+;bar-volume-empty-font = 0
+;bar-volume-empty-foreground = ${colors.foreground-hi}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label>  <bar>
+label =  
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #ff
+bar-indicator-font = 0
+bar-fill = ─
+bar-fill-font = 0
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 0
+bar-empty-foreground = ${colors.foreground-hi}
+
+[module/battery]
+type = internal/battery
+interval = 30
+battery = BAT0
+adapter = AC
+full-at = 98
+
+label-charging = %percentage%%
+format-charging = <ramp-capacity>   <label-charging>
+format-charging-foreground = ${colors.foreground-hi}
+;format-charging-underline = ${colors.underline-b}
+
+format-discharging = <ramp-capacity> <label-discharging> 
+;format-discharging-underline = ${colors.foreground-hi2}
+format-discharging-foreground = ${colors.foreground}
+
+format-full = 
+format-full-foreground = ${colors.foreground-dark}
+
+ramp-capacity-0 = " "
+ramp-capacity-0-foreground = ${colors.foreground-hi2}
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.abort}
+label-close =  cancel
+label-close-foreground = ${colors.abort}
+label-separator = |
+label-separator-foreground = ${colors.foreground-dark}
+
+menu-0-0 =  reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 =  power off
+menu-0-1-exec = menu-open-2
+menu-0-2 =  standby
+menu-0-2-exec = "i3lock -f -c 000000; systemctl suspend"
+menu-0-3 =  lock
+menu-0-3-exec = i3lock
+
+menu-1-0 =  cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 =  reboot
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 =  power off
+menu-2-0-exec = systemctl poweroff
+menu-2-1 =  cancel
+menu-2-1-exec = menu-open-0
+
+[module/music]
+type = custom/script
+interval = 2
+
+label = %output:0:90:...%
+exec = ~/.config/polybar/mpris.sh
+
+click-left = playerctl play-pause
+click-right = playerctl next
+click-middle = playerctl previous
+
+[module/fs]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =   %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-hi}
+
+[module/temperature]
+type = internal/temperature
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 15
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+warn-temperature = 60
+
+format = <label>
+format-underline = ${colors.background}
+format-warn = <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.foreground}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground}
+
+[module/filesystem]
+type = custom/script
+
+exec = df -h /dev/nvme0n1p2 | awk 'FNR > 1 { print $4 }'
+
+interval = 600
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
+label-foreground = ${colors.foreground}
+click-left = nemo &
+
+[module/mail]
+type = custom/script
+interval = 120
+format = <label>
+format-prefix = " "
+tail = true
+label-foreground = ${colors.foreground}
+format-prefix-foreground = #FFFF00
+click-left = ~/.config/polybar/blocks/mutt
+exec = ~/.config/polybar/blocks/mail
+;exec-if = "test -d $HOME/.mail/*/INBOX"
+
+[module/bitcoin]
+type = custom/script
+interval = 900
+format = <label>
+format-prefix = " "
+tail = true
+label-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.foreground}
+exec = ~/.config/polybar/blocks/btc
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/iota]
+type = custom/script
+interval = 900
+format = <label>
+format-prefix = " "
+tail = true
+label-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.foreground}
+exec = ~/.config/polybar/blocks/iot
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/opensetup]
+type = custom/script
+interval = 900
+format = <label>
+format-prefix =  
+tail = true
+label-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.foreground}
+exec = ~/.config/polybar/blocks/opensetup_count.sh
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/opensetup_fail]
+type = custom/script
+interval = 900
+format = <label>
+format-prefix = 
+tail = true
+label-foreground = ${colors.foreground-dark}
+format-prefix-foreground = ${colors.foreground-dark}
+exec = ~/.config/polybar/blocks/opensetup_count_fail.sh
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/wttr]
+type = custom/script
+interval = 900
+format = <label>
+label-foreground = ${colors.foreground}
+tail = true
+format-prefix-foreground = ${colors.foreground}
+exec = ~/.config/polybar/blocks/wttrin Rheine
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/weather]
+type = custom/script
+interval = 900
+format = <label>
+label-foreground = ${colors.foreground}
+tail = true
+format-prefix-foreground = ${colors.foreground}
+exec = ~/.config/polybar/blocks/weather.py 22269367 --unit C --format '{text} {temp} °{unit_temperature}'
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/pkg]
+type = custom/script
+interval = 1200
+format = <label>
+label-foreground = ${colors.foreground}
+format-prefix = " "
+tail = true
+click-left = notify-send -u low "Packages: " "$(checkupdates)"
+click-right = notify-send "Update with:" "yay -Syyua\nsudo pacman -Syyu
+format-prefix-foreground = ${colors.foreground}
+exec = ~/.config/polybar/blocks/pacman
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+

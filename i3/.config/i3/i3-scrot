@@ -1,0 +1,102 @@
+#!/bin/sh
+# /usr/bin/i3-scrot
+#
+# simple screenshot-script using scrot for manjaro-i3 by oberon@manjaro.org
+
+_conf=$HOME/.config/i3-scrot.conf
+
+if ! [ -f $_conf ]; then
+	echo "scrot_dir=$(xdg-user-dir PICTURES)" > $_conf
+fi
+
+source $_conf
+
+if ! [ -d $scrot_dir ]; then
+	mkdir -p $scrot_dir
+fi
+
+ACTION='desk'
+export COPY_TO_CLIPBOARD=0
+
+while [[ $# -gt 0 ]]
+do
+	case "$1" in
+	--xclip|-x)
+		export COPY_TO_CLIPBOARD=1
+		shift
+		;;
+	--desk|-d|$NULL)
+		ACTION='desk'
+		shift
+		;;
+	--window|-w)
+		ACTION='window'
+		shift
+		;;
+	--select|-s)
+		notify-send 'select an area for the screenshot' &
+		ACTION='select'
+		shift
+		;;
+	--help|-h)
+		echo "
+available actions:
+-d | --desk    full screen
+-w | --window  active window
+-s | --select  selection
+-h | --help    display this information
+available options:
+-x | --clipboard  copy image to clipboard
+
+Default action  is 'full screen'.
+
+The file destination can be set in ${_conf}.
+Default is $scrot_dir
+"
+		;;
+	*)
+		echo "
+== ! i3-scrot: missing or wrong argument ! ==
+
+available actions:
+-d | --desk    full screen
+-w | --window  active window
+-s | --select  selection
+-h | --help    display this information
+available options:
+-x | --clipboard  copy image to clipboard
+
+Default action  is 'full screen'.
+
+The file destination can be set in ${_conf}.
+Default is $scrot_dir
+"
+		shift
+    exit 2
+  esac
+done
+
+call_scrot(){
+	  cd $scrot_dir
+    if [ $COPY_TO_CLIPBOARD == 1 ]; then
+        scrot "$@" -e 'xclip -selection clipboard -t ""image/png"" < $f'
+    else
+        scrot "$@"
+    fi
+	  [ $? -eq 0 ] &&
+	      sleep 1 &&
+	      notify-send "screenshot has been saved in $scrot_dir"
+}
+
+case ${ACTION} in
+  desk)
+    call_scrot
+  ;;
+  window)
+    call_scrot -u
+  ;;
+  select)
+    call_scrot -s
+  ;;
+esac
+exit 0
