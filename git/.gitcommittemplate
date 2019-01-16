@@ -2,7 +2,7 @@
 
  <+body+>
 
-Ticket: DEOS-<++>
+Ticket: <++>
 
 # type: what type of change this commit contains.
 # scope: what item of code this commit is changing.
