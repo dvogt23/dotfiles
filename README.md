@@ -15,3 +15,27 @@
 ![Screenshot][screenshot]
 
 [screenshot]: screenshot.png "Screenshot"
+
+##### Prerequisites
+Install all packages from `packages.pacman` with:
+
+    make packages
+
+##### Link all dotfiles
+Create symlinks for all dotfiles with GNU/`stow` will create a backup dir with 
+conflicting files:
+
+    make dotfiles
+
+##### Git config
+Create your own `.gitconfig.local` that would include to the `.gitconfig`
+
+Where `~/.gitconfig.local` is simply:
+
+    [user]
+      name = <your_name>
+      email = <your_email>
+
+##### License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
