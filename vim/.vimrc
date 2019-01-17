@@ -188,14 +188,17 @@ Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go',                           { 'for': 'go' }
 Plug 'timonv/vim-cargo'
 Plug 'tpope/vim-surround'
-Plug 'rust-lang/rust.vim',      { 'for': 'rust' } " Rust filetype * CHECK OPTIONS *
-Plug 'timonv/vim-cargo',      { 'for': 'rust' }
+Plug 'benekastah/neomake'
+Plug 'sebastianmarkow/deoplete-rust', { 'for' : 'rust' }
+Plug 'rust-lang/rust.vim',             { 'for'    : 'rust' }
+Plug 'racer-rust/vim-racer',           { 'for'    : 'rust' }
+Plug 'timonv/vim-cargo',               { 'for'    : 'rust' }
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch'                                    : 'next',
+            \ 'do'                                        : 'bash install.sh',
+            \ }
 Plug 'cespare/vim-toml',      { 'for': 'toml' }
 Plug 'avakhov/vim-yaml'
-
-if has('nvim')
-    Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-endif
 
 "tools
 Plug 'vimwiki/vimwiki'
@@ -221,7 +224,6 @@ if has('nvim')
     let g:deoplete#enable_refresh_always = 1
     let g:deoplete#auto_complete_delay = 10
 endif
-
 call plug#end()
 " }}}
 
@@ -254,6 +256,11 @@ endif
 let g:rustfmt_autosave = 1
 
 "}}}
+
+" Neomake {{{ "
+let g:neomake_open_list = 2
+call neomake#configure#automake('rw', 1000)
+" }}} Neomake "
 
 " << LSP >> {{{
 let g:LanguageClient_autoStart = 1
