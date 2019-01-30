@@ -7,8 +7,7 @@
 ;
 ;=====================================================
 [personal]
-; wifi device
-wifi = wlan0
+eth = ${env:IFETH}
 
 [colors]
 ; background = #262626
@@ -40,7 +39,7 @@ abort = #FF4040
 ; alert = #33609A
 
 [bar/top]
-monitor = eDP1
+monitor = ${env:SCREENNAME}
 width = 100%
 height = 20
 ;radius = 6.0
@@ -223,7 +222,7 @@ bar-used-empty-foreground = #44
 
 [module/wlan]
 type = internal/network
-interface = ${personal.wifi}
+interface = ${personal.eth}
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -235,7 +234,7 @@ label-disconnected-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
-interface = ${personal.wifi}
+interface = ${personal.eth}
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -251,7 +250,7 @@ format-disconnected =
 ;
 [module/downspeed]
 type = internal/network
-interface = ${personal.wifi}
+interface = ${personal.eth}
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -264,7 +263,7 @@ accumulate-stats = true
 
 [module/upspeed]
 type = internal/network
-interface = ${personal.wifi}
+interface = ${personal.eth}
 interval = 3.0
 
 format-connected =  <label-connected>

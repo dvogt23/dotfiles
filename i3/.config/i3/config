@@ -359,9 +359,7 @@ exec --no-startup-id xss-lock -- i3lock-fancy&
 ####################
 #  Execute always  #
 ####################
-exec_always --no-startup-id feh --bg-fill ~/Pictures/1.png
-# support touchpad gestures
+exec_always --no-startup-id $SCRIPTS/setwallpaper
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/bin/libinput-gestures-setup start
-#exec_always --no-startup-id urxvtd -f && urxvtc -name scratchpad
 
