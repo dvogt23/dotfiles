@@ -168,7 +168,7 @@ set wildignore=*.o,*~,*.pyc
 " }}}
 
 " Plugins {{{
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 
 "UI
 Plug 'vim-airline/vim-airline'

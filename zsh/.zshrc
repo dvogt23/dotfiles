@@ -22,7 +22,6 @@ zplug "lib/key-bindings", from:oh-my-zsh
 zplug "lib/completion", from:oh-my-zsh
 
 # From Github
-zplug "djui/alias-tips"
 zplug "zpm-zsh/zpm", use:"plugins/{cd,git,zsh-core}"
 zplug "zsh-users/zsh-completions"
 
