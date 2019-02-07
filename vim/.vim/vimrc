@@ -1,0 +1,46 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+
+" UI
+Plug 'vim-airline/vim-airline'
+
+Plug 'saschagrunert/dracula', { 'branch': 'mod' }
+Plug 'ayu-theme/ayu-vim'
+Plug 'ayu-theme/ayu-vim-airline'
+Plug 'Yggdroot/indentLine'
+
+Plug 'majutsushi/tagbar'
+Plug 'mbbill/undotree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'mhinz/vim-startify'
+
+" Movement
+Plug 'easymotion/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'jremmen/vim-ripgrep',                 { 'on': 'Rg' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+
+" Languages
+Plug 'Valloric/YouCompleteMe'
+Plug 'w0rp/ale'
+
+Plug 'tpope/vim-markdown',                  { 'for': 'markdown' }
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'fatih/vim-go',                        { 'for' : 'go' }
+Plug 'rust-lang/rust.vim',                  { 'for' : 'rust' }
+Plug 'cespare/vim-toml',                    { 'for' : 'toml' }
+Plug 'avakhov/vim-yaml'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+call plug#end()
