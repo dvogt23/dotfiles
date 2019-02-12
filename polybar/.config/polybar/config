@@ -69,9 +69,9 @@ font-4 = Pomicons:size=5;0
 font-5 = Termsynu:size=7;0
 font-6 = NotoEmoji:size=6:scale=10
 
-modules-left = i3 xwindow
-modules-center = mail date clock pkg
-modules-right = wttr volume temperature cpu filesystem wlan downspeed upspeed battery iota bitcoin
+modules-left = i3 title
+modules-center = date clock
+modules-right = volume temperature cpu filesystem downspeed upspeed network
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -82,9 +82,15 @@ tray-padding = 2
 tray-maxsize = 12
 tray-scale = 1.0
 
-[module/xwindow]
+[module/title]
 type = internal/xwindow
-label = %title:0:30:...%
+format = <label>
+; format-background = #f00
+; format-foreground = #000
+; format-padding = 4
+
+label = %title%
+label-maxlen = 30
 
 [module/neueswort]
 type = custom/script
@@ -193,34 +199,35 @@ bar-used-empty = █
 bar-used-empty-font = 5
 bar-used-empty-foreground = #44
 
-[module/wlan]
+[module/network]
 type = internal/network
 interface = ${personal.eth}
+
+; Seconds to sleep between updates
+; Default: 1
 interval = 3.0
 
-format-connected =  <label-connected>
-;format-connected-underline = ${colors.underline-b}
-label-connected = %essid% %signal%%
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
 
-format-disconnected = 
-label-disconnected-foreground = ${colors.foreground}
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+; udspeed-minwidth = 5
 
-[module/eth]
-type = internal/network
-interface = ${personal.eth}
-interval = 3.0
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
 
-format-connected =  <label-connected>
-;format-connected-underline = #9f78e1
-label-connected = %local_ip%
+; Consider an `UNKNOWN` interface state as up.
+; Some devices have an unknown state, even when they're running
+; Default: false
+unknown-as-up = true
 
-format-disconnected =
-
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-;
 [module/downspeed]
 type = internal/network
 interface = ${personal.eth}
@@ -276,7 +283,7 @@ label-foreground = ${colors.foreground}
 ;click-right = "gsimplecal &"
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 format-volume = <ramp-volume>
 
@@ -444,7 +451,7 @@ ramp-foreground = ${colors.foreground}
 [module/filesystem]
 type = custom/script
 
-exec = df -h /dev/nvme0n1p2 | awk 'FNR > 1 { print $4 }'
+exec = df -h ${env:DRIVE} | awk 'FNR > 1 { print $4 }'
 
 interval = 600
 format-prefix = "  "
@@ -515,7 +522,7 @@ format = <label>
 label-foreground = ${colors.foreground}
 tail = true
 format-prefix-foreground = ${colors.foreground}
-exec = ~/.config/polybar/blocks/wttrin Rheine
+exec = curl wttr.in/Rheine?format="%c+%t"
 exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 
 [module/weather]
@@ -538,7 +545,7 @@ tail = true
 click-left = notify-send -u low "Packages: " "$(checkupdates)"
 click-right = notify-send "Update with:" "yay -Syyua\nsudo pacman -Syyu
 format-prefix-foreground = ${colors.foreground}
-exec = ~/.config/polybar/blocks/pacman
+exec = checkupdates | wc -l
 
 [settings]
 screenchange-reload = true
