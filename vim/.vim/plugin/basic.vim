@@ -88,7 +88,6 @@ set backupdir=~/.vim/backups
 set undofile
 set swapfile
 set backup
-set encoding=utf8
 set writebackup
 set sessionoptions-=blank,help
 

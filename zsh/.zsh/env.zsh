@@ -36,8 +36,5 @@ export FZF_ALT_C_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {
 export PASSWORD_STORE_CLIP_TIME=15
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
-# local env
-source $HOME/.env.local
-
 # VI Mode
 #set -o vi

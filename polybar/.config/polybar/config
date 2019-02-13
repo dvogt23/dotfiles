@@ -316,7 +316,7 @@ full-at = 98
 time-format = %H:%M
 
 label-charging = %percentage%%
-label-discharging = %percentage%% (%time%)
+label-discharging = %percentage%%
 
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
