@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
-feh --bg-fill ${WALLPAPER:-$HOME/Pictures/wallpaper.png}
-
+feh --bg-fill "$(xdg-user-dir PICTURES)/wallpaper.png"
