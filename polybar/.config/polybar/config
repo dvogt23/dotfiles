@@ -10,17 +10,11 @@
 eth = ${env:IFETH}
 
 [colors]
-; background = #262626
-; background-alt = #d7ff87
-
 background = #222222
 background-hi = #0D0D0D
 
 background-alt = #4D585E
 background-alt-hi = #36525E
-
-; foreground = #d7ff87
-; foreground-alt = #262626
 
 foreground = #FFFFFF
 foreground-dark = #666666
@@ -33,10 +27,6 @@ underline-b = #B4BF3A
 underline-c = #BE841A
 
 abort = #FF4040
-
-
-; primary = #87af5f secondary = #e60053
-; alert = #33609A
 
 [bar/top]
 monitor = ${env:MONITOR}
@@ -62,32 +52,29 @@ module-margin-right = 1
 
 font-0 = Dina:size=10:antialias=true;0
 font-1 = FontAwesome:style=Regular:size=8;0
-font-2 = "Hurmit Nerd Font:style=Medium:size=8;0"
-;font-2 = Unifont:size=5;0
-font-3 = pango:Inconsolatas:size=8;-1
-font-4 = Pomicons:size=5;0
-font-5 = Termsynu:size=7;0
-font-6 = NotoEmoji:size=6:scale=10
+font-2 = NotoEmoji:size=6:scale=10
+font-3 = Wuncon Siji:pixelsize=10
+; font-2 = "Hurmit Nerd Font:style=Medium:size=8;0"
+; font-2 = Unifont:size=5;0
+; font-3 = pango:Inconsolatas:size=8;-1
+; font-4 = Pomicons:size=5;0
+; font-5 = Termsynu:size=7;0
 
 modules-left = i3 title
-modules-center = date clock
-modules-right = volume temperature cpu filesystem downspeed upspeed network
+modules-center = mail date clock pkg
+modules-right = wttr volume temperature cpu filesystem network battery
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
 tray-position = right
 tray-padding = 2
-;tray-transparent = false
 tray-maxsize = 12
 tray-scale = 1.0
 
 [module/title]
 type = internal/xwindow
 format = <label>
-; format-background = #f00
-; format-foreground = #000
-; format-padding = 4
 
 label = %title%
 label-maxlen = 30
@@ -131,38 +118,32 @@ ws-icon-default = 
 label-dimmed-underline = ${root.background}
 
 label-focused = %icon% %name%
-;label-focused-foreground = #f3f3f3
 label-focused-background = #3f3f3f
-;label-focused-underline = #${colors.accent}
 label-focused-underline = #c6c6c6
-label-focused-font = 4
+label-focused-font = 0
 label-focused-padding = 3
 
 label-unfocused = %icon% %name%
-;label-unfocused-underline = #555555
 label-unfocused-foreground = #55ffffff
-label-unfocused-font = 4
+label-unfocused-font = 0
 label-unfocused-padding = 3
 
 label-urgent = %icon% %name%
 label-urgent-foreground = #bd2c40
-;label-urgent-background = #bd2c40
 label-urgent-underline = #bd2c40
-label-urgent-font = 4
+label-urgent-font = 0
 label-urgent-padding = 3
 
 label-visible = %icon% %name%
 label-visible-foreground = #f3f3f3
-label-visible-font = 4
+label-visible-font = 0
 label-visible-padding = 3
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-;format = <label> <ramp-coreload>
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-;format-underline = #f90000
 label = %percentage%%
 ramp-coreload-0 = ▁
 ramp-coreload-1 = ▂
@@ -203,56 +184,57 @@ bar-used-empty-foreground = #44
 type = internal/network
 interface = ${personal.eth}
 
-; Seconds to sleep between updates
-; Default: 1
 interval = 3.0
-
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-; udspeed-minwidth = 5
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
 accumulate-stats = true
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices have an unknown state, even when they're running
-; Default: false
 unknown-as-up = true
 
-[module/downspeed]
-type = internal/network
-interface = ${personal.eth}
-interval = 3.0
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected =  <label-connected>
 
-format-connected =  <label-connected>
-; ￬ <label-down>
-;format-connected-underline = ${colors.underline-c}
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected =  <label-disconnected>
 
-label-connected = %downspeed%
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
 
-accumulate-stats = true
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
 
-[module/upspeed]
-type = internal/network
-interface = ${personal.eth}
-interval = 3.0
+; Default: %ifname% %local_ip%
+label-connected = %{A1:connman-gtk:}%essid%%{A} %signal%  %upspeed%  %downspeed%
+label-connected-foreground = #eefafafa
 
-format-connected =  <label-connected>
-; ￬ <label-down>
-;format-connected-underline = ${colors.underline-c}
+; Default: (none)
+label-disconnected = 
+label-disconnected-foreground = #66ffffff
 
-label-connected = %upspeed%
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 
-accumulate-stats = true
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
 
 [module/date]
 type = custom/script
@@ -274,13 +256,8 @@ date-alt = " %a %d. %b %Y [%V]"
 
 time = %H:%M
 time-alt = %H:%M:%S
-;format-prefix =
-;format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #0a6cf5
 label =  %time%
 label-foreground = ${colors.foreground}
-;label-underline = #9f78e1
-;click-right = "gsimplecal &"
 
 [module/volume]
 type = internal/alsa
@@ -335,28 +312,30 @@ bar-empty-foreground = ${colors.foreground-hi}
 
 [module/battery]
 type = internal/battery
-interval = 30
-battery = BAT0
-adapter = AC
 full-at = 98
+time-format = %H:%M
 
 label-charging = %percentage%%
-format-charging = <ramp-capacity>   <label-charging>
-format-charging-foreground = ${colors.foreground-hi}
-;format-charging-underline = ${colors.underline-b}
+label-discharging = %percentage%% (%time%)
 
+format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
-;format-discharging-underline = ${colors.foreground-hi2}
-format-discharging-foreground = ${colors.foreground}
+format-full = <ramp-capacity> <label-full>
 
-format-full = 
-format-full-foreground = ${colors.foreground-dark}
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
-ramp-capacity-0 = " "
-ramp-capacity-0-foreground = ${colors.foreground-hi2}
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
-ramp-capacity-3 = " "
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
 
 [module/powermenu]
 type = custom/menu
@@ -389,27 +368,6 @@ menu-2-0-exec = systemctl poweroff
 menu-2-1 =  cancel
 menu-2-1-exec = menu-open-0
 
-[module/music]
-type = custom/script
-interval = 2
-
-label = %output:0:90:...%
-exec = ~/.config/polybar/mpris.sh
-
-click-left = playerctl play-pause
-click-right = playerctl next
-click-middle = playerctl previous
-
-[module/fs]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted =   %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-hi}
-
 [module/temperature]
 type = internal/temperature
 
@@ -434,7 +392,7 @@ hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
 ; Default: 80
 warn-temperature = 60
 
-format = <label>
+format = <ramp> <label>
 format-underline = ${colors.background}
 format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
@@ -449,15 +407,14 @@ ramp-2 = 
 ramp-foreground = ${colors.foreground}
 
 [module/filesystem]
-type = custom/script
+type = internal/fs
 
-exec = df -h ${env:DRIVE} | awk 'FNR > 1 { print $4 }'
+; Mountpoints to display
+mount-0 = /
 
-interval = 600
-format-prefix = "  "
-format-prefix-foreground = ${colors.foreground}
-label-foreground = ${colors.foreground}
-click-left = nemo &
+; Display fixed precision values
+; Default: false
+fixed-values = true
 
 [module/mail]
 type = custom/script
@@ -493,28 +450,6 @@ format-prefix-foreground = ${colors.foreground}
 exec = ~/.config/polybar/blocks/iot
 exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 
-[module/opensetup]
-type = custom/script
-interval = 900
-format = <label>
-format-prefix = 
-tail = true
-label-foreground = ${colors.foreground}
-format-prefix-foreground = ${colors.foreground}
-exec = ~/.config/polybar/blocks/opensetup_count.sh
-exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
-
-[module/opensetup_fail]
-type = custom/script
-interval = 900
-format = <label>
-format-prefix = 
-tail = true
-label-foreground = ${colors.foreground-dark}
-format-prefix-foreground = ${colors.foreground-dark}
-exec = ~/.config/polybar/blocks/opensetup_count_fail.sh
-exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
-
 [module/wttr]
 type = custom/script
 interval = 900
@@ -523,16 +458,6 @@ label-foreground = ${colors.foreground}
 tail = true
 format-prefix-foreground = ${colors.foreground}
 exec = curl wttr.in/Rheine?format="%c+%t"
-exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
-
-[module/weather]
-type = custom/script
-interval = 900
-format = <label>
-label-foreground = ${colors.foreground}
-tail = true
-format-prefix-foreground = ${colors.foreground}
-exec = ~/.config/polybar/blocks/weather.py 22269367 --unit C --format '{text} {temp} °{unit_temperature}'
 exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 
 [module/pkg]
