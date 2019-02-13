@@ -10,7 +10,7 @@ ETH=$(ip link show | grep "state UP" | awk '{print $2}' | sed 's/://')
 # Launch bar1 and bar2
 if type "xrandr"; then
     for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-       IFETH=$ETH MONITOR=$m polybar top &
+       DRIVE=/dev/nvme0n1p1 IFETH=$ETH MONITOR=$m polybar top &
     done
 else
     polybar --reload top &
