@@ -14,6 +14,7 @@ nmap <leader>ph <Plug>GitGutterPrevHunk
 nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterUndoHunk
 nmap <leader>f :Files<cr>
+nmap <leader>gf :GFiles<cr>
 nmap <leader>ff :FZF<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>j <Plug>(easymotion-bd-f)

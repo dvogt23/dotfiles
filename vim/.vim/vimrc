@@ -19,10 +19,10 @@ Plug 'mbbill/undotree'
 " Plug 'ryanoasis/vim-devicons'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify'
+Plug 'junegunn/fzf.vim'
 
 " Movement
 Plug 'easymotion/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'jremmen/vim-ripgrep',                 { 'on': 'Rg' }
 Plug 'scrooloose/nerdcommenter'

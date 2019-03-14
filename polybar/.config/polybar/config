@@ -315,6 +315,8 @@ type = internal/battery
 full-at = 98
 time-format = %H:%M
 
+click-left = notify-send -u low "Time remaining: " "$(acpi -i | head -1 | awk '{print $5}') hours"
+
 label-charging = %percentage%%
 label-discharging = %percentage%%
 

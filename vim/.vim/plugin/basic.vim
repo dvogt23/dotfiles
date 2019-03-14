@@ -1,6 +1,10 @@
 " ui
 " highlight ColorColumn
 " set colorcolumn=80
+set termguicolors
+
+set lazyredraw
+set regexpengine=1
 
 set ruler
 set number
@@ -104,7 +108,7 @@ set wildignore+=*.ppt,*.pptx,*.doc,*.docx,*.xls,*.xlsx
 set wildignore=*.o,*~,*.pyc
 
 "set cursorline
-" set autochdir
+set autochdir
 
 " remember info about open buffers on close
 "set viminfo^=%
