@@ -1,6 +1,7 @@
 # env vars !printenv
 
 # Defaults
+export LC_ALL=en_US.utf8
 export DOTFILES_DIR="$HOME/.dotfiles"
 export PROJECT_DIR="$HOME/Projects"
 export PATH="$HOME/.scripts:$PATH"
@@ -23,8 +24,7 @@ fi
 unset RUST_SRC
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# FZF <Alt>-c shortcut
-export FZF_DEFAULT_COMMAND='fd -H "" ~'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_TMUX=1
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd -H -t d'

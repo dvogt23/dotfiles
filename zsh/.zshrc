@@ -37,6 +37,12 @@ fi
 
 zplug load
 
+# --------------- Set zsh history --------------- #
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 # --------------- Source ZDOTDIR files... --------------- #
 
 for config ($ZDOTDIR/**/*.zsh) source $config
