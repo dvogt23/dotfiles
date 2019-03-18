@@ -47,7 +47,7 @@ hide_edge_borders both
 floating_modifier $mod
 
 # Disable title and borders for all windows
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 0
 
 for_window [instance="mutt"] floating enable, move absolute position center
 for_window [class="^Connman.*"] floating enable
@@ -332,7 +332,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym F12 exec tilix -q -p Quake
 
 # Gaps settings
-smart_gaps on
+# smart_gaps on
 gaps inner 7
 gaps outer 0
 bindsym $mod+g exec $i3/toggle_gaps

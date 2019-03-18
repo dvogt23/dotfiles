@@ -10,7 +10,7 @@
 eth = ${env:IFETH}
 
 [colors]
-background = #222222
+background = #00222222
 background-hi = #0D0D0D
 
 background-alt = #4D585E
@@ -41,8 +41,8 @@ foreground = ${colors.foreground}
 line-size = 2
 line-color = #f00
 
-border-size = 2
-border-color = ${colors.background-hi}
+; border-size = 2
+border-color = ${colors.background}
 
 padding-left = 0
 padding-right = 1
@@ -61,8 +61,8 @@ font-3 = Wuncon Siji:pixelsize=10
 ; font-5 = Termsynu:size=7;0
 
 modules-left = i3 title
-modules-center = mail date clock pkg
-modules-right = wttr volume temperature cpu filesystem network battery
+modules-center = date clock
+modules-right = mail pkg wttr separator volume temperature cpu filesystem network battery
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -78,6 +78,14 @@ format = <label>
 
 label = %title%
 label-maxlen = 30
+
+[module/separator]
+type = custom/text
+content = |
+; label-active-font = 4
+; content-background = #000
+content-foreground = #ccc
+; content-padding = 2
 
 [module/neueswort]
 type = custom/script
@@ -118,8 +126,8 @@ ws-icon-default = 
 label-dimmed-underline = ${root.background}
 
 label-focused = %icon% %name%
-label-focused-background = #3f3f3f
-label-focused-underline = #c6c6c6
+; label-focused-background = #3f3f3f
+; label-focused-underline = #c6c6c6
 label-focused-font = 0
 label-focused-padding = 3
 
