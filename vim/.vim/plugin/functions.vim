@@ -265,3 +265,14 @@ function! ToggleFolding()
         let b:outline_mode = 0
     endif
 endfunction
+
+" Autoremove trailing white spaces spaces and convert tabs in spaces
+function! StripWhiteSpace()
+    if &ft =~ 'gitcommit\|diff'
+    return
+    endif
+    mark s
+    %s/\s\+$//e
+    's
+    delmarks s
+endfunction

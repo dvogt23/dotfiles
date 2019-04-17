@@ -23,11 +23,11 @@ nmap <leader>vl :vertical resize +10<cr>
 nmap <leader>vh :vertical resize -10<cr>
 nmap <leader>vj :res +10<cr>
 nmap <leader>vk :res -10<cr>
-nmap <leader>ev :vsp ~/.vimrc<cr>
-nmap <leader>sv :source ~/.vimrc<cr>
+nmap <leader>ev :vsp ~/.vim/vimrc<cr>
+nmap <leader>sv :source ~/.vim/vimrc<cr>
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>n :Lexplore<cr>
-nmap <leader>ew :StripWhitespace<cr>
+nmap <leader>ew :call StripWhiteSpace()<cr>
 nmap <leader>t :IndentLinesToggle<cr>
 nmap <leader>p :set nopaste<cr>
 
@@ -51,4 +51,4 @@ nno L xp
 nno H Xph
 
 inoremap <c-j> <Esc>/<+\w*+><CR><Esc>cf>
-inoremap <c-k> <Esc>?<+\w*+><CR><Esc>cf>
+" inoremap <c-k> <Esc>?<+\w*+><CR><Esc>cf>

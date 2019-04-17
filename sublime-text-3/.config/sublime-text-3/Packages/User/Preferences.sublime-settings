@@ -1,7 +1,8 @@
 {
 	"always_show_minimap_viewport": true,
-	"color_scheme": "Packages/ayu/ayu-dark.tmTheme",
+	"color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
 	"draw_minimap_border": true,
+	"draw_white_space": "selection",
 	"font_face": "Iosevka",
 	"font_size": 18,
 	"highlight_line": true,
@@ -9,8 +10,9 @@
 	[
 	],
 	"show_encoding": true,
-	"skin": "ayu/ayu dark",
-	"theme": "ayu-dark.sublime-theme",
+	"skin": "ayu/ayu mirage",
+	"theme": "ayu-mirage.sublime-theme",
+	"translate_tabs_to_spaces": false,
 	"ui_big_tabs": false,
 	"ui_fix_tab_labels": true,
 	"ui_font_roboto_mono": true,
