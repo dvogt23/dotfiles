@@ -107,7 +107,9 @@ set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.mov,*.pdf,*.psd,*.ai
 set wildignore+=*.ppt,*.pptx,*.doc,*.docx,*.xls,*.xlsx
 set wildignore=*.o,*~,*.pyc
 
-"set cursorline
+set cursorline
+" autocmd InsertEnter * highlight CursorLine guibg=#005000 guifg=fg
+" autocmd InsertLeave * highlight CursorLine guibg=#004000 guifg=fg
 set autochdir
 
 " remember info about open buffers on close

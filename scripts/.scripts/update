@@ -91,7 +91,9 @@ nvim +PlugUpdate +qall
 #       Update Hosts           #
 # ---------------------------- #
 
-cd $(mktemp -d)
+exit 0;
+
+cd "$(mktemp -d)" || exit
 $CURL https://someonewhocares.org/hosts/hosts > hosts
 if ! cmp hosts /etc/hosts > /dev/null 2>&1; then
     echo -e "hosts file is not the same as in https://someonewhocares.org."
@@ -103,9 +105,5 @@ if ! cmp hosts /etc/hosts > /dev/null 2>&1; then
     fi
 fi
 cd -
-
-# Create file with the actual date
-
-date +%s > $HOME/.local/share/.lastupdate
 
 # vim: ft=sh

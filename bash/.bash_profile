@@ -1,5 +1,9 @@
 # load env vars
-source ~/.env
+source ~/.zsh/env.zsh
+source ~/.zsh/alias.zsh
+
+shopt -s direxpand
+shopt -s expand_aliases
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

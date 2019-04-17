@@ -195,7 +195,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # assign [class="Spotify"] $ws10
 for_window [class="Spotify"] move to workspace $ws10
 for_window [class="Firefox"] move to workspace $ws1
-for_window [class="Chromium"] move to workspace $ws1
+# for_window [class="Chromium"] move to workspace $ws1
 for_window [class="Slack"] move to workspace $ws9
 #for_window [class="jetbrains-idea-ce"] move to workspace $ws2
 
@@ -211,7 +211,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # switching between workspace
 # http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces
 bindsym $mod+period workspace next
-bindsym $mod+comma workspace prev 
+bindsym $mod+comma workspace prev
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -333,8 +333,8 @@ bindsym F12 exec tilix -q -p Quake
 
 # Gaps settings
 # smart_gaps on
-gaps inner 7
-gaps outer 0
+gaps inner 8
+gaps outer 8
 bindsym $mod+g exec $i3/toggle_gaps
 
 ####################
@@ -354,4 +354,3 @@ exec --no-startup-id xss-lock -- i3lock-fancy-rapid 5 3 &
 exec_always --no-startup-id $SCRIPTS/setwallpaper
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/bin/libinput-gestures-setup start
-

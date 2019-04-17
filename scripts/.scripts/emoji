@@ -3,19 +3,20 @@
 # Shows the selected character in dunst if running.
 
 # Must have xclip installed to even show menu.
-#xclip -h >/dev/null || exit
+xclip -h >/dev/null || exit
 
 chosen=$(grep -v "#" ~/.emoji | rofi -dmenu -i -l 20 -fn "Droid Sans-18")
 
 [ "$chosen" != "" ] || exit
 
 # type
-c=$(echo "$chosen" | sed "s/ .*//")
-echo "$c" | tr -d '\n' | xdotool type --delay 12 --clearmodifiers --file -
+# c=$(echo "$chosen" | sed "s/ .*//")
+# echo "$c" | tr -d '\n' | xdotool type --delay 12 --clearmodifiers --file -
 
 # copy to clipboard
-#echo "$c" | tr -d '\n' | xclip -selection clipboard
-#notify-send "'$c' copied to clipboard." &
+s=$(echo "$chosen" | awk '{print $1}')
+echo "$s" | tr -d '\n' | xclip -selection clipboard
+notify-send "'$s' copied to clipboard." &
 
 # show notify
 #s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
