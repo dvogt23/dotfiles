@@ -1,3 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
-curl wttr.in/"${1}"?format="%c+%t"
+DATA=$(curl -s wttr.in/"${1}"?format="%c+%t")
+
+if [ ${#DATA} -ge 10 ]; then 
+    exit 1;
+else 
+    echo "${DATA}"
+fi

@@ -467,7 +467,7 @@ format = <label>
 label-foreground = ${colors.foreground}
 tail = true
 format-prefix-foreground = ${colors.foreground}
-exec = curl wttr.in/Rheine?format="%c+%t"
+exec = ~/.config/polybar/blocks/wttrin Rheine
 exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 
 [module/pkg]
