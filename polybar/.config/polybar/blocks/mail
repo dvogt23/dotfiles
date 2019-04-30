@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-C1=$(find $HOME/.mail/*/INBOX/new/ -type f | wc -l)
-C2=$(find $HOME/.mail/*/Inbox/new/ -type f | wc -l)
-
-echo "$((C1 + C2))"
+echo "$(find $1 -type f | grep -i inbox/new | wc -l)"

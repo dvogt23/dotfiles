@@ -126,6 +126,7 @@ ws-icon-default = 
 label-dimmed-underline = ${root.background}
 
 label-focused = %icon% %name%
+label-focused-foreground = ${colors.foreground}
 ; label-focused-background = #3f3f3f
 ; label-focused-underline = #c6c6c6
 label-focused-font = 0
@@ -143,7 +144,7 @@ label-urgent-font = 0
 label-urgent-padding = 3
 
 label-visible = %icon% %name%
-label-visible-foreground = #f3f3f3
+label-visible-foreground = #858585
 label-visible-font = 0
 label-visible-padding = 3
 
@@ -435,7 +436,7 @@ tail = true
 label-foreground = ${colors.foreground}
 format-prefix-foreground = #FFFF00
 click-left = ~/.config/polybar/blocks/mutt
-exec = ~/.config/polybar/blocks/mail
+exec = ~/.config/polybar/blocks/mail $HOME/.mail
 ;exec-if = "test -d $HOME/.mail/*/INBOX"
 
 [module/bitcoin]
