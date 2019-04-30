@@ -2,11 +2,12 @@
 alias a="alias | rg "
 
 alias zshconfig="source ~/.zshrc"
-alias v='vim'                           # Preferred 'cp' implementation
+alias v='nvim'                           # Preferred 'cp' implementation
 alias vi='vim'                           # Preferred 'cp' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias l='exa -1 --group-directories-first'                       # Preferred 'ls' implementation
 alias ll='exa -l --group-directories-first'                       # Preferred 'ls' implementation
 alias ls='exa --group-directories-first'                       # Preferred 'ls' implementation
 alias lsa='exa -ls --group-directories-first'                       # Preferred 'ls' implementation
