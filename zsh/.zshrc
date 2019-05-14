@@ -1,8 +1,6 @@
 export ZPLUG_HOME=$HOME/.zplug
 export ZDOTDIR=$HOME/.zsh
 
-fpath=( "$HOME/.zsh/zfunctions" $fpath )
-
 if [[ -d $ZPLUG_HOME ]]; then
     source $ZPLUG_HOME/init.zsh
 else
@@ -27,8 +25,11 @@ zplug "zsh-users/zsh-completions"
 
 # Theme
 zplug "mafredri/zsh-async", from:github
-autoload -U promptinit; promptinit
-prompt pure
+AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
+AGKOZAK_LEFT_PROMPT_ONLY=1
+AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
+AGKOZAK_COLORS_PROMPT_CHAR='yellow'
+zplug "agkozak/agkozak-zsh-prompt"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
@@ -54,6 +55,3 @@ compinit
 # Load fzf for zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /etc/profile.d/autojump.zsh ] && source /etc/profile.d/autojump.zsh
-
-# start tmux
-if [ "$TMUX" = "" ]; then tmux; fi
