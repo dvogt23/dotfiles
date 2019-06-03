@@ -51,7 +51,6 @@ link_files() {
     # create symlinks
     echo "# Linking dotfiles..."
     stow */
-    stow -D firefox etc
     echo " ✔ done"
 }
 
