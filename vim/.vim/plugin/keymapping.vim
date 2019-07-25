@@ -30,6 +30,11 @@ nmap <leader>n :Lexplore<cr>
 nmap <leader>ew :call StripWhiteSpace()<cr>
 nmap <leader>t :IndentLinesToggle<cr>
 nmap <leader>p :set nopaste<cr>
+if &diff
+    map <leader>1 :diffget LOCAL<CR>
+    map <leader>2 :diffget BASE<CR>
+    map <leader>3 :diffget REMOTE<CR>
+endif
 
 nnoremap j gj
 nnoremap k gk
