@@ -251,8 +251,8 @@ exec = LC_ALL=de_DE.utf8 date "+%V - %a %d. %b %Y"
 interval = 1800
 ;format-underline = #268bd2
 format-prefix = " "
-format-prefix-foreground = #b2b2b2
-label-foreground = #b2b2b2
+format-prefix-foreground = ${colors.foreground}
+label-foreground = ${colors.foreground}
 click-right = gsimplecal &kill
 click-left = gsimplecal &kill
 
@@ -437,7 +437,7 @@ label-foreground = ${colors.foreground}
 format-prefix-foreground = #FFFF00
 click-left = ~/.config/polybar/blocks/mutt
 exec = ~/.config/polybar/blocks/mail $HOME/.mail
-;exec-if = "test -d $HOME/.mail/*/INBOX"
+exec-if = "test -d $HOME/.mail"
 
 [module/bitcoin]
 type = custom/script
