@@ -24,12 +24,13 @@ zplug "zpm-zsh/zpm", use:"plugins/{cd,git,zsh-core}"
 zplug "zsh-users/zsh-completions"
 
 # Theme
-zplug "mafredri/zsh-async", from:github
-AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
-AGKOZAK_LEFT_PROMPT_ONLY=1
-AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
-AGKOZAK_COLORS_PROMPT_CHAR='yellow'
-zplug "agkozak/agkozak-zsh-prompt"
+eval "$(starship init zsh)"
+# zplug "mafredri/zsh-async", from:github
+# AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
+# AGKOZAK_LEFT_PROMPT_ONLY=1
+# AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
+# AGKOZAK_COLORS_PROMPT_CHAR='yellow'
+# zplug "agkozak/agkozak-zsh-prompt"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
