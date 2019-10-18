@@ -7,9 +7,10 @@ endif
 call plug#begin('~/.vim/bundle')
 
 " UI
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'chriskempson/base16-vim'
 
-Plug 'saschagrunert/dracula', { 'branch': 'mod' }
+Plug 'flrnprz/candid.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ayu-theme/ayu-vim-airline'
 Plug 'Yggdroot/indentLine'
@@ -29,7 +30,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 
 " Languages
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
 Plug 'w0rp/ale'
 
 Plug 'tpope/vim-markdown',                  { 'for': 'markdown' }
