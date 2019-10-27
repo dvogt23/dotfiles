@@ -12,6 +12,7 @@ dotfiles: stow
 .PHONY: packages
 packages:
 	@$(MAKEFILE) packages
+	@$(MAKEFILE) cargo
 
 .PHONY: stow
 stow:

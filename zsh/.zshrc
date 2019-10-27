@@ -39,6 +39,28 @@ fi
 
 zplug load
 
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^w' backward-kill-word
+bindkey '^u' vi-change-whole-line
+bindkey '^r' history-incremental-search-backward
+bindkey '^o' vi-cmd-mode
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+#
+#
 # --------------- Set zsh history --------------- #
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

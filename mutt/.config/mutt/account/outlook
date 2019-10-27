@@ -14,6 +14,13 @@ macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
 macro index gj "<change-folder>=Junk<enter>" "Go to junk"
 macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
 
+mailboxes \
+    "+Outlook/Inbox" \
+    "+Outlook/Junk" \
+    "+Outlook/Sent" \
+    "+Outlook/Deleted" \
+    "+Outlook/Drafts"
+
 macro index D \
     "<save-message>+Deleted<enter>" \
     "move message to the trash"
