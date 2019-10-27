@@ -55,5 +55,5 @@ noremap <cr> :noh<cr><cr>
 nno L xp
 nno H Xph
 
-inoremap <c-j> <Esc>/<+\w*+><CR><Esc>cf>
+" inoremap <c-j> <Esc>/<+\w*+><CR><Esc>cf>
 " inoremap <c-k> <Esc>?<+\w*+><CR><Esc>cf>

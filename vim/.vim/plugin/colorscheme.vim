@@ -3,21 +3,25 @@ if !has('gui_running')
   set t_Co=256
 endif
 let base16colorspace=256
-colorscheme base16-atelier-seaside
+set background=dark
+syntax on
+let ayucolor="dark"
+colorscheme ayu
 
-" lightline configurations
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 set noshowmode
+let g:lightline = { 'colorscheme': 'ayu' }
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-    \ }
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'ayu',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'coc' ] ]
       \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \ 'component': {
+      \   'coc': '%{coc#status()}',
+      \   'gitbranch': '%{fugitive#head()}'
       \ },
       \ }

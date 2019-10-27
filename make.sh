@@ -5,6 +5,8 @@
 
 PACMAN=/usr/bin/yay
 PACKAGES_FILE=packages.pacman
+CARGO=~/.cargo/bin/cargo
+CARGO_FILE=packages.cargo
 BACKUP_DIR=~/.dotfiles.backup
 SUDO=/usr/bin/sudo
 GIT=/usr/bin/git
@@ -34,7 +36,18 @@ install_packages() {
 
     [ ! -f "${PACKAGES_FILE}" ] || echo "# Install packages from ${PACKAGES_FILE}"
     for package in $( ! test -f "${PACKAGES_FILE}" || cat "${PACKAGES_FILE}"); do
-        ${PACMAN} -S "${package}" --needed --noconfirm
+        if [[ "$package" != \#* ]]; then
+            ${PACMAN} -S "${package}" --needed --noconfirm
+        fi
+    done
+}
+
+install_cargo_packages() {
+    [ ! -f "${CARGO_FILE}" ] || echo "# Install cargo from ${CARGO_FILE}"
+    for package in $( ! test -f "${CARGO_FILE}" || cat "${CARGO_FILE}"); do
+        if [[ "$package" != \#* ]]; then
+            ${CARGO} install "${package}"
+        fi
     done
 }
 
@@ -69,6 +82,8 @@ while test $# -gt 0
 do
     case "$1" in
         packages) install_packages
+            ;;
+        cargo) install_cargo_packages
             ;;
         dotfiles) link_files
             ;;

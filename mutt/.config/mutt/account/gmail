@@ -14,6 +14,13 @@ macro index gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
 macro index gj "<change-folder>=[Gmail].Junk<enter>" "Go to junk"
 macro index,pager A "<save-message>=[Gmail].Alle Nachrichten<enter>" "Archive Message"
 
+mailboxes \
+    "+Gmail/INBOX" \
+    "+Gmail/[Gmail].Drafts" \
+    "+Gmail/[Gmail].Gesendet" \
+    "+Gmail/[Gmail].Papierkorb" \
+    "+Gmail/[Gmail].Spam"
+
 macro index D \
     "<save-message>+[Gmail]/Papierkorb<enter>" \
     "move message to the trash"
