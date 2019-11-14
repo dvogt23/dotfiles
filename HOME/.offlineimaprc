@@ -1,6 +1,6 @@
 [general]
 ui = ttyui
-accounts = Gmail, Outlook, Dima23
+accounts = Gmail, Outlook, Dima23, Vogtdev
 
 # Path to file with arbitrary Python code to be loaded
 pythonfile = ~/.offlineimap.py
@@ -38,6 +38,25 @@ localfolders = ~/.mail/Dima23
 type = IMAP
 remotehost = betelgeuse.uberspace.de
 remoteuser = dvogt
+remotepasseval = get_pass("dima23")
+realdelete = no
+maxconnections = 3
+ssl_version=tls1_2
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Account Vogtdev]
+postsynchook = ~/.config/mutt/etc/notmuch-hook.sh
+localrepository = Vogtdev-Local
+remoterepository = Vogtdev-Remote
+
+[Repository Vogtdev-Local]
+type = Maildir
+localfolders = ~/.mail/Vogtdev
+
+[Repository Vogtdev-Remote]
+type = IMAP
+remotehost = betelgeuse.uberspace.de
+remoteuser = dvogt-dev-info
 remotepasseval = get_pass("dima23")
 realdelete = no
 maxconnections = 3

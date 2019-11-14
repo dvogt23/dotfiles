@@ -7,7 +7,28 @@ set folder = ~/.mail
 
 # set signature
 #send-hook . set signature="~/.mutt/sig"
-#send-hook "~t @domain.com" set signature=~/.mutt/branded.sig
+
+## sidebar patch config
+set sidebar_visible
+set sidebar_short_path
+set sidebar_folder_indent
+set sidebar_width = 25
+set sidebar_divider_char = ' | '
+set sidebar_indent_string = '  ''
+set sidebar_format = "%B %* [%?N?%N / ?%S]"
+
+# Mailboxes to show in the sidebar.
+mailboxes =ALL-INBOXES
+mailboxes =Dima23/INBOX =Vogtdev/INBOX =Outlook/Inbox =Gmail/INBOX
+mailboxes ="==================="
+mailboxes =Dima23
+mailboxes =Dima23/INBOX =Dima23/Sent =Dima23/Drafts =Dima23/Spam =Dima23/Trash
+mailboxes =Vogtdev
+mailboxes =Vogtdev/INBOX =Vogtdev/Sent =Vogtdev/Drafts =Vogtdev/Spam =Vogtdev/Trash
+mailboxes =Outlook
+mailboxes =Outlook/Inbox =Outlook/Sent
+mailboxes =Gmail
+mailboxes =Gmail/INBOX =Gmail/[Gmail].Gesendet
 
 source ~/.config/mutt/account/outlook
 
@@ -16,21 +37,18 @@ source ~/.config/mutt/etc/aliases
 
 mailboxes \
     "+Gmail/INBOX" \
-    "+Gmail/[Gmail].Drafts" \
     "+Gmail/[Gmail].Gesendet" \
-    "+Gmail/[Gmail].Papierkorb" \
-    "+Gmail/[Gmail].Spam" \
     "+Dima23/INBOX" \
     "+Dima23/Sent" \
+    "+Vogtdev/INBOX" \
+    "+Vogtdev/Sent" \
     "+Outlook/Inbox" \
-    "+Outlook/Junk" \
-    "+Outlook/Sent" \
-    "+Outlook/Deleted" \
-    "+Outlook/Drafts"
+    "+Outlook/Sent"
 
 macro index <F2> '<sync-mailbox><enter-command>source ~/.config/mutt/account/gmail<enter><change-folder>!<enter>'
-macro index <F3> '<sync-mailbox><enter-command>source ~/.config/mutt/account/outlook <enter><change-folder>!<enter>' 
-macro index <F4> '<sync-mailbox><enter-command>source ~/.config/mutt/account/dima23 <enter><change-folder>!<enter>' 
+macro index <F3> '<sync-mailbox><enter-command>source ~/.config/mutt/account/outlook <enter><change-folder>!<enter>'
+macro index <F4> '<sync-mailbox><enter-command>source ~/.config/mutt/account/dima23 <enter><change-folder>!<enter>'
+macro index <F5> '<sync-mailbox><enter-command>source ~/.config/mutt/account/vogtdev <enter><change-folder>!<enter>'
 
 bind index,pager i noop
 bind index,pager g noop
@@ -109,6 +127,7 @@ macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 folder-hook [Gmail]/* source ~/.config/mutt/account/gmail
 folder-hook Outlook/* source ~/.config/mutt/account/outlook
 folder-hook Dima23/* source ~/.config/mutt/account/dima23
+folder-hook Vogtdev/* source ~/.config/mutt/account/vogtdev
 
 # GnuPG settings
 source gpg.rc
