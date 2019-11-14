@@ -9,6 +9,8 @@ call plug#begin('~/.vim/bundle')
 " UI
 Plug 'itchyny/lightline.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'mike-hearn/base16-vim-lightline'
+Plug 'junegunn/goyo.vim'
 
 Plug 'flrnprz/candid.vim'
 Plug 'ayu-theme/ayu-vim'
@@ -21,6 +23,7 @@ Plug 'mbbill/undotree'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf.vim'
+Plug 'editorconfig/editorconfig-vim'
 
 " Movement
 Plug 'easymotion/vim-easymotion'
@@ -28,6 +31,11 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jremmen/vim-ripgrep',                 { 'on': 'Rg' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
 
 " Languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
