@@ -42,8 +42,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'w0rp/ale'
-
 Plug 'tpope/vim-markdown',                  { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'fatih/vim-go',                        { 'for' : 'go' }
