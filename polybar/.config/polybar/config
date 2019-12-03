@@ -62,7 +62,7 @@ font-3 = Wuncon Siji:pixelsize=10
 
 modules-left = i3 title
 modules-center = date clock
-modules-right = mail pkg wttr separator volume temperature cpu filesystem network battery
+modules-right = mail pkg wttr separator bluetooth volume temperature cpu filesystem network battery
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -78,6 +78,16 @@ format = <label>
 
 label = %title%
 label-maxlen = 30
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/blocks/bluetooth.sh
+interval = 2
+click-left = exec blueberry
+click-right = exec ~/.config/polybar/blocks/toggle_bluetooth.sh
+format-padding = 1
+; format-background = #000000
+format-foreground = #ccc
 
 [module/separator]
 type = custom/text
