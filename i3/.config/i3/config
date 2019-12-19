@@ -343,7 +343,8 @@ bindsym $mod+g exec $i3/toggle_gaps
 #
 exec --no-startup-id /usr/bin/compton --config $HOME/.config/compton.conf
 exec --no-startup-id numlockx
-exec --no-startup-id "setxkbmap -model pc105 -layout de"
+# exec --no-startup-id "setxkbmap -model pc105 -layout de"
+exec --no-startup-id "setxkbmap -model pc105 -layout de,us -variant altgr-intl -option grp:alt_shift_toggle"
 
 exec --no-startup-id i3-msg 'workspace 1; exec env GTK_THEME=Adwaita:light firefox'
 exec --no-startup-id xss-lock -- i3lock-fancy-rapid 5 3 &

@@ -69,6 +69,7 @@ pass-otp
 pavucontrol
 perl-file-mimeinfo
 pkg-config
+playerctl
 polybar
 python
 python2
