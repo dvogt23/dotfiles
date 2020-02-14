@@ -1,10 +1,10 @@
 " ui
 " highlight ColorColumn
-" set colorcolumn=80
+set colorcolumn=80
 set termguicolors
 
 set lazyredraw
-set regexpengine=1
+" set regexpengine=1
 
 set ruler
 set number
@@ -21,10 +21,10 @@ set number
 set rnu
 
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-" set list!
+set list!
 
-"set noesckeys
-"set modifiable
+" set noesckeys
+set modifiable
 set noexpandtab
 set preserveindent
 set softtabstop=0
@@ -107,11 +107,27 @@ set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.mov,*.pdf,*.psd,*.ai
 set wildignore+=*.ppt,*.pptx,*.doc,*.docx,*.xls,*.xlsx
 set wildignore=*.o,*~,*.pyc
 
-" set cursorline
+set cursorline
 " autocmd InsertEnter * highlight CursorLine guibg=#005000 guifg=fg
 " autocmd InsertLeave * highlight CursorLine guibg=#004000 guifg=fg
 set autochdir
 
+" Show relative numbers in normal mode
+autocmd InsertEnter * set nornu
+autocmd InsertLeave * set rnu
+
+autocmd BufWritePre * silent! call StripWhiteSpaces()
+autocmd BufWritePre * %retab!
+
+augroup myTodo
+  autocmd!
+  autocmd Syntax * syntax match myTodo /\v\_.<(FIXME|NOTE|TODO|OPTIMIZE|XXX).*/hs=s+1 containedin=.*Comment,vimCommentTitle
+augroup END
+
+highlight link myTodo Todo
+" set re=1
+" set conceallevel=0
+" set synmaxcol=0
 " remember info about open buffers on close
 "set viminfo^=%
 
