@@ -17,21 +17,30 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'ayu-theme/ayu-vim-airline'
 Plug 'Yggdroot/indentLine'
 
+Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
+Plug 'luochen1990/rainbow'
 " Plug 'ryanoasis/vim-devicons'
-Plug 'kien/rainbow_parentheses.vim'
+" Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 
 " Movement
 Plug 'easymotion/vim-easymotion'
 
+" CLAP
+Plug 'liuchengxu/vim-clap'
+" Build the extra binary if cargo exists on your system.
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+" The bang version will try to download the prebuilt binary if cargo does not exist.
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+
 Plug 'jremmen/vim-ripgrep',                 { 'on': 'Rg' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
-" Track the engine.
 Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
@@ -48,9 +57,11 @@ Plug 'fatih/vim-go',                        { 'for' : 'go' }
 Plug 'rust-lang/rust.vim',                  { 'for' : 'rust' }
 Plug 'cespare/vim-toml',                    { 'for' : 'toml' }
 Plug 'avakhov/vim-yaml'
+Plug 'HerringtonDarkholme/yats.vim' 
 
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
+
