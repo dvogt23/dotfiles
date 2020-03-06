@@ -1,43 +1,70 @@
-export ZPLUG_HOME=$HOME/.zplug
 export ZDOTDIR=$HOME/.zsh
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
-if [[ -d $ZPLUG_HOME ]]; then
-    source $ZPLUG_HOME/init.zsh
-else
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-    RELOAD=1 source $HOME/.zshrc
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zsh/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
+    command mkdir -p "$HOME/.zsh/.zinit" && command chmod g-rwX "$HOME/.zsh/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zsh/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
+source "$HOME/.zsh/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# zinit
+zinit ice wait lucid blockf atpull'zinit creinstall -q .'
+zinit light zsh-users/zsh-completions
+
+zinit snippet OMZ::lib/completion.zsh
+
+zinit snippet OMZ::lib/key-bindings.zsh
+
+zinit ice wait lucid
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+zinit ice as"completion"
+zinit snippet OMZ::plugins/fd/_fd
+
+zinit ice wait lucid
+zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
+
+zinit ice wait lucid
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+
+zinit ice wait lucid
+zinit snippet OMZ::plugins/globalias/globalias.plugin.zsh
+
+zinit ice wait'1' lucid
+zinit light wfxr/forgit
+
+zinit ice wait lucid atload'zicompinit; zicdreplay'
+zinit light zdharma/fast-syntax-highlighting
+
 # Auto manage zplug
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# zplug "plugins/brew-cask", from:oh-my-zsh
+# zplug "plugins/osx", from:oh-my-zsh
+# zplug "plugins/pod", from:oh-my-zsh
 
-# From oh-my-zsh
-zplug "plugins/globalias", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/cargo", from:oh-my-zsh
-zplug "lib/key-bindings", from:oh-my-zsh
-zplug "lib/completion", from:oh-my-zsh
+# # From oh-my-zsh
+# zplug "plugins/globalias", from:oh-my-zsh
+# zplug "plugins/git", from:oh-my-zsh
+# zplug "plugins/colored-man-pages", from:oh-my-zsh
+# # zplug "plugins/cargo", from:oh-my-zsh
+# zplug "lib/key-bindings", from:oh-my-zsh
+# zplug "lib/completion", from:oh-my-zsh
 
-# From Github
-zplug "zpm-zsh/zpm", use:"plugins/{cd,git,zsh-core}"
-zplug "zsh-users/zsh-completions"
+# # From Github
+# zplug "zpm-zsh/zpm", use:"plugins/{cd,git,zsh-core}"
+# zplug "zsh-users/zsh-completions"
 
 # Theme
 eval "$(starship init zsh)"
-# zplug "mafredri/zsh-async", from:github
-# AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
-# AGKOZAK_LEFT_PROMPT_ONLY=1
-# AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
-# AGKOZAK_COLORS_PROMPT_CHAR='yellow'
-# zplug "agkozak/agkozak-zsh-prompt"
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check; then
-    zplug install
-fi
-
-zplug load
 
 # vi mode
 bindkey -v
@@ -73,11 +100,7 @@ setopt share_history
 
 for config ($ZDOTDIR/**/*.zsh) source $config
 
-compinit
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # Load fzf for zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s /Users/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /Users/$USER/.autojump/etc/profile.d/autojump.sh
 [ -f /etc/profile.d/autojump.zsh ] && source /etc/profile.d/autojump.zsh
+

@@ -25,7 +25,7 @@ fi
 unset RUST_SRC
 export PATH="$HOME/.cargo/bin:$PATH"
 
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --ignore-file .gitignore --bind up:preview-up,down:preview-down'
 export FZF_TMUX=1
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd -H -t d'
