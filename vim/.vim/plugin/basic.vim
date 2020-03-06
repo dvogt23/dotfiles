@@ -1,6 +1,6 @@
 " ui
 " highlight ColorColumn
-set colorcolumn=80
+set colorcolumn=120
 set termguicolors
 
 set lazyredraw
@@ -54,8 +54,8 @@ set complete+=kspell
 set complete+=s
 
 " indent
-"set autoindent
-"set smartindent
+set autoindent
+set smartindent
 
 " regex
 set magic
@@ -80,7 +80,7 @@ set ffs=unix,dos,mac
 " folding
 set nofoldenable
 set foldcolumn=0
-set foldmethod=indent
+set foldmethod=syntax
 set foldnestmax=5
 set foldlevel=1
 

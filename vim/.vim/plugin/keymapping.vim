@@ -9,6 +9,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 nmap <leader>l :bnext<cr>
 nmap <leader>h :bprevious<cr>
+nmap <leader>g :Goyo<cr>
 nmap <leader>nh <Plug>(GitGutterNextHunk)
 nmap <leader>ph <Plug>(GitGutterPrevHunk)
 nmap <Leader>ha <Plug>(GitGutterStageHunk)
@@ -19,7 +20,7 @@ nmap <leader>gf :GFiles<cr>
 nmap <leader>ff :FZF<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>j <Plug>(easymotion-bd-f)
-nmap <leader>d :bd<cr>
+nmap <leader>d :Bclose<cr>
 nmap <leader>vl :vertical resize +10<cr>
 nmap <leader>vh :vertical resize -10<cr>
 nmap <leader>vj :res +10<cr>
@@ -29,7 +30,7 @@ nmap <leader>sv :source ~/.vim/vimrc<cr>
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>n :Lexplore<cr>
 nmap <leader>ew :call StripWhiteSpace()<cr>
-nmap <leader>t :IndentLinesToggle<cr>
+nmap <leader>t :Vista!!<cr>
 nmap <leader>p :set nopaste<cr>
 if &diff
     map <leader>1 :diffget LOCAL<CR>

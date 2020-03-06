@@ -53,7 +53,6 @@ else
     dirs -v | head -10
 fi
 }
-compdef _dirs d
 alias ~="cd ~"                              # ~:            Go Home
 alias c='clear'                             # c:            Clear terminal display
 alias which='type -all'                     # which:        Find executables
