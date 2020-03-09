@@ -42,8 +42,19 @@ zinit snippet OMZ::plugins/globalias/globalias.plugin.zsh
 zinit ice wait'1' lucid
 zinit light wfxr/forgit
 
+forgit_log=glof
+forgit_diff=gdf
+forgit_add=gaf
+forgit_reset_head=grh
+forgit_ignore=gi
+forgit_restore=gcf
+forgit_clean=gclean
+forgit_stash_show=gsf
+
 zinit ice wait lucid atload'zicompinit; zicdreplay'
 zinit light zdharma/fast-syntax-highlighting
+
+zinit light ajeetdsouza/zoxide
 
 # Auto manage zplug
 # zplug 'zplug/zplug', hook-build:'zplug --self-manage'
