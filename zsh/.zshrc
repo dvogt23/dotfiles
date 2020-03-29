@@ -111,7 +111,5 @@ setopt share_history
 
 for config ($ZDOTDIR/**/*.zsh) source $config
 
-# Load fzf for zsh
-[[ -s /Users/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /Users/$USER/.autojump/etc/profile.d/autojump.sh
-[ -f /etc/profile.d/autojump.zsh ] && source /etc/profile.d/autojump.zsh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

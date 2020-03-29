@@ -1,3 +1,5 @@
+lua require'nvim_lsp'.rust_analyzer.setup({})
+
 " Set coc extensions
 let g:coc_global_extensions = [
             \ 'coc-tsserver',
@@ -5,8 +7,8 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-yaml',
             \ 'coc-texlab',
-            \ 'coc-prettier',
             \ 'coc-rust-analyzer',
+            \ 'coc-prettier',
             \ 'coc-markdownlint',
             \ 'coc-snippets',
             \ ]

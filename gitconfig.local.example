@@ -3,6 +3,11 @@
     email = <EMAIL>
     signingkey = <GPG-ID>
 
+# [user "pr"]
+#     name = dvogt23
+#     email = divogt@live.de
+#     signingkey = DDFBD79E
+
 [commit]
 # https://help.github.com/articles/signing-commits-using-gpg/
     gpgsign = true

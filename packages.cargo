@@ -4,12 +4,16 @@ cargo-generate
 cargo-tarpulin
 cargo-update
 cargo-watch
+cargo-outdated
 sd
 topgrade
 # alt
 # chars
 du-dust
-eva
+exa
+fd-find
+ripgrep
+zoxide
 # hexyl
 shotgun
 # skim

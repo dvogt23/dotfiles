@@ -21,6 +21,7 @@ nmap <leader>ff :FZF<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>j <Plug>(easymotion-bd-f)
 nmap <leader>d :Bclose<cr>
+nmap <leader>dd :bd<cr>
 nmap <leader>vl :vertical resize +10<cr>
 nmap <leader>vh :vertical resize -10<cr>
 nmap <leader>vj :res +10<cr>
