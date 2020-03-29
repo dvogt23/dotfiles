@@ -1,7 +1,7 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/bundle')
@@ -46,18 +46,30 @@ Plug 'tpope/vim-surround'
 Plug 'honza/vim-snippets'
 
 " Languages
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'tpope/vim-markdown',                  { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'fatih/vim-go',                        { 'for' : 'go' }
 Plug 'rust-lang/rust.vim',                  { 'for' : 'rust' }
+Plug 'arzg/vim-rust-syntax-ext'
+Plug 'racer-rust/vim-racer'
 Plug 'cespare/vim-toml',                    { 'for' : 'toml' }
 Plug 'avakhov/vim-yaml'
-Plug 'HerringtonDarkholme/yats.vim' 
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'norcalli/nvim-colorizer.lua'
+
+Plug 'w0rp/ale'
+Plug 'neovim/nvim-lsp'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete-lsp'
+Plug 'ervandew/supertab'
+Plug 'Chiel92/vim-autoformat'
+
+" Toggle quickfix with \q and location list with \l
+" Plug 'milkypostman/vim-togglelist'
 
 " Git
 Plug 'tpope/vim-fugitive'

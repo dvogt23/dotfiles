@@ -5,7 +5,7 @@
 #]
 
 # Disable specific steps - same options as the command line flag
-disable = ["git_repos"]
+disable = ["gitrepos", "gem"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]

@@ -8,33 +8,32 @@ let g:ale_set_highlights = 0
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_linters = {
-    \ 'go': [ 'golangci-lint' ],
-    \ 'haskell': [
-        \ 'stack-build',
-        \ 'hlint',
-        \ 'hie',
-        \ 'hdevtools' ],
-    \ 'c': [],
-    \ 'cpp': [],
-    \ 'html': [],
-    \ 'rust': [ 'cargo' ],
-    \ }
+            \ 'rust'   : ['rustup', 'run', 'stable', 'rls'],
+            \ 'sh'     : ['shellcheck', 'language_server'],
+            \ 'tex'    : ['chktex', 'lacheck', 'vale'],
+            \ 'python' : ['pylama'],
+            \ 'cs'     : ['OmniSharp'],
+            \ }
 let g:ale_fixers = {
-    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \ 'c': [ 'clang-format' ],
-    \ 'cpp': [ 'clang-format' ],
-    \ 'css': [ 'prettier' ],
-    \ 'haskell': [ 'hfmt' ],
-    \ 'less': [ 'prettier' ],
-    \ 'javascript': [ 'prettier' ],
-    \ 'json': [ 'prettier' ],
-    \ 'markdown': [ 'prettier' ],
-    \ 'python': [ 'autopep8', 'yapf', 'isort' ],
-    \ 'rust': [ 'rustfmt' ],
-    \ 'sh': [ 'shfmt' ],
-    \ 'terraform': [ 'terraform' ],
-    \ 'typescript': [ 'prettier' ],
-    \ }
-let g:ale_sh_shfmt_options = '-i 4'
-let g:ale_go_golangci_lint_package = 1
-let g:ale_go_golangci_lint_options = '--fast'
+            \ 'rust'   : ['rustfmt'],
+            \ 'sh'     : ['shfmt'],
+            \ 'tex'    : ['latexindent'],
+            \ 'python' : [
+            \     'isort',
+            \     'autopep8',
+            \     'yapf',
+            \     'remove_trailing_lines',
+            \   ]
+            \ }
+let g:ale_rust_cargo_use_clippy = 1
+let g:ale_rust_cargo_clippy_options = '--all-targets'
+let g:ale_rust_rls_config = {
+            \   'rust': {
+            \     'clippy_preference': 'on'
+            \   }
+            \ }
+
+let g:ale_fix_on_save = 1
+
+nmap [a <Plug>(ale_previous_wrap)
+nmap ]a <Plug>(ale_next_wrap)

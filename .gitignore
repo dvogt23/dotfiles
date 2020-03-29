@@ -1,1 +1,7 @@
 **/*.zcompdump
+vim/.vim/.netrwhist
+vim/.vim/autoload
+vim/.vim/backups
+vim/.vim/bundle
+zsh/.zsh/.zinit
+zsh/.zsh/zsh-autosuggestions

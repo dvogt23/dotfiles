@@ -74,6 +74,9 @@
 # List contributors with number of commits
     contributors = shortlog --summary --numbered
 
+# switch indentity
+    id = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
+
 # Merge GitHub pull request on top of the current branch or,
 # if a branch name is specified, on top of the specified branch
     mpr = "!f() { \
@@ -154,9 +157,12 @@
 # Use the Git 1.x.x default to avoid errors on machines with old Git
 # installations. To use `simple` instead, add this to your `~/.extra` file:
 # `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = current
+    default = current
 # Make `git push` push relevant annotated tags when pushing branches out.
     followTags = true
+
+[user]
+    useConfigOnly = true
 
 # user local config
 [include]

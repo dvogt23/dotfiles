@@ -16,12 +16,12 @@ set wrap
 set autoread
 set wildmenu
 set scrolloff=3
-set mouse=a
+set mouse=v
 set number
 set rnu
 
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-set list!
+" set list!
 
 " set noesckeys
 set modifiable

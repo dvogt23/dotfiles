@@ -3,7 +3,7 @@ alias a="alias | rg "
 
 alias zshconfig="source ~/.zshrc"
 alias v='nvim'                           # Preferred 'cp' implementation
-alias vi='vim'                           # Preferred 'cp' implementation
+alias vi='nvim'                           # Preferred 'cp' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
@@ -63,6 +63,5 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; cd `cat $HOME/.
 alias n='notes'
 alias nn='notes new'
 alias no='notes open'
+alias j='z'
 
-# unalias
-#unalias rm
