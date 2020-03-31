@@ -1,0 +1,21 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]      # The name of the module we are configuring is "character"
+symbol = "➜"     # The "symbol" segment is being set to "➜"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[directory]
+truncation_length = 12
+truncate_to_repo = false
+
+[hostname]
+ssh_only = false
+prefix = "10218;"
+suffix = " 10219;"
+trim_at = ".companyname.com"
+disabled = true
