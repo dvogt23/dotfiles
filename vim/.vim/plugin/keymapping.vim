@@ -1,10 +1,8 @@
-let mapleader = " "
-let g:mapleader = " "
-
 inoremap jj <ESC>
 inoremap jk <ESC>
 cnoremap jk <ESC>
 
+map <Space> <leader>
 nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 nmap <leader>l :bnext<cr>
@@ -14,8 +12,9 @@ nmap <leader>nh <Plug>(GitGutterNextHunk)
 nmap <leader>ph <Plug>(GitGutterPrevHunk)
 nmap <Leader>ha <Plug>(GitGutterStageHunk)
 nmap <Leader>hr <Plug>(GitGutterUndoHunk)
+nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 nmap <leader>c :Clap command<cr>
-nmap <leader>f :Clap files<cr>
+nmap <leader>f :GFiles<cr>
 nmap <leader>gf :GFiles<cr>
 nmap <leader>ff :FZF<cr>
 nmap <leader>b :Buffers<cr>

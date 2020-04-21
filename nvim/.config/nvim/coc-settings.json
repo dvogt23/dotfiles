@@ -1,6 +1,10 @@
 {
     "coc.source.file.ignoreHidden": false,
 
+    "flutter.lsp.initialization.closingLabels": true,
+    "diagnostic.errorSign": "▌",
+    "diagnostic.warningSign": "▌",
+    "diagnostic.infoSign": "▌",
     "list.source.files.command": "rg",
     "list.source.files.args" : ["--hidden", "--files"],
 
