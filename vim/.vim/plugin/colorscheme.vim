@@ -13,7 +13,6 @@ function! CocCurrentFunction()
 endfunction
 
 set noshowmode
-let g:lightline = { 'colorscheme': 'ayu' }
 let g:lightline = {
       \ 'colorscheme': 'ayu',
       \ 'active': {

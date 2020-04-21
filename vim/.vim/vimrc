@@ -8,13 +8,10 @@ call plug#begin('~/.vim/bundle')
 
 " UI
 Plug 'itchyny/lightline.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'mike-hearn/base16-vim-lightline'
 Plug 'junegunn/goyo.vim'
 
 Plug 'flrnprz/candid.vim'
 Plug 'ayu-theme/ayu-vim'
-Plug 'ayu-theme/ayu-vim-airline'
 Plug 'Yggdroot/indentLine'
 
 " Plug 'liuchengxu/vista.vim'
@@ -50,6 +47,10 @@ Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/dartlang-snippets'
+let dart_format_on_save = 1
+let dart_style_guide = 2
 Plug 'tpope/vim-markdown',                  { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'fatih/vim-go',                        { 'for' : 'go' }
@@ -61,7 +62,7 @@ Plug 'avakhov/vim-yaml'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'neovim/nvim-lsp'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'Shougo/deoplete-lsp'

@@ -3,16 +3,38 @@
 set colorcolumn=120
 set termguicolors
 
-set lazyredraw
 " set regexpengine=1
 
+set backspace=indent,eol,start  " Makes backspace key more powerful.
+set autowrite                   " Automatically save before :next, :make etc.
+set autoread                    " Automatically reread changed files without asking me anything
+au FocusLost * :wa              " Set vim to save the file on focus out.
+
+" Better Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone
+
+syntax sync minlines=256
+set synmaxcol=300
+" set re=1
+
+" do not hide markdown
+set conceallevel=0
+
+" open help vertically
+command! -nargs=* -complete=help Help vertical belowright help <args>
+autocmd FileType help wincmd L
+
+" Make Vim to handle long lines nicely.
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+
 set ruler
-set number
 set hid
 set showcmd
 set cmdheight=1
 set showmatch
-set wrap
 set autoread
 set wildmenu
 set scrolloff=3
@@ -125,12 +147,3 @@ augroup myTodo
 augroup END
 
 highlight link myTodo Todo
-" set re=1
-" set conceallevel=0
-" set synmaxcol=0
-" remember info about open buffers on close
-"set viminfo^=%
-
-" cursorline in active buffer
-"au BufEnter * setlocal cursorline
-"au BufLeave * setlocal nocursorline
