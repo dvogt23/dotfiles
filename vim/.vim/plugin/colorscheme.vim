@@ -8,19 +8,11 @@ syntax on
 let ayucolor="dark"
 colorscheme ayu
 
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
 set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'ayu',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'coc' ] ]
-      \ },
-      \ 'component': {
-      \   'coc': '%{coc#status()}',
-      \   'gitbranch': '%{fugitive#head()}',
+      \             [ 'readonly', 'filename', 'modified'] ]
       \ },
       \ }

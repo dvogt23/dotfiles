@@ -3,5 +3,6 @@ vim/.vim/.netrwhist
 vim/.vim/autoload
 vim/.vim/backups
 vim/.vim/bundle
+nvim/.config/nvim/bundle
 zsh/.zsh/.zinit
 zsh/.zsh/zsh-autosuggestions

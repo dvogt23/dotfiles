@@ -1,12 +1,7 @@
 {
-    "coc.source.file.ignoreHidden": false,
-
-    "flutter.lsp.initialization.closingLabels": true,
-    "diagnostic.errorSign": "▌",
-    "diagnostic.warningSign": "▌",
-    "diagnostic.infoSign": "▌",
-    "list.source.files.command": "rg",
-    "list.source.files.args" : ["--hidden", "--files"],
+    "diagnostic.errorSign": "•",
+    "diagnostic.warningSign": "•",
+    "diagnostic.infoSign": "•",
 
     "snippets.ultisnips.directories": [
         "UltiSnips",
@@ -44,13 +39,4 @@
     },
 
     "suggest.minTriggerInputLength": 2,
-
-    "languageserver": {
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"],
-            "ignoredRootPaths": ["~"]
-        }
-    }
 }
