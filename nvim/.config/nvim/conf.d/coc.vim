@@ -1,5 +1,6 @@
 lua require'nvim_lsp'.rust_analyzer.setup({})
-let g:vim_json_syntax_conceal = 0
+
+let g:rustfmt_autosave = 1
 
 " Set coc extensions
 let g:coc_global_extensions = [
@@ -55,7 +56,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
