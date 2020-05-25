@@ -8,6 +8,8 @@ syntax on
 let ayucolor="dark"
 colorscheme ayu
 
+" hi Cursor guifg=#121212 guibg=#afd700
+
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction

@@ -36,7 +36,7 @@ yay_arguments = "--nodevel --ignore=jdk8"
 
 # Custom commands
 [commands]
-"Update rust-analyzer" = ". $HOME/scripts/update-rust-analyzer"
+"Update rust-analyzer" = ". $HOME/.scripts/update-rust-analyzer"
 
 # Cleanup temporary or old files
 # cleanup = true

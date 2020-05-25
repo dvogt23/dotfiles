@@ -11,6 +11,7 @@ let g:coc_global_extensions = [
             \ 'coc-texlab',
             \ 'coc-rust-analyzer',
             \ 'coc-prettier',
+            \ 'coc-highlight',
             \ 'coc-markdownlint',
             \ 'coc-snippets',
             \ ]
@@ -24,6 +25,8 @@ set nowritebackup
 
 " Better display for messages
 " set cmdheight=2
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -76,8 +79,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-nmap <leader> ac  <Plug>(coc-codeaction)
+nmap <silent> cf <Plug>(coc-quickfix)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -93,6 +95,11 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+command! -nargs=0 OrganizeImport
+        \ :call CocActionAsync('runCommand', 'tsserver.organizeImports')
+
+" autocmd BufWritePre *.tsx,*.js,*.go :call CocAction('runCommand', 'editor.action.organizeImport') | sleep 100m
+
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
@@ -104,17 +111,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " " Show commands
 " nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+let g:coc_snippet_next = '<tab>'
