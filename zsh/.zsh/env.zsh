@@ -1,18 +1,32 @@
 # env vars !printenv
 
 # Defaults
-export LC_ALL=en_US.utf8
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_PAPER=en_US.UTF-8
+export LC_NAME=en_US.UTF-8
+export LC_ADDRESS=en_US.UTF-8
+export LC_TELEPHONE=en_US.UTF-8
+export LC_MEASUREMENT=en_US.UTF-8
+export LC_IDENTIFICATION=en_US.UTF-8
+export LC_ALL=
 export DOTFILES_DIR="$HOME/.dotfiles"
 export PROJECT_DIR="$HOME/Projects"
 export PATH="$HOME/.scripts:$PATH"
 export BROWSER="/usr/bin/firefox"
-export NOTES_DIR="$HOME/Nextcloud/Notes"
-export GIT_EDITOR="vim"
-export VISUAL="vim"
-export EDITOR="vim"
+export NOTES_DIR="$HOME/Privat/Notes"
+export EDITOR="nvim"
+export GIT_EDITOR="$EDITOR"
+export VISUAL="$EDITOR"
 export CLICOLOR=1
 export TERM=xterm-256color
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export PATH="$PATH:$HOME/Projects/misc/flutter/bin"
 
 
 # Rust

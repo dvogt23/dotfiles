@@ -9,11 +9,15 @@ call plug#begin('~/.config/nvim/bundle')
 " UI
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'flrnprz/candid.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'Yggdroot/indentLine'
+
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+let g:ranger_map_keys = 0
 
 " Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
@@ -37,10 +41,10 @@ Plug 'liuchengxu/vista.vim'
 Plug 'jremmen/vim-ripgrep',                 { 'on': 'Rg' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
-" Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+Plug 'mlaursen/vim-react-snippets'
 
 " Languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -69,6 +73,7 @@ Plug 'Chiel92/vim-autoformat'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()

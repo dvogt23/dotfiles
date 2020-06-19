@@ -10,7 +10,7 @@
 
 git filter-branch --env-filter $'
 OLD_EMAILS="
-d.vogt@deos-ag.com
+dmitrij.vogt@finstreet.de
 "
 CORRECT_NAME="dvogt23"
 CORRECT_EMAIL="divogt@live.de"

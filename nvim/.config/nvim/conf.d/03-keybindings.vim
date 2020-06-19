@@ -16,6 +16,7 @@ nmap <Leader>hr <Plug>(GitGutterUndoHunk)
 nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 nmap <leader>gf :GFiles<cr>
 nmap <leader>ff :FZF<cr>
+nmap <leader>f :Ranger<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>j <Plug>(easymotion-bd-f)
 nmap <leader>d :bd<cr>

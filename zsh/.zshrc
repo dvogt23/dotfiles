@@ -51,6 +51,8 @@ forgit_restore=gcf
 forgit_clean=gclean
 forgit_stash_show=gsf
 
+bindkey "ç" fzf-cd-widget
+
 zinit ice wait lucid atload'zicompinit; zicdreplay'
 zinit light zdharma/fast-syntax-highlighting
 
