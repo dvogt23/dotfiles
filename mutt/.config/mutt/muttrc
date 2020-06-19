@@ -36,18 +36,9 @@ source ~/.config/mutt/etc/muttcol
 source ~/.config/mutt/etc/aliases
 
 mailboxes \
-    "+Gmail/INBOX" \
-    "+Gmail/[Gmail].Gesendet" \
-    "+Dima23/INBOX" \
-    "+Dima23/Sent" \
     "+Vogtdev/INBOX" \
     "+Vogtdev/Sent" \
-    "+Outlook/Inbox" \
-    "+Outlook/Sent"
 
-macro index <F2> '<sync-mailbox><enter-command>source ~/.config/mutt/account/gmail<enter><change-folder>!<enter>'
-macro index <F3> '<sync-mailbox><enter-command>source ~/.config/mutt/account/outlook <enter><change-folder>!<enter>'
-macro index <F4> '<sync-mailbox><enter-command>source ~/.config/mutt/account/dima23 <enter><change-folder>!<enter>'
 macro index <F5> '<sync-mailbox><enter-command>source ~/.config/mutt/account/vogtdev <enter><change-folder>!<enter>'
 
 bind index,pager i noop
@@ -124,9 +115,6 @@ macro index o "<shell-escape>$HOME/.config/mutt/etc/mailsync.sh -qf INBOX<enter>
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
-folder-hook [Gmail]/* source ~/.config/mutt/account/gmail
-folder-hook Outlook/* source ~/.config/mutt/account/outlook
-folder-hook Dima23/* source ~/.config/mutt/account/dima23
 folder-hook Vogtdev/* source ~/.config/mutt/account/vogtdev
 
 # GnuPG settings
