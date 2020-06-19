@@ -108,6 +108,9 @@ set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.mov,*.pdf,*.psd,*.ai
 set wildignore+=*.ppt,*.pptx,*.doc,*.docx,*.xls,*.xlsx
 set wildignore=*.o,*~,*.pyc
 
+" Disable quote concealing in JSON files
+let g:vim_json_conceal=0
+
 set cursorline
 " autocmd InsertEnter * highlight CursorLine guibg=#005000 guifg=fg
 " autocmd InsertLeave * highlight CursorLine guibg=#004000 guifg=fg
