@@ -27,6 +27,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 " Movement
 Plug 'easymotion/vim-easymotion'

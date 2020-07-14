@@ -128,6 +128,10 @@ augroup myTodo
   autocmd Syntax * syntax match myTodo /\v\_.<(FIXME|NOTE|TODO|OPTIMIZE|XXX).*/hs=s+1 containedin=.*Comment,vimCommentTitle
 augroup END
 
+" Vimwiki requirements
+filetype plugin on
+set nocompatible
+
 highlight link myTodo Todo
 " set re=1
 " set conceallevel=0

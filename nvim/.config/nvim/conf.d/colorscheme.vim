@@ -7,8 +7,12 @@ set background=dark
 syntax on
 let ayucolor="dark"
 colorscheme ayu
+hi CursorLineNr guibg=#222E39
+hi CursorLine guibg=#222E39
+hi CursorColumn guibg=#222E39
 
-" hi Cursor guifg=#121212 guibg=#afd700
+" hi DiffAdd guifg=green
+" hi DiffChange guifg=orange
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
