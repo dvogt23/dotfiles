@@ -26,6 +26,7 @@ no_retry = true
 #git_arguments = "--rebase --autostash"
 
 # Arguments to pass yay when updating packages
+[linux]
 yay_arguments = "--nodevel --ignore=jdk8"
 
 # Do not set the terminal title

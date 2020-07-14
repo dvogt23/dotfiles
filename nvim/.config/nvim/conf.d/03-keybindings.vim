@@ -15,6 +15,11 @@ nmap <leader>h :bprevious<cr>
 nmap <Leader>hr <Plug>(GitGutterUndoHunk)
 nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 nmap <leader>gf :GFiles<cr>
+nmap <C-p> :GFiles<cr>
+" nmap <C-P> :Commands<cr>
+" nmap <C-t> :Tags<cr>
+nmap <C-T> :BTags<cr>
+nmap <C-F> :Rg<cr>
 nmap <leader>ff :FZF<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>j <Plug>(easymotion-bd-f)
