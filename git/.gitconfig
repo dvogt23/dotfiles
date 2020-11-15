@@ -31,6 +31,9 @@
 
 # Commit all changes
     ca = !git add -A && git commit -av
+#
+# checkout with fzf
+    cof = "!git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout"
 
 # Switch to a branch, creating it if necessary
     go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -51,6 +54,16 @@
 
 # Remove the old tag with this name and tag the latest commit with it.
     retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+
+# Open all files changed since REVIEW_BASE in Vim tabs
+# Then, run fugitive's :Gdiff in each tab, and finally
+# tell vim-gitgutter to show +/- for changes since REVIEW_BASE
+    review = !nvim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+
+# Same as the above, except specify names of files as arguments,
+# instead of opening all files:
+# git reviewone foo.js bar.js
+    reviewone = !nvim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 
 # Find branches containing commit
     fb = "!f() { git branch -a --contains $1; }; f"
@@ -80,19 +93,18 @@
 # Merge GitHub pull request on top of the current branch or,
 # if a branch name is specified, on top of the specified branch
     mpr = "!f() { \
-	    declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-	    declare branch=\"${2:-$currentBranch}\"; \
-	    if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-	    git fetch origin refs/pull/$1/head:pr/$1 && \
-	    git checkout -B $branch && \
-	    git rebase $branch pr/$1 && \
-	    git checkout -B $branch && \
-	    git merge pr/$1 && \
-	    git branch -D pr/$1 && \
-	    git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-	    fi \
-	    }; f"
-
+        declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+        declare branch=\"${2:-$currentBranch}\"; \
+        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+        git fetch origin refs/pull/$1/head:pr/$1 && \
+        git checkout -B $branch && \
+        git rebase $branch pr/$1 && \
+        git checkout -B $branch && \
+        git merge pr/$1 && \
+        git branch -D pr/$1 && \
+        git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+        fi \
+        }; f"
 [apply]
 
 # Detect whitespace errors when applying a patch
@@ -204,3 +216,5 @@
     added = yellow
     changed = green
     untracked = cyan
+[gpg]
+    program = gpg2

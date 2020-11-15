@@ -5,6 +5,7 @@ cnoremap jk <ESC>
 map <Space> <leader>
 nmap <leader>q :q!<cr>
 nmap <leader>w :w!<cr>
+nmap <leader>ww :noa w!<cr>
 nmap <leader>l :bnext<cr>
 nmap <leader>f :Files<cr>
 nmap <Leader>ha <Plug>(GitGutterStageHunk)

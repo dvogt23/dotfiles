@@ -1,5 +1,13 @@
 lua require'nvim_lsp'.rust_analyzer.setup({})
 
+" FORMATTERS
+au FileType javascript setlocal formatprg=prettier
+au FileType javascript.jsx setlocal formatprg=prettier
+au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType html setlocal formatprg=js-beautify\ --type\ html
+au FileType scss setlocal formatprg=prettier\ --parser\ css
+au FileType css setlocal formatprg=prettier\ --parser\ css
+
 let g:rustfmt_autosave = 1
 
 " Set coc extensions
@@ -80,6 +88,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> cf <Plug>(coc-quickfix)
+nmap <silent> ca <Plug>(coc-codeaction)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

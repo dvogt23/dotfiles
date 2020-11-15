@@ -2,6 +2,7 @@
 
 # Set default directory if not set
 notes_dir=${NOTES_DIR:-$HOME/.notes}
+diary_dir=${DIARY_DIR:-$NOTES_DIR/diary}
 extention=${NOTE_EXTENTION:-".md"}
 
 # Load all notes

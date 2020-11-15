@@ -4,6 +4,7 @@
   "diagnostic.infoSign": "•",
 
   "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
     "css",
     "markdown",
     "typescriptreact",
@@ -18,8 +19,10 @@
     "javascriptreact": ["javascript"],
     "typescript": ["javascript"]
   },
-
   "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
+  "prettier.arrowParens": "avoid",
+  "tsserver.log": "verbose",
+  "tsserver.trace.server": "verbose",
 
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",

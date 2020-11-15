@@ -23,7 +23,7 @@ let g:startify_lists = [
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
 let g:startify_bookmarks = [
-            \ { 'v': '~/.vim/vimrc' },
+            \ { 'v': '~/.config/nvim/init.vim' },
             \ { 't': '~/.tmux.conf' },
             \ { 'i': '~/.config/i3/config' },
             \ { 'b': '~/.config/polybar/config' },

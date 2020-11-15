@@ -37,6 +37,9 @@ zinit ice wait lucid
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 zinit ice wait lucid
+zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh 
+
+zinit ice wait lucid
 zinit snippet OMZ::plugins/globalias/globalias.plugin.zsh
 
 zinit ice wait'1' lucid
