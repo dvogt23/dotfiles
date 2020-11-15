@@ -16,6 +16,8 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " set signcolumn=no
 " let g:gitgutter_signs = 0
 " let g:gitgutter_highlight_linenrs = 1
+let g:bufferline_separator_active = '▎'
+let g:bufferline_separator_inactive = '▎'
 let g:gitgutter_sign_added = '▌'
 let g:gitgutter_sign_modified = '▌'
 let g:gitgutter_sign_removed = '▁'

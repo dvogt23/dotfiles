@@ -1,3 +1,11 @@
+" set header title for journal & enter writing mode
+function! SetJournalMode()
+    execute 'normal gg'
+    let filename = '#' . ' ' . expand("<afile>:r")
+    call setline(1, filename)
+    execute 'normal o'
+endfunction
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,

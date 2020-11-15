@@ -7,3 +7,4 @@ nvim/.config/nvim/bundle
 zsh/.zsh/.zinit
 zsh/.zsh/zsh-autosuggestions
 nvim/.config/nvim/.netrwhist
+nvim/.config/nvim/autoload

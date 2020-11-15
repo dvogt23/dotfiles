@@ -17,7 +17,7 @@ set wrap
 set autoread
 set wildmenu
 set scrolloff=3
-set mouse=v
+set mouse=a
 set number
 set rnu
 
@@ -87,9 +87,9 @@ set foldlevel=1
 
 " Persistent Undo
 " Keep undo history across sessions, by storing in file.
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
-set backupdir=~/.vim/backups
+silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
+set undodir=~/.config/nvim/backups
+set backupdir=~/.config/nvim/backups
 set undofile
 set swapfile
 set backup
