@@ -2,6 +2,9 @@ inoremap jj <ESC>
 inoremap jk <ESC>
 cnoremap jk <ESC>
 
+nnoremap <silent> <C-,> :ToggleTerminal<Enter>
+tnoremap <silent> <C-,> <C-\><C-n>:ToggleTerminal<Enter>
+
 map <Space> <leader>
 nmap <leader>q :q!<cr>
 nmap <leader>w :w!<cr>

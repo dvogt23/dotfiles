@@ -218,3 +218,5 @@
     untracked = cyan
 [gpg]
     program = gpg2
+[pull]
+	rebase = false

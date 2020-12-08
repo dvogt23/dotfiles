@@ -32,3 +32,5 @@ augroup LuaHighlight
   autocmd!
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
+
+autocmd TermOpen * setlocal nonumber norelativenumber

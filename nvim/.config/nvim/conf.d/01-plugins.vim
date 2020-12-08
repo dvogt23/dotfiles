@@ -6,6 +6,8 @@ endif
 
 call plug#begin('~/.config/nvim/bundle')
 
+Plug 'caenrique/nvim-toggle-terminal'
+
 " UI
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
