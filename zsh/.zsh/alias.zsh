@@ -42,6 +42,9 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
+alias emacs="emacsclient -a ''"
+alias e='emacs'
+
 
 alias md='mkdir -p'
 alias rd=rmdir
