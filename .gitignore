@@ -4,6 +4,9 @@ vim/.vim/autoload
 vim/.vim/backups
 vim/.vim/bundle
 nvim/.config/nvim/bundle
+nvim/.config/nvim/autoload
+nvim/.config/nvim/after
+nvim/.config/nvim/backups
 zsh/.zsh/.zinit
 zsh/.zsh/zsh-autosuggestions
 nvim/.config/nvim/.netrwhist

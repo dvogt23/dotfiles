@@ -1,3 +1,6 @@
+" interactivly replace
+set inccommand=split
+
 " ui
 " highlight ColorColumn
 set colorcolumn=120

@@ -8,13 +8,13 @@ nmap <leader>w :w!<cr>
 nmap <leader>ww :noa w!<cr>
 nmap <leader>l :bnext<cr>
 nmap <leader>f :Files<cr>
-nmap <Leader>ha <Plug>(GitGutterStageHunk)
+nmap <Leader>gha <Plug>(GitGutterStageHunk)
 nmap <leader>g :Goyo<cr>
-nmap <leader>nh <Plug>(GitGutterNextHunk)
-nmap <leader>ph <Plug>(GitGutterPrevHunk)
+nmap <leader>gnh <Plug>(GitGutterNextHunk)
+nmap <leader>gph <Plug>(GitGutterPrevHunk)
 nmap <leader>h :bprevious<cr>
-nmap <Leader>hr <Plug>(GitGutterUndoHunk)
-nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
+nmap <Leader>ghr <Plug>(GitGutterUndoHunk)
+nmap <Leader>ghp <Plug>(GitGutterPreviewHunk)
 nmap <leader>gf :GFiles<cr>
 nmap <C-p> :GFiles<cr>
 " nmap <C-P> :Commands<cr>
