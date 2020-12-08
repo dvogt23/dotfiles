@@ -11,6 +11,12 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
 " Plug 'ludovicchabant/vim-gutentags'
 
+" Plug 'axvr/org.vim'
+Plug 'jceb/vim-orgmode'
+" Plug 'xolox/vim-notes'
+" Plug 'xolox/vim-misc'
+Plug 'ap/vim-buftabline'
+
 Plug 'romgrk/doom-one.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'flrnprz/candid.vim'
@@ -72,9 +78,9 @@ Plug 'cespare/vim-toml',                    { 'for' : 'toml' }
 Plug 'avakhov/vim-yaml'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'peitalin/vim-jsx-typescript'
+Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'norcalli/nvim-colorizer.lua'
 
 " Ruby plugins

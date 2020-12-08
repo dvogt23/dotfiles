@@ -11,6 +11,17 @@ hi CursorLineNr guibg=#222E39
 hi CursorLine guibg=#222E39
 hi CursorColumn guibg=#222E39 guifg=orange
 
+
+" BufTabLine plugin
+hi BufTabLineCurrent guifg=White guibg=Black
+hi BufTabLineActive guifg=DarkGrey guibg=LightBlack
+hi BufTabLineHidden guifg=DarkGrey
+hi BufTabLineFill   guifg=DarkBlue guibg=none
+
+" hi BufTabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+" hi BufTabLine ctermfg=Blue ctermbg=Yellow
+" hi BufTabLineSel ctermfg=Red ctermbg=Yellow
+
 " hi DiffAdd guifg=green
 " hi DiffChange guifg=orange
 

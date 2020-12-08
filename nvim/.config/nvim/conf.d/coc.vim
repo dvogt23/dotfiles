@@ -1,4 +1,4 @@
-lua require'nvim_lsp'.rust_analyzer.setup({})
+lua require'lspconfig'.rust_analyzer.setup({})
 
 " FORMATTERS
 au FileType javascript setlocal formatprg=prettier

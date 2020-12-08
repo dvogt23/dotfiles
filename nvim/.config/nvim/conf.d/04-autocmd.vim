@@ -28,3 +28,7 @@ augroup journal
     autocmd VimEnter */diary/**   syntax off
 augroup end
 
+augroup LuaHighlight
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+augroup END
