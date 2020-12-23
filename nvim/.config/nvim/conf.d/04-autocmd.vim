@@ -14,6 +14,8 @@ if has("autocmd")
   augroup END
 endif
 
+au BufRead,BufNewFile *.md setlocal textwidth=80
+
 augroup journal
     autocmd!
 
@@ -26,6 +28,7 @@ augroup journal
     " other configurations
     autocmd VimEnter */diary/**   set ft=markdown
     autocmd VimEnter */diary/**   syntax off
+    autocmd VimEnter */diary/**   setlocal nonumber norelativenumber
 augroup end
 
 augroup LuaHighlight
