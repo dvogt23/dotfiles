@@ -58,7 +58,7 @@ endfunction
 " set header title for journal & enter writing mode
 function! SetJournalMode()
     execute 'normal gg'
-    let filename = '#' . ' ' . expand("<afile>:r")
+    let filename = '#' . ' ' . expand("<afile>:t:r")
     call setline(1, filename)
     execute 'normal o'
 endfunction

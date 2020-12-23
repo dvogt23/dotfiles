@@ -11,6 +11,8 @@ hi CursorLineNr guibg=#222E39
 hi CursorLine guibg=#222E39
 hi CursorColumn guibg=#222E39 guifg=orange
 
+" Hide ~ in blank lines
+hi NonText guifg=bg
 
 " BufTabLine plugin
 hi BufTabLineCurrent guifg=White guibg=Black
