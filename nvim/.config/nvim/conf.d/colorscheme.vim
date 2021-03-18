@@ -13,6 +13,7 @@ hi CursorColumn guibg=#222E39 guifg=orange
 
 " Hide ~ in blank lines
 hi NonText guifg=bg
+hi VertSplit guifg=black
 
 " BufTabLine plugin
 hi BufTabLineCurrent guifg=White guibg=Black

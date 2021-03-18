@@ -3,6 +3,11 @@
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
 
+  "1eslint.autoFixOnSave": true,
+  "1eslint.validate": ["javascript", "javascriptreact", "javascript.jsx", "javascript.tsx"],
+  "1eslint.run": "onSave",
+  "prettier.eslintIntegration": true,
+  "tsserver.formatOnType": false,
   "snippets.ultisnips.usePythonx": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
@@ -20,7 +25,6 @@
     "javascriptreact": ["javascript"],
     "typescript": ["javascript"]
   },
-  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "prettier.arrowParens": "avoid",
   "tsserver.log": "verbose",
   "tsserver.trace.server": "verbose",

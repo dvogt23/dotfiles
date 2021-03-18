@@ -24,6 +24,7 @@ let g:gitgutter_sign_removed = '▁'
 let g:gitgutter_sign_removed_first_line = '▌'
 let g:gitgutter_sign_modified_removed = '▌'
 
+hi! link SignColumn LineNr
 highlight link GitGutterAddLineNr GitGutterChange
 highlight link GitGutterChangeLineNr GitGutterAdd
 highlight link GitGutterDeleteLineNr GitGutterDelete

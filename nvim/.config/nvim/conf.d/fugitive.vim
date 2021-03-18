@@ -11,3 +11,4 @@ nnoremap <leader>gf :Gfetch<cr>
 nnoremap <leader>go :Gpull --rebase<cr>
 
 au FileType gitcommit inoremap <buffer>jj <ESC>ZZ
+let g:fugitive_pty = 0

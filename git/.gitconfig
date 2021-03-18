@@ -23,6 +23,9 @@
 # `git di $number` shows the diff between the state `$number` revisions ago and the current state
     di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
+# open all changes in vim
+    edit = !"$EDITOR `git status -s | awk '{print $2}'`"
+
 # Pull in remote changes for the current repository and all its submodules
     p = !"git pull; git submodule foreach git pull origin master"
 
@@ -34,6 +37,7 @@
 #
 # checkout with fzf
     cof = "!git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout"
+    bf = "!git for-each-ref --format='%(refname:short)' refs/heads | fzf -m"
 
 # Switch to a branch, creating it if necessary
     go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -87,6 +91,9 @@
 # List contributors with number of commits
     contributors = shortlog --summary --numbered
 
+# Clean up branches from local origin that merged
+    prune = "! for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
+
 # switch indentity
     id = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
 
@@ -125,11 +132,31 @@
 # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
 
-# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
     autocrlf = input
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = delta | less --tabs=2 -RFX
+
+[delta]
+    features = line-numbers decorations files
+    syntax-theme = Dracula
+    minus-style = red bold
+    plus-style = green bold
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = yellow bold
+    file-decoration-style = ul yellow bold
+    hunk-header-style = omit 
+    hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+    line-numbers-left-style = cyan
+    line-numbers-right-style = cyan
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
+
+; [interactive]
+    ; diffFilter = delta --color-only --file-decoration-style=omit
 
 [color]
 
@@ -219,4 +246,4 @@
 [gpg]
     program = gpg2
 [pull]
-	rebase = false
+    rebase = false
