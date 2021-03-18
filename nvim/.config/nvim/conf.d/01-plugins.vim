@@ -57,6 +57,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vista.vim'
 
 Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdtree'
+
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 
 " Snippets are separated from the engine. Add this if you want them:

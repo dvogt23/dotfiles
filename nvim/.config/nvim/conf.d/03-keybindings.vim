@@ -5,6 +5,10 @@ cnoremap jk <ESC>
 nnoremap <silent> <C-,> :ToggleTerminal<Enter>
 tnoremap <silent> <C-,> <C-\><C-n>:ToggleTerminal<Enter>
 
+" Notes
+nnoremap <leader>nf :call fzf#run({'options': '--reverse --prompt "Notes >"', 'down': 20, 'dir': '$NOTES_DIR', 'sink': 'e' })<CR>
+nnoremap <leader>ni :e $NOTES_DIR/SUMMARY.md<CR>cd $NOTES_DIR
+
 map <Space> <leader>
 nmap <leader>q :q!<cr>
 nmap <leader>w :w!<cr>
@@ -36,10 +40,9 @@ nmap <leader>vk :res -10<cr>
 nmap <leader>ev :vsp ~/.config/nvim/init.vim<cr>
 nmap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nmap <leader>pi :PlugInstall<cr>
-nmap <leader>n :Lexplore<cr>
+nmap <leader>n :NERDTreeToggle<cr>
 nmap <leader>ew :call StripWhiteSpace()<cr>
 nmap <leader>t :Vista!!<cr>
-nmap <leader>p :set nopaste<cr>
 if &diff
     map <leader>1 :diffget LOCAL<CR>
     map <leader>2 :diffget BASE<CR>
@@ -59,7 +62,7 @@ nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
 nnoremap Q <Nop>
 nnoremap U <Nop>
-noremap <cr> :noh<cr><cr>
+" noremap <cr> :noh<cr><cr>
 
 " Moving characters
 nno L xp
@@ -67,5 +70,6 @@ nno H Xph
 " nno J ddjP
 " nno K ddkP
 
+inoremap <C-H> <Esc>/<++><CR><Esc><Esc>cf>
 " inoremap <c-j> <Esc>/<+\w*+><CR><Esc>cf>
 " inoremap <c-k> <Esc>?<+\w*+><CR><Esc>cf>

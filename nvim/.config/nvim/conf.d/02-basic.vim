@@ -102,8 +102,8 @@ set sessionoptions-=blank,help
 " tabs
 set expandtab
 set smarttab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 
 " ignores
 set wildignore+=*.a,*.0
