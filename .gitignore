@@ -11,3 +11,5 @@ zsh/.zsh/.zinit
 zsh/.zsh/zsh-autosuggestions
 nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/autoload
+nvim/.config/nvim.old
+nvim/.config/nvim/plugin
