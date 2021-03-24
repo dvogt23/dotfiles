@@ -36,6 +36,64 @@ Where `~/.gitconfig.local` is simply:
       name = <your_name>
       email = <your_email>
 
+#### NVIM
+
+##### Keybindings
+
+The primary keybindings for nvim:
+
+*UI*:
+ - Leader key:   `<SPACE>` & `\`
+ - ESC keys:     `jj`, `jk`, `<ESC>`
+ - Quit:         `<LEADER>q`
+
+ - File expl:    `<LEADER>n`
+ - Search file:  `<LEADER>f`
+ - Search string:`<LEADER>r`
+ - Term:         `<LEADER>t`
+ - Commands:     `<LEADER>c`
+
+*Split:*
+  - Switch:   `<C-h, -j, -k, -l>`
+  - Resize:   `<A-Right, -Left, -Up, -Down>`
+
+*Edit*:
+  - Move line:  v`K/H`
+  - Move char:  n`H/L`
+
+*Buffer*:
+  - Close:    `<LEADER>d`
+  - Next:     `<LEADER>l`
+  - Previos:  `<LEADER>h`
+  - Save:     `<LEADER>w`
+  - Fuzzy:    `<LEADER>b`
+
+*LSP*:
+  - Goto definition:      `gd`
+  - Goto implementation:  `gi`
+  - References:           `gr`
+  - Type definition:      `gt`
+  - Quick fix:            `<LEADER>lq`
+  - Action:               `<LEADER>la`
+  - Diagnostic:           `<LEADER>ld`
+  - Diag. next:           `<LEADER>ldn`
+  - Diag. prev:           `<LEADER>ldp`
+  - Reformat file:        `<LEADER>lff`
+  - Reformat visual:      `<LEADER>lf`
+  - Buffer rename:        `<LEADER>lrn`
+  - Show doc:        	  `K`
+  - Show signature:       `<C-k>`
+
+*Git*:
+  - Add hunk:             `<LEADER>gha`
+  - Revert hunk:          `<LEADER>ghr`
+  - Diff hunk:            `<LEADER>ghd`
+  - Status:               `<LEADER>gs`
+  - Blame:                `<LEADER>gb`
+  - History:              `<LEADER>gl`
+  - Log file:             `<LEADER>glf`
+
 ##### License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
+
