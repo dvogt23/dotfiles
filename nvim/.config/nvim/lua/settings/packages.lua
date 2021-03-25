@@ -27,7 +27,7 @@ local lsp = {
   "neovim/nvim-lspconfig",
   "hrsh7th/nvim-compe",
 --  "glepnir/lspsaga.nvim",
-  {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+  --{"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
 }
 
 local git = {
@@ -41,10 +41,8 @@ local git = {
 }
 
 local misk = {
-  --"tpope/vim-commentary",
   "tweekmonster/startuptime.vim", -- benchmark startup
   "scrooloose/nerdcommenter",
-  --"oberblastmeister/rooter.nvim", -- root dir switcher
   "AndrewRadev/tagalong.vim", -- Auto change html tags
   "AndrewRadev/splitjoin.vim", -- allows to split one liner to multi lines
   "mbbill/undotree", -- undo tree
@@ -120,7 +118,7 @@ local ui = {
   "luochen1990/rainbow",
   "terryma/vim-multiple-cursors",
   "easymotion/vim-easymotion",
-  "kyazdani42/nvim-tree.lua",
+--  "kyazdani42/nvim-tree.lua",
 }
 
 local packer = require("packer")
