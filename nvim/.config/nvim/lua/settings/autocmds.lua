@@ -15,7 +15,7 @@ cmd "au BufWritePre * lua vim.lsp.buf.formatting()"
 cmd "au BufWritePost * normal! zv"
 
 cmd "au FileType gitcommit setl spell"
-cmd "au FileType html,css,scss,javascript,javascriptreact,vue,typescript,typescriptreact EmmetInstall"
+--cmd "au FileType html,css,scss,javascript,javascriptreact,vue,typescript,typescriptreact EmmetInstall"
 
 cmd "au BufEnter *.txt lua require('settings.utils').help_tab()"
 -- Open image file in system preview
