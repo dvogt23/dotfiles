@@ -34,6 +34,9 @@ zinit ice wait lucid
 zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 
 zinit ice wait lucid
+zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
+
+zinit ice wait lucid
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 zinit ice wait lucid

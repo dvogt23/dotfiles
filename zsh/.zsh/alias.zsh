@@ -41,7 +41,6 @@ alias sc='systemctl'
 alias scu='systemctl --user'
 alias v='nvim'                           # Preferred 'cp' implementation
 alias vi='nvim'                           # Preferred 'cp' implementation
-alias vim='nvim'                           # Preferred 'cp' implementation
 alias x='xdg-open'
 alias zshconfig="source ~/.zshrc"
 alias gapa="git add --intent-to-add . && git add --patch"

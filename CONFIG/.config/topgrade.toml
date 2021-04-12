@@ -5,7 +5,7 @@
 #]
 
 # Disable specific steps - same options as the command line flag
-disable = ["git_repos", "gem", "flutter"]
+disable = ["git_repos", "gem", "flutter", "shell"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
@@ -40,5 +40,4 @@ yay_arguments = "--nodevel --ignore=jdk8"
 # "Update rust-analyzer" = ". $HOME/.scripts/update-rust-analyzer"
 
 # Cleanup temporary or old files
-# cleanup = true
 

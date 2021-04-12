@@ -63,6 +63,7 @@ The primary keybindings for nvim:
 
 *Buffer*:
   - Close:    `<LEADER>d`
+  - CloseAll: `<LEADER>da`
   - Next:     `<LEADER>l`
   - Previos:  `<LEADER>h`
   - Save:     `<LEADER>w`
@@ -73,21 +74,21 @@ The primary keybindings for nvim:
   - Goto implementation:  `gi`
   - References:           `gr`
   - Type definition:      `gt`
-  - Quick fix:            `<LEADER>lq`
-  - Action:               `<LEADER>la`
-  - Diagnostic:           `<LEADER>ld`
-  - Diag. next:           `<LEADER>ldn`
-  - Diag. prev:           `<LEADER>ldp`
-  - Reformat file:        `<LEADER>lff`
-  - Reformat visual:      `<LEADER>lf`
-  - Buffer rename:        `<LEADER>lrn`
-  - Show doc:        	  `K`
+  - ShowLine:             `<LEADER>ss`
+  - Action:               `<LEADER>sa`
+  - Diagnostic:           `<LEADER>sd`
+  - Diag. next:           `<LEADER>sdn`
+  - Diag. prev:           `<LEADER>sdp`
+  - Reformat file:        `<LEADER>sff`
+  - Reformat visual:      `<LEADER>sf`
+  - Buffer rename:        `<LEADER>srn`
+  - Show doc:        	    `K`
   - Show signature:       `<C-k>`
 
 *Git*:
-  - Add hunk:             `<LEADER>gha`
-  - Revert hunk:          `<LEADER>ghr`
-  - Diff hunk:            `<LEADER>ghd`
+  - Add hunk:             `<LEADER>ga`
+  - Revert hunk:          `<LEADER>gr`
+  - Diff hunk:            `<LEADER>gd`
   - Status:               `<LEADER>gs`
   - Blame:                `<LEADER>gb`
   - History:              `<LEADER>gl`
