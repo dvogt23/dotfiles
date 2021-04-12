@@ -26,6 +26,10 @@ cmd [[au BufEnter *.png,*.jpg,*.gif,*.ico exec "silent !open ".expand("%") | :bw
 cmd [[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' | exe "normal! g'\"" | endif]]
 
 cmd "au CmdlineLeave : echo ''"
+cmd "au BufRead,BufNewFile *.md setlocal textwidth=80"
+cmd "au BufNewFile *.sh 0r ~/.config/nvim/templates/skeleton.sh"
+cmd "au FileType markdown set wrap"
+cmd "au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab"
 
 cmd "command! LSPReload lua reload_lsp()"
 cmd "command! LSPDebug lua print(vim.inspect(vim.lsp.get_active_clients()))"
@@ -43,6 +47,25 @@ exec(
  endif
 ]],
   ""
+)
+
+exec(
+  [[
+augroup journal
+    autocmd!
+
+    " populate journal template
+    autocmd BufNewFile */diary/** 0r ~/.config/nvim/templates/journal.skeleton
+
+    " set header for the particular journal
+    autocmd BufNewFile */diary/**   :call SetJournalMode()
+
+    " other configurations
+    autocmd VimEnter */diary/**   set ft=markdown
+    autocmd VimEnter */diary/**   syntax off
+    autocmd VimEnter */diary/**   setlocal nonumber norelativenumber
+augroup end
+  ]], ""
 )
 
 exec(

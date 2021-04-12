@@ -1,21 +1,21 @@
-mdbook
-starship
-cargo-generate
-cargo-tarpulin
-cargo-update
-cargo-watch
-cargo-outdated
-sd
-topgrade
+# mdbook
+# starship
+# cargo-generate
+# cargo-tarpulin
+# cargo-update
+# cargo-watch
+# cargo-outdated
+# sd
+# topgrade
 # alt
 # chars
-du-dust
-exa
-fd-find
-ripgrep
-zoxide
+# du-dust
+# exa
+# fd-find
+# ripgrep
+# zoxide
 # hexyl
-shotgun
+# shotgun
 # skim
-watchexec
-bb
+# watchexec
+# bb

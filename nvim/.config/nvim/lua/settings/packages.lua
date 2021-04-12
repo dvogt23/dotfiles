@@ -37,12 +37,14 @@ local git = {
   "tpope/vim-rhubarb",
   "rhysd/conflict-marker.vim", -- Highlight conflict markers.[x and ]x, ct for themselves, co for ourselves, cn for none and cb
   "lewis6991/gitsigns.nvim",
-  "f-person/git-blame.nvim"
+  "f-person/git-blame.nvim",
+  -- "TimUntersberger/neogit"
 }
 
 local misk = {
   "tweekmonster/startuptime.vim", -- benchmark startup
-  "scrooloose/nerdcommenter",
+  --"preservim/nerdcommenter",
+  "terrortylor/nvim-comment",
   "AndrewRadev/tagalong.vim", -- Auto change html tags
   "AndrewRadev/splitjoin.vim", -- allows to split one liner to multi lines
   "mbbill/undotree", -- undo tree
@@ -62,7 +64,6 @@ local misk = {
 
 local fzf = {
   {"junegunn/fzf", run = function() vim.fn['fzf#install'](0) end},
-  --"/usr/local/opt/fzf",
   "junegunn/fzf.vim",
   "gfanto/fzf-lsp.nvim"
 }
@@ -119,6 +120,7 @@ local ui = {
   "terryma/vim-multiple-cursors",
   "easymotion/vim-easymotion",
 --  "kyazdani42/nvim-tree.lua",
+  "norcalli/nvim-colorizer.lua",
 }
 
 local packer = require("packer")

@@ -48,6 +48,7 @@ map("n", "<leader>d", ":bd<CR>")
 map("n", "<leader>w", ":w!<CR>")
 map("n", "<leader>b", ":Buffers<CR>")
 map("n", "<leader>dd", ":Bclose<CR>")
+map("n", "<leader>da", ":CloseHiddenBuffers<CR>")
 
 -- LSP
 map("n", "gd", ":Definitions<CR>", opts)
@@ -65,7 +66,7 @@ map('n', '<leader>sh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 --map('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
 --map('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
 --map('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-map('n', '<leader>sl', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+map('n', '<leader>ss', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 map('n', '<leader>sd', ':Diagnostics<CR>', opts)
 map('n', '<leader>sdn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 map('n', '<leader>sdp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
@@ -75,7 +76,7 @@ map("n", "<leader>ga", ":GitGutterStageHunk<CR>")
 map("n", "<leader>gr", ":GitGutterUndoHunk<CR>")
 map("n", "<leader>gd", ":GitGutterPreviewHunk<CR>")
 map("n", "<leader>gs", ":Gstatus<CR>")
-map("n", "<leader>gb", ":GitBlameToggle<CR>")
+map("n", "<leader>gbb", ":GitBlameToggle<CR>")
 map("n", "<leader>gcn", ":ConflictMarkerNextHunk<CR>")
 map("n", "<leader>gcp", ":ConflictMarkerPrevHunk<CR>")
 map("n", "<leader>gco", ":ConflictMarkerOurselves<CR>")
@@ -84,10 +85,14 @@ map("n", "<leader>gl", ":Commits<CR>")
 map("n", "<leader>glf", ":GlLog<CR>")
 
 -- Notes
-map("n", "<leader>nf", ":call fzf#run({'options': '--reverse --prompt \"Notes >\"', 'down': 20, 'dir': '$NOTES_DIR', 'sink': 'e' })<CR>")
+map("n", "<leader>nn", ":call fzf#run({'options': '--reverse --prompt \"Notes >\"', 'down': 20, 'dir': '$NOTES_DIR', 'sink': 'e' })<CR>")
 map("n", "<leader>ni", ":e $NOTES_DIR/SUMMARY.md<CR>cd $NOTES_DIR")
 
 map("i", "<C-H>", "<Esc>/<++><CR><Esc><Esc>cf>")
+
+map("n", "<leader>sc", ":CommentToggle<CR>", {noremap = true})
+map("v", "<leader>sc", ":CommentToggle<CR>", {noremap = true})
+map("n", "<leader>gg", ":Goyo<CR>", {noremap = true})
 
 -- remove annoying exmode
 map("n", "Q", "<Nop>", {noremap = true})
@@ -105,46 +110,23 @@ map("n", "0", "^")
 map("v", "$", "g_")
 map("n", "$", "g_")
 
-map("n", "<leader><leader>", ":FloatermNew ranger<cr>")
-map("t", "<leader><leader>", [[<C-\><C-n>:FloatermKill]])
-
-
--- map('v', '<leader>s', ':s//gcI<Left><Left><Left><Left>')
--- map('n', '<leader>s', ':%s//gcI<Left><Left><Left><Left>')
-
 map("n", "<leader>.", ":e $MYVIMRC<CR>")
 map("n", "<leader>,", ":Startify<CR>")
-map("n", "<leader>bd", ":bp<BAR>bd#<CR>")
-map("n", "<leader>bo", ":w<BAR>%bd<BAR>e#<BAR>bd#<CR>")
 
 map("n", "<BS>", "<C-^>")
-map("n", "\\", "<cmd>BufferLinePick<CR>")
--- map("n", "\\", "<cmd>BufferPick<CR>")
-
-map("n", "[t", ":tabprevious<CR>")
-map("n", "]t", ":tabnext<CR>")
-map("n", "[b", ":bprevious<CR>")
-map("n", "]b", ":bnext<CR>")
-map("n", "[w", "<C-w>w")
-map("n", "]w", "<C-w>W")
-
-
-cmd [[xnoremap <expr> p 'pgv"' . v:register . 'y`]']]
-
-map("n", "<F3>", [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '>'<cr>]])
 
 map("v", ".", ":normal .<CR>")
 map("x", "@", ":normal @<CR>")
 map("n", "@", ":normal @<CR>")
 
-map("n", "U", "~<Left>")
-map("n", "<C-s>", ":noa w<CR>")
+-- map("n", "U", "~<Left>")
+-- map("n", "<C-s>", ":noa w<CR>")
 
-cmd "set wildcharm=<C-s>"
-map("n", "<Tab><Tab>", ":buffer <C-s><S-Tab>")
+-- cmd "set wildcharm=<C-s>"
+-- map("n", "<Tab><Tab>", ":buffer <C-s><S-Tab>")
 
-map("n", "<leader>r", ":luafile %<CR>")
-map("n", "<leader>x", ":lua reload()<CR>")
+-- map("n", "<leader>r", ":luafile %<CR>")
+-- map("n", "<leader>x", ":lua reload()<CR>")
 
 -- Copy to system clipboard
 map("v", "<C-c>", '"+y')
@@ -170,40 +152,15 @@ map("n", "<Leader>js", "<C-W>v<C-]>")
 map("n", "<Leader>ap", "<Plug>(JsConsoleLog)", {noremap = false})
 cmd [[nnoremap <silent><Plug>(JsConsoleLog) :lua console_log()<CR>]]
 
--- Git
-map("n", "<Leader>gg", ":Gstatus<CR>")
-map("n", "<Leader>gb", ":GBranches<CR>")
-map("n", "<Leader>go", ":GBrowse<CR>")
-
 -- vim-import-js
 map("n", "<Leader>if", ":ImportJSFix<CR>")
 map("n", "<Leader>ii", ":ImportJSWord<CR>")
 map("n", "<Leader>iw", ":ImportJSWord<CR>")
 
--- Terminal
-map("n", "<leader>tt", "<cmd>FloatermNew --height=0.3 --wintype=normal --position=bottom<CR>")
-map("n", "<leader>tv", "<cmd>FloatermNew --width=0.4 --wintype=normal --position=right<CR>")
-
--- Togglers
-map("n", "<leader>tg", ":GitBlameToggle<CR>")
-map("n", "<leader>tc", ":HexokinaseToggle<CR>")
 map("n", "<leader>u", ":UndotreeToggle<CR>")
-map("n", "<leader>tr", ":Codi<CR>")
-map("n", "<leader>tR", ":Codi!<CR>")
-map("n", "<leader>tm", ":MatchTagToggleBoth<CR>")
-map("n", "<leader>tM", ":MatchTagToggle<CR>")
 
 --open a new file in the same directory
 map("n", "<Leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
-map("n", "<Leader>of", ":lua open_file_or_create_new()", {silent = false})
--- Kitty
-map("n", "<leader>kv", ":silent !kitty @ launch --copy-env --cwd=current nvim % <CR>")
-
-map("n", "<leader>cc", ":normal gcc<CR>")
 
 map("n", "za", [[@=(foldlevel('.')?'za':"\<Space>")<CR>]])
 map("n", "zO", [[zCzO]])
-
-map("n", "%", "<Plug>(matchup-%)")
-map("x", "%", "<Plug>(matchup-%)")
-map("o", "%", "<Plug>(matchup-%)")
