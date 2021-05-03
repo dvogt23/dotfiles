@@ -1,4 +1,5 @@
 local map = require('settings.utils').map
+local bmap = require('settings.utils').bmap
 local cmd = vim.cmd
 local g = vim.g
 local fn = vim.fn
@@ -57,7 +58,7 @@ map("n", "gi", ":Implementations<CR>", opts)
 map('n', "gr", ':References<CR>', opts)
 map("n", "gt", ":TypeDefinitions<CR>", opts)
 map("n", "<leader>sa", ":CodeActions<CR>")
-map("v", "<leader>sa", ":lua lua vim.lsp.buf.range_code_action()<CR>")
+map("v", "<leader>sa", ":lua vim.lsp.buf.range_code_action()<CR>")
 map("n", "<leader>sf", ":lua vim.lsp.buf.formatting()<CR>", {})
 map("v", "<leader>sf", ":lua vim.lsp.buf.range_formatting()<CR>")
 map('n', '<leader>srn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -67,7 +68,7 @@ map('n', '<leader>sh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 --map('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
 --map('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 map('n', '<leader>ss', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-map('n', '<leader>sd', ':Diagnostics<CR>', opts)
+map('n', '<leader>sd', ':LspTroubleToggle<CR>', opts)
 map('n', '<leader>sdn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 map('n', '<leader>sdp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 
@@ -76,7 +77,7 @@ map("n", "<leader>ga", ":GitGutterStageHunk<CR>")
 map("n", "<leader>gr", ":GitGutterUndoHunk<CR>")
 map("n", "<leader>gd", ":GitGutterPreviewHunk<CR>")
 map("n", "<leader>gs", ":Gstatus<CR>")
-map("n", "<leader>gbb", ":GitBlameToggle<CR>")
+bmap("n", "<leader>gb", ":GitBlameToggle<CR>", opts)
 map("n", "<leader>gcn", ":ConflictMarkerNextHunk<CR>")
 map("n", "<leader>gcp", ":ConflictMarkerPrevHunk<CR>")
 map("n", "<leader>gco", ":ConflictMarkerOurselves<CR>")
@@ -116,8 +117,8 @@ map("n", "<leader>,", ":Startify<CR>")
 map("n", "<BS>", "<C-^>")
 
 map("v", ".", ":normal .<CR>")
-map("x", "@", ":normal @<CR>")
-map("n", "@", ":normal @<CR>")
+-- map("x", "@", ":normal @<CR>")
+-- map("n", "@", ":normal @<CR>")
 
 -- map("n", "U", "~<Left>")
 -- map("n", "<C-s>", ":noa w<CR>")

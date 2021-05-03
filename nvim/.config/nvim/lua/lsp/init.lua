@@ -20,6 +20,14 @@ require "lsp.diagnostics"
 
 --map("n", "<leader>ff", ":lua vim.lsp.buf.formatting()<CR>", {})
 
+-- vim.cmd('autocmd CursorHold   * lua vim.lsp.buf.document_highlight()')
+-- vim.cmd('autocmd CursorHoldI  * lua vim.lsp.buf.document_highlight()')
+-- vim.cmd('autocmd CursorMoved  * lua vim.lsp.buf.clear_references()')
+-- vim.cmd('autocmd CursorMovedI * lua vim.lsp.buf.clear_references()')
+-- vim.cmd('highlight LspReferenceText ctermbg=red guibg=red')
+-- vim.cmd('highlight LspReferenceRead ctermbg=red guibg=red')
+-- vim.cmd('highlight LspReferenceWrite ctermbg=red guibg=red')
+
 vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
   if err ~= nil or result == nil then
     return

@@ -26,6 +26,9 @@ local lsp = {
   "nvim-lua/plenary.nvim",
   "neovim/nvim-lspconfig",
   "hrsh7th/nvim-compe",
+  "folke/lsp-trouble.nvim",
+  'folke/lsp-colors.nvim',
+  -- "ojroques/nvim-lspfuzzy",
 --  "glepnir/lspsaga.nvim",
   --{"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
 }
@@ -60,6 +63,7 @@ local misk = {
   "tpope/vim-surround",
   "caenrique/nvim-toggle-terminal",
   "rbgrouleff/bclose.vim",
+  'francoiscabrol/ranger.vim',
 }
 
 local fzf = {
@@ -69,7 +73,7 @@ local fzf = {
 }
 
 local langs = {
-  "Galooshi/vim-import-js",
+  -- "Galooshi/vim-import-js",
   "pangloss/vim-javascript",
   "maxmellon/vim-jsx-pretty",
   "editorconfig/editorconfig-vim",
@@ -104,7 +108,8 @@ local themes = {
   "ayu-theme/ayu-vim",
   "romgrk/doom-one.vim",
   "jsit/toast.vim",
-  "joshdick/onedark.vim"
+  "joshdick/onedark.vim",
+  'tiagovla/tokyodark.nvim'
 }
 
 local ui = {

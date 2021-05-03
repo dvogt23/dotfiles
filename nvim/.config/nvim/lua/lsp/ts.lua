@@ -4,6 +4,21 @@ local lspconfig = require "lspconfig"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+local formatters = {
+    prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}},
+    eslint = {
+      command = "./node_modules/.bin/eslint",
+      args = {"--fix-to-stduot", "--stdin", "%filepath"},
+      rootPatterns = {
+        "package.json"
+      }
+    },
+}
+local formatFiletypes = {
+    typescript = "prettier",
+    typescriptreact = "prettier"
+}
+
 local on_attach = function(client, server)
   -- require'completion'.on_attach(client)
 
@@ -19,6 +34,8 @@ end
 -- lspconfig.tsserver.setup{on_attach = on_attach, capabilities = capabilities}
 lspconfig.tsserver.setup {
   on_attach = on_attach,
+  formatFiletypes = formatFiletypes,
+  formatters = formatters,
   filetypes = {
     "javascript",
     "javascriptreact",

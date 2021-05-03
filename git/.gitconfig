@@ -134,7 +134,7 @@
 
     precomposeunicode = false
     autocrlf = input
-    pager = delta | less --tabs=2 -RFX
+    pager = diff-so-fancy | less --tabs=2 -RFX
 
 [delta]
     features = line-numbers decorations files
