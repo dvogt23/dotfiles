@@ -3,7 +3,7 @@ local cmd = vim.cmd
 local exec = vim.api.nvim_exec
 
 -- Auto save files when focus is lost
-cmd "au FocusLost * silent! :wa!"
+-- cmd "au FocusLost * silent! :wa!"
 cmd "au TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 800})"
 --cmd "au BufEnter * set fo-=c fo-=r fo-=o"
 cmd "au TermOpen * setlocal signcolumn=no nonumber norelativenumber"
@@ -14,6 +14,7 @@ cmd "au BufNewFile,BufRead .eslintrc,.prettierrc,tsconfig.json setf json"
 cmd "au BufWritePre * lua vim.lsp.buf.formatting()"
 cmd "au BufWritePost * normal! zv"
 
+cmd "au FileType gitcommit inoremap <buffer>jj <ESC>ZZ"
 cmd "au FileType gitcommit setl spell"
 --cmd "au FileType html,css,scss,javascript,javascriptreact,vue,typescript,typescriptreact EmmetInstall"
 

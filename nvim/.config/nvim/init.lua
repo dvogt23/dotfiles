@@ -3,6 +3,7 @@ require "plugins"
 require "lsp"
 local highlights = require "settings.utils".highlights
 
+vim.cmd 'let g:ranger_map_keys = 0'
 vim.cmd 'let g:gitgutter_map_keys = 0'
 vim.cmd 'colorscheme ayu'
 vim.cmd 'hi VertSplit guifg=DarkGrey'
