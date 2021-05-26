@@ -18,9 +18,13 @@ map("n", "<ESC><ESC>", ":noh<CR>")
 map("n", "<leader>n", ":NvimTreeToggle<CR>") -- TODO
 map("n", "<leader>f", ":Files<CR>")
 map("n", "<leader>r", ":Rg<CR>", opts)
-map("n", "<leader>t", ":ToggleTerminal<CR>", opts)
-map("t", "<leader>t", "<C-\\><C-n>:ToggleTerminal<CR>", opts)
+map("n", "<C-t>", ":ToggleTerminal<CR>", opts)
+map("t", "<C-t>", "<C-\\><C-n>:ToggleTerminal<CR>", opts)
 map("n", "<leader>c", ":Commands<CR>")
+map("n", "<leader>j", ":HopChar1<CR>")
+map("n", "<F12>", ":let @+ = expand('%:p')<CR>")
+map("n", "j", "gj")
+map("n", "k", "gk")
 
 -- Split
 map("n", "<C-J>", "<C-W><C-J>")
@@ -72,12 +76,25 @@ map('n', '<leader>sd', ':LspTroubleToggle<CR>', opts)
 map('n', '<leader>sdn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 map('n', '<leader>sdp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 
+-- SAGA
+-- map("n", "gd", ":lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
+-- map("n", "K", ":lua require'lspsaga.hover'.render_hover_doc()<CR>", opts)
+-- map("n", "gp", ":lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+-- 
+-- map("n", "<leader>sh", ":lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
+-- map("n", "<leader>sa", ":lua require('lspsaga.codeaction').code_action()<CR>", opts)
+-- map("n", "<leader>srn", ":lua  require('lspsaga.rename').rename()<CR>", opts)
+-- map("n", "<leader>ss", ":lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", opts)
+-- map("n", "<leader>sdn", ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
+-- map("n", "<leader>sdp", ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
+
+
 -- Git
 map("n", "<leader>ga", ":GitGutterStageHunk<CR>")
 map("n", "<leader>gr", ":GitGutterUndoHunk<CR>")
 map("n", "<leader>gd", ":GitGutterPreviewHunk<CR>")
 map("n", "<leader>gs", ":Gstatus<CR>")
-bmap("n", "<leader>gb", ":GitBlameToggle<CR>", opts)
+map("n", "<leader>gb", ":GitBlameToggle<CR>", opts)
 map("n", "<leader>gcn", ":ConflictMarkerNextHunk<CR>")
 map("n", "<leader>gcp", ":ConflictMarkerPrevHunk<CR>")
 map("n", "<leader>gco", ":ConflictMarkerOurselves<CR>")
@@ -132,7 +149,7 @@ map("v", ".", ":normal .<CR>")
 -- Copy to system clipboard
 map("v", "<C-c>", '"+y')
 -- Paste from system clipboard with Ctrl + v
-map("i", "<C-v>", '<Esc>"+p')
+-- map("i", "<C-v>", '<Esc>"+p')
 -- Move to the end of yanked text after yank and paste
 map("n", "p", "p`]")
 map("v", "y", "y`]")
@@ -152,11 +169,6 @@ map("n", "<Leader>js", "<C-W>v<C-]>")
 
 map("n", "<Leader>ap", "<Plug>(JsConsoleLog)", {noremap = false})
 cmd [[nnoremap <silent><Plug>(JsConsoleLog) :lua console_log()<CR>]]
-
--- vim-import-js
-map("n", "<Leader>if", ":ImportJSFix<CR>")
-map("n", "<Leader>ii", ":ImportJSWord<CR>")
-map("n", "<Leader>iw", ":ImportJSWord<CR>")
 
 map("n", "<leader>u", ":UndotreeToggle<CR>")
 

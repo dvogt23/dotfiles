@@ -28,9 +28,10 @@ local lsp = {
   "hrsh7th/nvim-compe",
   "folke/lsp-trouble.nvim",
   'folke/lsp-colors.nvim',
+  'folke/todo-comments.nvim',
   -- "ojroques/nvim-lspfuzzy",
---  "glepnir/lspsaga.nvim",
-  --{"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+  -- "glepnir/lspsaga.nvim",
+  {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
 }
 
 local git = {
@@ -64,6 +65,7 @@ local misk = {
   "caenrique/nvim-toggle-terminal",
   "rbgrouleff/bclose.vim",
   'francoiscabrol/ranger.vim',
+  'phaazon/hop.nvim',
 }
 
 local fzf = {
@@ -73,7 +75,6 @@ local fzf = {
 }
 
 local langs = {
-  -- "Galooshi/vim-import-js",
   "pangloss/vim-javascript",
   "maxmellon/vim-jsx-pretty",
   "editorconfig/editorconfig-vim",
@@ -105,11 +106,12 @@ local snippets = {
 local themes = {
   "embark-theme/vim",
   "arcticicestudio/nord-vim",
-  "ayu-theme/ayu-vim",
+  -- "ayu-theme/ayu-vim",
   "romgrk/doom-one.vim",
   "jsit/toast.vim",
   "joshdick/onedark.vim",
-  'tiagovla/tokyodark.nvim'
+  'tiagovla/tokyodark.nvim',
+  'Shatur95/neovim-ayu',
 }
 
 local ui = {
@@ -124,7 +126,7 @@ local ui = {
   "luochen1990/rainbow",
   "terryma/vim-multiple-cursors",
   "easymotion/vim-easymotion",
---  "kyazdani42/nvim-tree.lua",
+  "kyazdani42/nvim-tree.lua",
   "norcalli/nvim-colorizer.lua",
 }
 
