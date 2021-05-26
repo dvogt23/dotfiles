@@ -1,6 +1,28 @@
-vim.cmd[[packadd nvim-tree.lua]]
 
--- Set some variables
+tree_cb = require'nvim-tree.config'.nvim_tree_callback
+vim.g.nvim_tree_bindings = {
+  ["<CR>"]           = tree_cb("edit"),
+  ["<C-CR>"]          = tree_cb("cd"),
+  ["<C-v>"]          = tree_cb("vsplit"),
+  ["<C-x>"]          = tree_cb("split"),
+  ["<C-t>"]          = tree_cb("tabnew"),
+  ["<BS>"]           = tree_cb("close_node"),
+  ["<S-CR>"]         = tree_cb("close_node"),
+  ["<Tab>"]          = tree_cb("preview"),
+  ["I"]              = tree_cb("toggle_ignored"),
+  ["H"]              = tree_cb("toggle_dotfiles"),
+  ["R"]              = tree_cb("refresh"),
+  ["a"]              = tree_cb("create"),
+  ["d"]              = tree_cb("remove"),
+  ["r"]              = tree_cb("rename"),
+  ["<C-r>"]          = tree_cb("full_rename"),
+  ["x"]              = tree_cb("cut"),
+  ["c"]              = tree_cb("copy"),
+  ["p"]              = tree_cb("paste"),
+  ["-"]              = tree_cb("dir_up"),
+  ["q"]              = tree_cb("close"),
+}
+
 vim.g.nvim_tree_side = 'left'
 vim.g.nvim_tree_width = 30
 vim.g.nvim_tree_ignore = {
@@ -14,33 +36,9 @@ vim.g.nvim_tree_hide_dotfiles = 1
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_root_folder_modifier = ':~'
 vim.g.nvim_tree_tab_open = 0
-vim.g.nvim_tree_show_icons = {git = 0, folders = 1, files = 1}
+vim.g.nvim_tree_show_icons = {git = 0, folders = 1, files = 0}
 
--- Mappings for nvimtree
-vim.g.nvim_tree_bindings = {
-  edit = {'<CR>', 'o'},
-  edit_vsplit = '<C-v>',
-  edit_split = '<C-x>',
-  edit_tab = '<C-t>',
-  toggle_ignored = 'I',
-  toggle_dotfiles = 'H',
-  refresh = 'R',
-  preview = '<Tab>',
-  cd = '<Leader>d',
-  create = 'a',
-  remove = 'd',
-  rename = 'r',
-  cut = 'x',
-  copy = 'c',
-  paste = 'p',
-  prev_git_item = '[c',
-  next_git_item = ']c'
-}
-
--- default will show icon by default if no icon is provided
--- default shows no icon by default
 vim.g.nvim_tree_icons = {
-  default = '',
   symlink = '',
 
   git = {
@@ -51,5 +49,13 @@ vim.g.nvim_tree_icons = {
     untracked = "★"
   },
 
-  folder = {default = "", open = " "}
+  -- folder = {default = "", open = " "}
+  folder = {
+   default = "",
+   open = "",
+   empty = "",
+   empty_open = "",
+   symlink = "",
+   symlink_open = "",
+  },
 }

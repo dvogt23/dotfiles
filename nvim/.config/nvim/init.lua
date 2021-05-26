@@ -2,12 +2,20 @@ require "settings"
 require "plugins"
 require "lsp"
 local highlights = require "settings.utils".highlights
+require("todo-comments").setup { }
 
 vim.cmd 'let g:ranger_map_keys = 0'
 vim.cmd 'let g:gitgutter_map_keys = 0'
 vim.cmd 'colorscheme ayu'
-vim.cmd 'hi VertSplit guifg=DarkGrey'
-vim.cmd 'hi BufTabLineActive guibg=bg'
+-- vim.cmd 'hi VertSplit guifg=DarkGrey'
+-- vim.cmd 'hi BufTabLineActive guibg=bg'
+-- vim.cmd 'hi lspReference ctermfg=red guifg=red ctermbg=green guibg=green'
+vim.cmd 'let vim_markdown_preview_pandoc=1'
+vim.cmd 'let vim_markdown_preview_browser="Firefox"'
+
+-- nvim-tree lag on save, turn off git
+vim.g.nvim_tree_git_hl = 0
+
 --highlights({
 --  VertSplit = { fg=DarkGrey },
 --  BufTabLineHidden = { bg=bg }
