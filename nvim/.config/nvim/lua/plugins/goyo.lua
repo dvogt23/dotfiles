@@ -1,0 +1,2 @@
+--vim.cmd "autocmd! User GoyoEnter lua require('galaxyline').disable_galaxyline()"
+--vim.cmd "autocmd! User GoyoLeave lua require('galaxyline').galaxyline_augroup()"
