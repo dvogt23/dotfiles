@@ -13,18 +13,18 @@ apply_globals(
     gitblame_enabled = 0,
     gitblame_message_template = "     <author> • <summary> • <date>",
     lengthmatters_highlight_one_column = 1,
-    clipboard = {
-      name = "macOS-clipboard",
-      copy = {
-        ["+"] = "pbcopy",
-        ["*"] = "pbcopy"
-      },
-      paste = {
-        ["+"] = "pbpaste",
-        ["*"] = "pbpaste"
-      },
-      cache_enabled = 0
-    },
+    -- clipboard = {
+    --   name = "macOS-clipboard",
+    --   copy = {
+    --     ["+"] = "pbcopy",
+    --     ["*"] = "pbcopy"
+    --   },
+    --   paste = {
+    --     ["+"] = "pbpaste",
+    --     ["*"] = "pbpaste"
+    --   },
+    --   cache_enabled = 0
+    -- },
     python_host_prog = "/usr/bin/python",
     python3_host_prog = "/usr/local/bin/python3",
     jsx_ext_required = 1,

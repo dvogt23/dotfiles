@@ -112,6 +112,11 @@ map("n", "<leader>sc", ":CommentToggle<CR>", {noremap = true})
 map("v", "<leader>sc", ":CommentToggle<CR>", {noremap = true})
 map("n", "<leader>gg", ":Goyo<CR>", {noremap = true})
 
+map("n", "<leader>ps", ":PackerSync<CR>", {noremap = true})
+map("n", "<leader>pu", ":PackerUpdate<CR>", {noremap = true})
+map("n", "<CR>", "o<ESC>")
+map("n", "<S-CR>", "O<ESC>")
+
 -- remove annoying exmode
 map("n", "Q", "<Nop>", {noremap = true})
 map("n", "q:", "<Nop>", {noremap = true})
