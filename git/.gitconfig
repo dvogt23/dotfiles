@@ -181,9 +181,7 @@
     tool = icdiff
 
 [help]
-
-# Automatically correct and execute mistyped commands
-    autocorrect = 1
+    autocorrect = 7
 
 [merge]
 

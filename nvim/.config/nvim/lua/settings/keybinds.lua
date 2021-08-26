@@ -10,14 +10,15 @@ map("n", "<Space>", "<Nop>", { noremap = true})
 g.mapleader = " "
 
 map("n", "<leader>q", ":q!<CR>")
+map("n", "<leader>qq", ":qa!<CR>")
 map("i", "jj", "<ESC>")
 map("i", "jk", "<ESC>")
 map("n", "<ESC><ESC>", ":noh<CR>")
 
 -- UI
 map("n", "<leader>n", ":NvimTreeToggle<CR>") -- TODO
-map("n", "<leader>f", ":Files<CR>")
-map("n", "<leader>r", ":Rg<CR>", opts)
+map("n", "<leader>f", ":lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<CR>")
+map("n", "<leader>r", ":lua require'telescope.builtin'.live_grep()<CR>", opts)
 map("n", "<C-t>", ":ToggleTerminal<CR>", opts)
 map("t", "<C-t>", "<C-\\><C-n>:ToggleTerminal<CR>", opts)
 map("n", "<leader>c", ":Commands<CR>")
@@ -110,7 +111,7 @@ map("i", "<C-H>", "<Esc>/<++><CR><Esc><Esc>cf>")
 
 map("n", "<leader>sc", ":CommentToggle<CR>", {noremap = true})
 map("v", "<leader>sc", ":CommentToggle<CR>", {noremap = true})
-map("n", "<leader>gg", ":Goyo<CR>", {noremap = true})
+map("n", "<leader>gg", ":TZAtaraxis<CR>", {noremap = true})
 
 map("n", "<leader>ps", ":PackerSync<CR>", {noremap = true})
 map("n", "<leader>pu", ":PackerUpdate<CR>", {noremap = true})

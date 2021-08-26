@@ -20,8 +20,8 @@ local init = {
 }
 
 local lsp = {
---  "nvim-telescope/telescope.nvim",
---  "nvim-telescope/telescope-fzy-native.nvim",
+ "nvim-telescope/telescope.nvim",
+ "nvim-telescope/telescope-fzy-native.nvim",
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
   "neovim/nvim-lspconfig",
@@ -66,6 +66,7 @@ local misk = {
   "rbgrouleff/bclose.vim",
   'francoiscabrol/ranger.vim',
   'phaazon/hop.nvim',
+  'kristijanhusak/orgmode.nvim',
 }
 
 local fzf = {
@@ -107,11 +108,13 @@ local themes = {
   "embark-theme/vim",
   "arcticicestudio/nord-vim",
   -- "ayu-theme/ayu-vim",
-  "romgrk/doom-one.vim",
+  -- "romgrk/doom-one.vim",
   "jsit/toast.vim",
   "joshdick/onedark.vim",
   'tiagovla/tokyodark.nvim',
   'Shatur95/neovim-ayu',
+  'NTBBloodbath/doom-one.nvim',
+  'folke/tokyonight.nvim',
 }
 
 local ui = {
@@ -120,7 +123,8 @@ local ui = {
   --"akinsho/nvim-bufferline.lua",
   "ap/vim-buftabline",
   "glepnir/galaxyline.nvim",
-  "junegunn/goyo.vim",
+  "Pocco81/TrueZen.nvim",
+  -- "junegunn/goyo.vim",
   --"arecarn/vim-fold-cycle",
   "dhruvasagar/vim-zoom",
   "luochen1990/rainbow",
