@@ -7,6 +7,7 @@ local filetypes = {
     typescript = "eslint",
     typescriptreact = "eslint",
 }
+
 local linters = {
     eslint = {
         sourceName = "eslint",
@@ -62,6 +63,7 @@ local formatters = {
 }
 
 local formatFiletypes = {
+    javascript = "prettier",
     typescript = "prettier",
     typescriptreact = "prettier"
 }
@@ -77,30 +79,30 @@ lsp.handlers["textDocument/publishDiagnostics"] =
     }
   )
 
--- lspconfig.diagnosticls.setup(
---   {
---       on_attach = on_attach,
---       filetypes = vim.tbl_keys(filetypes),
---       init_options = {
---           filetypes = {
---             "markdown",
---             "javascript",
---             "typescript",
---             "javascriptreact",
---             "typescriptreact",
---             "javascript.jsx",
---             "typescript.tsx",
---             "css",
---             "scss",
---             "sass",
---             "lua"
---           },
---           linters = linters,
---           formatters = formatters,
---           formatFiletypes = formatFiletypes
---       }
---   }
--- )
+lspconfig.diagnosticls.setup(
+  {
+      on_attach = on_attach,
+      filetypes = vim.tbl_keys(filetypes),
+      init_options = {
+          filetypes = {
+            "markdown",
+            "javascript",
+            "typescript",
+            "javascriptreact",
+            "typescriptreact",
+            "javascript.jsx",
+            "typescript.tsx",
+            "css",
+            "scss",
+            "sass",
+            "lua"
+          },
+          -- linters = linters,
+          formatters = formatters,
+          formatFiletypes = formatFiletypes
+      }
+  }
+)
 -- lspconfig.diagnosticls.setup(
 --   {
 --     filetypes = {

@@ -1,9 +1,7 @@
-local g = vim.g
 local cmd = vim.cmd
 local apply_globals = require "settings.utils".apply_globals
 
 cmd "filetype plugin indent on"
--- cmd('')
 
 apply_globals(
   {
@@ -71,7 +69,6 @@ apply_globals(
     vsnip_filetypes = {
       javascriptreact = {"javascript", "html"},
       typescriptreact = {"typescript", "html"},
-      vue = {"vue", "javascript", "html"}
     },
     -- vim-test
     ["test#strategy"] = "floaterm",
@@ -91,7 +88,6 @@ apply_globals(
     loaded_vimball = 1,
     loaded_vimballPlugin = 1,
     loaded_matchit = 1,
-    -- loaded_matchparen = 1,
     loaded_2html_plugin = 1,
     loaded_logiPat = 1,
     loaded_rrhelper = 1,
@@ -99,7 +95,6 @@ apply_globals(
     loaded_netrwPlugin = 1,
     loaded_netrwSettings = 1,
     loaded_netrwFileHandlers = 1,
-    vue_pre_processors = {"pug", "scss"},
     matchup_matchparen_timeout = 100,
     matchup_matchparen_deferred = 1,
     matchup_matchparen_deferred_show_delay = 150,

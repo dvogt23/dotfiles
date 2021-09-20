@@ -4,7 +4,8 @@
 
 local map = vim.api.nvim_set_keymap
 
-require "lsp.compe"
+-- require "lsp.compe"
+require "lsp.cmp"
 require "lsp.ts"
 require "lsp.html"
 require "lsp.css"
@@ -30,22 +31,22 @@ require "lsp.ruby"
 -- vim.cmd('highlight LspReferenceRead ctermbg=red guibg=red')
 -- vim.cmd('highlight LspReferenceWrite ctermbg=red guibg=red')
 
-vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
-  if err ~= nil or result == nil then
-    return
-  end
-  if not vim.bo[bufnr].modified then
-    local view = vim.fn.winsaveview()
-    vim.lsp.util.apply_text_edits(result, bufnr)
-    vim.fn.winrestview(view)
-    if bufnr == vim.api.nvim_get_current_buf() then
-      vim.cmd("noautocmd :update")
-    end
-  end
-end
-
-Custom_capabilities = function()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return capabilities
-end
+-- vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
+--   if err ~= nil or result == nil then
+--     return
+--   end
+--   if not vim.bo[bufnr].modified then
+--     local view = vim.fn.winsaveview()
+--     vim.lsp.util.apply_text_edits(result, bufnr)
+--     vim.fn.winrestview(view)
+--     if bufnr == vim.api.nvim_get_current_buf() then
+--       vim.cmd("noautocmd :update")
+--     end
+--   end
+-- end
+-- 
+-- Custom_capabilities = function()
+--   local capabilities = vim.lsp.protocol.make_client_capabilities()
+--   capabilities.textDocument.completion.completionItem.snippetSupport = true
+--   return capabilities
+-- end

@@ -31,6 +31,7 @@ local on_attach = function(client, server)
 
   print("'" .. client.name .. "' server attached")
 end
+
 local function organize_imports()
   local params = {
     command = "_typescript.organizeImports",
@@ -39,32 +40,32 @@ local function organize_imports()
   }
   vim.lsp.buf.execute_command(params)
 end
--- lspconfig.tsserver.setup{on_attach = on_attach, capabilities = capabilities}
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  formatFiletypes = formatFiletypes,
-  formatters = formatters,
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx"
-  },
-  commands = {
-    OrganizeImports = {
-      organize_imports,
-      description = "Organize Imports"
-    }
-  },
-  capabilities = {
-    textDocument = {
-      completion = {
-        completionItem = {
-          snippetSupport = true
-        }
-      }
-    }
-  }
-}
+lspconfig.tsserver.setup{on_attach = on_attach, capabilities = capabilities}
+-- lspconfig.tsserver.setup({
+--   on_attach = on_attach,
+--   -- -- formatFiletypes = formatFiletypes,
+--   -- -- formatters = formatters,
+--   -- filetypes = {
+--   --   "javascript",
+--   --   "javascriptreact",
+--   --   "javascript.jsx",
+--   --   "typescript",
+--   --   "typescriptreact",
+--   --   "typescript.tsx"
+--   -- },
+--   commands = {
+--     OrganizeImports = {
+--       organize_imports,
+--       description = "Organize Imports"
+--     }
+--   },
+--   capabilities = {
+--     textDocument = {
+--       completion = {
+--         completionItem = {
+--           snippetSupport = true
+--         }
+--       }
+--     }
+--   }
+-- })

@@ -25,7 +25,7 @@ local lsp = {
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
   "neovim/nvim-lspconfig",
-  "hrsh7th/nvim-compe",
+  -- "hrsh7th/nvim-compe",
   "folke/lsp-trouble.nvim",
   'folke/lsp-colors.nvim',
   'folke/todo-comments.nvim',
@@ -77,7 +77,7 @@ local fzf = {
 
 local langs = {
   "pangloss/vim-javascript",
-  "maxmellon/vim-jsx-pretty",
+  -- "maxmellon/vim-jsx-pretty",
   "editorconfig/editorconfig-vim",
   "vimwiki/vimwiki",
   "michal-h21/vim-zettel",
@@ -86,6 +86,7 @@ local langs = {
   "plasticboy/vim-markdown",
   "JamshedVesuna/vim-markdown-preview",
   "fatih/vim-go",
+  "jose-elias-alvarez/nvim-lsp-ts-utils",
   {"rust-lang/rust.vim", ft = 'rust'},
   {"arzg/vim-rust-syntax-ext", ft ='rust'},
   {"vim-ruby/vim-ruby", ft = 'ruby'},
@@ -95,6 +96,28 @@ local langs = {
   "tpope/vim-bundler",
   {"Keithbsmiley/rspec.vim", ft = 'ruby'},
   {"thoughtbot/vim-rspec", ft = 'ruby'},
+  "ray-x/lsp_signature.nvim",
+  "sindrets/diffview.nvim",
+  "hrsh7th/nvim-cmp",
+        requires = {
+            "hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp",
+            'quangnguyen30192/cmp-nvim-ultisnips', 'hrsh7th/cmp-nvim-lua',
+            'octaltree/cmp-look', 'hrsh7th/cmp-path', 'hrsh7th/cmp-calc',
+            'f3fora/cmp-spell', 'hrsh7th/cmp-emoji'
+        },
+  -- {
+  --     "windwp/nvim-autopairs",
+  --     run = "make",
+  --     config = function()
+  --       require("nvim-autopairs").setup {}
+  --     end,
+  -- },
+  {
+      "onsails/lspkind-nvim",
+      config = function()
+        require("lspkind").init()
+      end,
+  }
 }
 
 local snippets = {

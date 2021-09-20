@@ -24,7 +24,8 @@ require "compe".setup {
     treesitter = {menu = " "},
     spell = true,
     calc = true,
-    tags = true
+    tags = true,
+    orgmode = true,
     -- omni = true
   }
 }

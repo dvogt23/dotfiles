@@ -20,8 +20,8 @@ true_zen.setup({
 	},
 	modes = {
 		ataraxis = {
-			left_padding = 32,
-			right_padding = 32,
+			left_padding = 8,
+			right_padding = 8,
 			top_padding = 1,
 			bottom_padding = 1,
 			ideal_writing_area_width = {0},
