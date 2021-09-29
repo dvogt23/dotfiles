@@ -1,7 +1,6 @@
 vim.cmd 'let g:ranger_map_keys = 0'
 vim.cmd 'let g:gitgutter_map_keys = 0'
 -- vim.g.tokyonight_style = "night"
---vim.cmd 'colorscheme doom-one'
 -- vim.cmd 'hi VertSplit guifg=DarkGrey'
 -- vim.cmd 'hi BufTabLineActive guibg=bg'
 -- vim.cmd 'hi lspReference ctermfg=red guifg=red ctermbg=green guibg=green'
@@ -27,12 +26,6 @@ vim.cmd 'let g:NERDCreateDefaultMappings = 0'
 vim.cmd 'hi HopNextKey guifg=red'
 vim.cmd 'hi HopNextKey1 guifg=red'
 vim.cmd 'hi HopNextKey2 guifg=red'
-
-vim.cmd 'let g:gitgutter_sign_added = "▌"'
-vim.cmd 'let g:gitgutter_sign_modified = "▌"'
-vim.cmd 'let g:gitgutter_sign_removed = "▁"'
-vim.cmd 'let g:gitgutter_sign_removed_first_line = "▌"'
-vim.cmd 'let g:gitgutter_sign_modified_removed = "▌"'
 
 vim.api.nvim_exec(
 [[

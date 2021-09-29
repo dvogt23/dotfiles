@@ -15,7 +15,7 @@ function M.setup()
 
     -- Development
     use { "tpope/vim-dispatch" }
-    use { "tpope/vim-fugitive" }
+    -- use { "tpope/vim-fugitive" }
     use { "tpope/vim-surround" }
     use { "tpope/vim-commentary" }
     use { "tpope/vim-rhubarb" }
@@ -26,13 +26,14 @@ function M.setup()
     use {
       "lewis6991/gitsigns.nvim",
       config = function()
-        require("gitsigns").setup()
+        require("config.sign").setup()
       end,
     }
     use { "f-person/git-blame.nvim" }
     use { "sindrets/diffview.nvim" }
     use { "ap/vim-buftabline" }
     use {"junegunn/fzf", run = ":call fzf#install()" }
+    use { "junegunn/fzf.vim" }
 
     use {
       "gfanto/fzf-lsp.nvim"
@@ -74,30 +75,29 @@ function M.setup()
         require("nvim-web-devicons").setup { default = true }
       end,
     }
-    use { "folke/lsp-colors.nvim" }
 
     -- Telescope
-    use { "nvim-lua/plenary.nvim" }
-    use { "nvim-lua/popup.nvim" }
-    use {
-      "nvim-telescope/telescope.nvim",
-      requires = {
-        "nvim-telescope/telescope-project.nvim",
-        "nvim-telescope/telescope-symbols.nvim",
-        -- 'nvim-telescope/telescope-github.nvim',
-        -- 'nvim-telescope/telescope-hop.nvim'
-      },
-      config = function()
-        require("config.telescope").setup()
-      end,
-    }
-    use {
-      "nvim-telescope/telescope-frecency.nvim",
-      requires = { "tami5/sql.nvim" },
-      config = function()
-        require("telescope").load_extension "frecency"
-      end,
-    }
+    -- use { "nvim-lua/plenary.nvim" }
+    -- use { "nvim-lua/popup.nvim" }
+    -- use {
+    --   "nvim-telescope/telescope.nvim",
+    --   requires = {
+    --     "nvim-telescope/telescope-project.nvim",
+    --     "nvim-telescope/telescope-symbols.nvim",
+    --     -- 'nvim-telescope/telescope-github.nvim',
+    --     -- 'nvim-telescope/telescope-hop.nvim'
+    --   },
+    --   config = function()
+    --     require("config.telescope").setup()
+    --   end,
+    -- }
+    -- use {
+    --   "nvim-telescope/telescope-frecency.nvim",
+    --   requires = { "tami5/sql.nvim" },
+    --   config = function()
+    --     require("telescope").load_extension "frecency"
+    --   end,
+    -- }
 
     -- LSP config
     use { "neovim/nvim-lspconfig" }
@@ -134,12 +134,6 @@ function M.setup()
       requires = "hrsh7th/nvim-cmp",
     }
     use {
-      "glepnir/lspsaga.nvim",
-      config = function()
-        require("config.lspsaga").setup()
-      end,
-    }
-    use {
       "onsails/lspkind-nvim",
       config = function()
         require("lspkind").init()
@@ -147,19 +141,13 @@ function M.setup()
     }
     use { "sbdchd/neoformat" }
     use { "p00f/nvim-ts-rainbow" }
-    use { "ray-x/lsp_signature.nvim" }
     use { "szw/vim-maximizer" }
-    -- use {'dbeniamine/cheat.sh-vim'}
-    -- use {'dyng/ctrlsf.vim'}
-    -- use {'pechorin/any-jump.vim'}
-    use { "kshenoy/vim-signature" }
-    use { "kevinhwang91/nvim-bqf" }
-    use { "andymass/vim-matchup" }
     use {
       "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
       config = function()
-        require("trouble").setup {}
-      end,
+        require("trouble").setup()
+      end
     }
     use {
       "mfussenegger/nvim-ts-hint-textobject",

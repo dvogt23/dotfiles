@@ -38,7 +38,7 @@ function M.lsp_attach(client, bufnr)
 
     -- formatting
     enable_formatting = false,
-    formatter = "prettier",
+    --formatter = "prettier",
     formatter_opts = {},
 
     -- update imports on file move

@@ -52,23 +52,14 @@ function M.lsp_highlight(client, bufnr)
 end
 
 function M.lsp_config(client, bufnr)
-  require("lsp_signature").on_attach {
-    bind = true,
-    handler_opts = { border = "single" },
-  }
-
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(...)
   end
   buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- Key mappings
-  local lspkeymappings = require "keymappings"
-  lspkeymappings.setup_lsp_mappings()
-
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
-  end
+  -- if client.resolved_capabilities.document_formatting then
+  --   vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
+  -- end
 end
 
 function M.lsp_init(client, bufnr)
