@@ -30,6 +30,7 @@ function M.setup()
       end,
     }
     use { "f-person/git-blame.nvim" }
+    use { "rhysd/conflict-marker.vim" }
     use { "sindrets/diffview.nvim" }
     use { "ap/vim-buftabline" }
     use {"junegunn/fzf", run = ":call fzf#install()" }
@@ -68,7 +69,6 @@ function M.setup()
     -- Color scheme
     use { 'tiagovla/tokyodark.nvim'}
     use { 'folke/tokyonight.nvim' }
-    use { 'NTBBloodbath/doom-one.nvim'}
     use {
       "kyazdani42/nvim-web-devicons",
       config = function()
@@ -263,14 +263,19 @@ function M.setup()
     use {"mogelbrod/vim-jsonpath"}
 
     -- Vimwiki
-    use {"vimwiki/vimwiki"}
+    use {
+      "vimwiki/vimwiki",
+      config = function()
+        require('config.vimwiki').setup()
+      end
+    }
     use {"michal-h21/vim-zettel"}
-    use {"masukomi/vim-markdown-folding"}
 
 
     -- Markdown
     use { "iamcco/markdown-preview.nvim", run = "cd app && yarn install" }
     use { "plasticboy/vim-markdown" }
+    use {"masukomi/vim-markdown-folding"}
 
     -- Note taking
     use {

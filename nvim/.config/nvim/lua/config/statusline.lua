@@ -18,7 +18,7 @@ function M.setup()
       ViMode = {
         provider = function()
           -- auto change color according the vim mode
-          local mode_color = {n = colors.red, i = colors.green,v=colors.blue,
+          local mode_color = {n = colors.yellow, i = colors.green,v=colors.blue,
                               [''] = colors.blue,V=colors.blue,
                               c = colors.magenta,no = colors.red,s = colors.orange,
                               S=colors.orange,[''] = colors.orange,

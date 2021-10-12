@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+    require'nvim-tree'.setup()
 
     tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
@@ -37,7 +38,8 @@ function M.setup()
     vim.g.nvim_tree_follow = 1
     vim.g.nvim_tree_indent_markers = 1
     vim.g.nvim_tree_hide_dotfiles = 1
-    vim.g.nvim_tree_git_hl = 1
+    vim.g.nvim_tree_gitignore = 0
+    vim.g.nvim_tree_git_hl = 0
     vim.g.nvim_tree_root_folder_modifier = ':~'
     vim.g.nvim_tree_tab_open = 0
     vim.g.nvim_tree_show_icons = {git = 0, folders = 1, files = 0}

@@ -12,6 +12,9 @@ vim.cmd 'hi VimwikiHeader3 guifg=black guibg=lightgrey'
 vim.cmd 'hi VimwikiHeader4 guifg=black guibg=red'
 vim.cmd 'hi VimwikiHeader5 guifg=black guibg=blue'
 vim.cmd 'hi VimwikiHeader6 guifg=black guibg=pink'
+vim.cmd 'hi markdownH1 guifg=black guibg=pink'
+vim.cmd 'hi markdownH2 guifg=black guibg=pink'
+vim.cmd 'autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70'
 
 -- nvim-tree lag on save, turn off git
 vim.g.nvim_tree_git_hl = 0
