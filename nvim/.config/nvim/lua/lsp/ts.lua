@@ -21,6 +21,7 @@ local formatFiletypes = {
 
 local on_attach = function(client, server)
   -- require'completion'.on_attach(client)
+  -- require'virtualtypes'.on_attach(client)
 
   -- let efm server handles linting and formatting stuff
   if server == "efm" then

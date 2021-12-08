@@ -53,6 +53,8 @@ function M.lsp_attach(client, bufnr)
 
   -- required to fix code action ranges and filter diagnostics
   ts_utils.setup_client(client)
+
+  local opts = { silent = true }
 end
 
 CONFIG = {

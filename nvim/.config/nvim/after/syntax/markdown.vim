@@ -1,3 +1,9 @@
+syntax match VimwikiListTodo '\v(\s+)?(-|\*)\s\[\s\]'hs=e-2 conceal cchar=☐
+syntax match VimwikiListTodo '\v(\s+)?(-|\*)\s\[X\]'hs=e-2 conceal cchar=✓
+syntax match VimwikiListTodo '\v(\s+)?(-|\*)\s\[-\]'hs=e-2 conceal cchar=𐄂
+syntax match VimwikiListTodo '\v(\s+)?(-|\*)\s\[\.\]'hs=e-2 conceal cchar=⊡
+syntax match VimwikiListTodo '\v(\s+)?(-|\*)\s\[o\]'hs=e-2 conceal cchar=⬕
+
 syntax region htmlH1 matchgroup=Type start="#\ " end="$" concealends
 syntax region htmlH2 matchgroup=Type start="##\ " end="$" concealends
 syntax region htmlH3 matchgroup=Type start="###\ " end="$" concealends

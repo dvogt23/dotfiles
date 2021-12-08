@@ -15,7 +15,7 @@ function M.setup()
 
     -- Development
     use { "tpope/vim-dispatch" }
-    -- use { "tpope/vim-fugitive" }
+    use { "tpope/vim-fugitive" }
     use { "tpope/vim-surround" }
     use { "tpope/vim-commentary" }
     use { "tpope/vim-rhubarb" }
@@ -30,6 +30,13 @@ function M.setup()
       end,
     }
     use { "f-person/git-blame.nvim" }
+    use {
+      'TimUntersberger/neogit',
+      requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require("neogit").setup {}
+      end,
+    }
     use { "rhysd/conflict-marker.vim" }
     use { "sindrets/diffview.nvim" }
     use { "ap/vim-buftabline" }
@@ -100,8 +107,10 @@ function M.setup()
     -- }
 
     -- LSP config
-    use { "neovim/nvim-lspconfig" }
-    use { "kabouzeid/nvim-lspinstall" }
+    use {
+      'neovim/nvim-lspconfig',
+      'williamboman/nvim-lsp-installer',
+    }
     use {
       "tamago324/nlsp-settings.nvim",
       config = function()
@@ -115,7 +124,6 @@ function M.setup()
       requires = {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-nvim-lsp",
-        "quangnguyen30192/cmp-nvim-ultisnips",
         "hrsh7th/cmp-nvim-lua",
         "octaltree/cmp-look",
         "hrsh7th/cmp-path",
@@ -128,6 +136,9 @@ function M.setup()
         require("config.cmp").setup()
       end,
     }
+    use { "L3MON4D3/LuaSnip" }
+
+    -- use { 'jubnzv/virtual-types.nvim' }
     use {
       "tzachar/cmp-tabnine",
       run = "./install.sh",
@@ -176,17 +187,7 @@ function M.setup()
       requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     }
 
-    use {
-      "SirVer/ultisnips",
-      requires = { "honza/vim-snippets" },
-      config = function()
-        vim.g.UltiSnipsRemoveSelectModeMappings = 0
-      end,
-    }
-  use {"hrsh7th/vim-vsnip"}
-  use {"hrsh7th/vim-vsnip-integ"}
-  use {"mlaursen/vim-react-snippets"}
-  use {"dsznajder/vscode-es7-javascript-react-snippets"}
+    use {"dsznajder/vscode-es7-javascript-react-snippets"}
 
     -- Lua development
     use { "folke/lua-dev.nvim" }
@@ -278,15 +279,15 @@ function M.setup()
     use {"masukomi/vim-markdown-folding"}
 
     -- Note taking
-    use {
-      'kristijanhusak/orgmode.nvim',
-      config = function()
-        require('orgmode').setup({
-          org_agenda_files = {'~/Notes/*'},
-          org_default_notes_file = '~/Notes/README.org',
-        })
-      end
-    }
+    -- use {
+    --   'kristijanhusak/orgmode.nvim',
+    --   config = function()
+    --     require('orgmode').setup({
+    --       org_agenda_files = {'~/Notes/*'},
+    --       org_default_notes_file = '~/Notes/README.org',
+    --     })
+    --   end
+    -- }
     --use {
     --  "vhyrro/neorg",
     --  config = function()

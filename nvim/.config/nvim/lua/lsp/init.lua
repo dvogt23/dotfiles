@@ -1,4 +1,3 @@
-require "lsp.cmp"
 require "lsp.ts"
 require "lsp.html"
 require "lsp.css"

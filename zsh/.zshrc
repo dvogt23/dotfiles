@@ -2,52 +2,27 @@ export ZDOTDIR=$HOME/.zsh
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zsh/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
-    command mkdir -p "$HOME/.zsh/.zinit" && command chmod g-rwX "$HOME/.zsh/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zsh/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+if [[ ! -f ~/.zpm/zpm.zsh ]]; then
+  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
 fi
+source ~/.zpm/zpm.zsh
 
-source "$HOME/.zsh/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
+# Plugins
+zpm load zsh-users/zsh-completions,async
+zpm load \
+  zpm-zsh/core-config         \
+  zpm-zsh/ignored-users,async \
+  zpm-zsh/check-deps,async    \
+  zpm-zsh/ls,async            \
+  zpm-zsh/colorize,async      \
+  zpm-zsh/ssh,async           \
+  zpm-zsh/dot,async           \
+  zpm-zsh/zsh-history-substring-search,async          \
+  zpm-zsh/zsh-autosuggestions,async                   \
+  zdharma-continuum/fast-syntax-highlighting,async    \
+  zdharma-continuum/history-search-multi-word,fpath:/,async
 
-# zinit
-zinit ice wait lucid blockf atpull'zinit creinstall -q .'
-zinit light zsh-users/zsh-completions
-
-zinit snippet OMZ::lib/completion.zsh
-
-zinit snippet OMZ::lib/key-bindings.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-
-zinit ice as"completion"
-zinit snippet OMZ::plugins/fd/_fd
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh 
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/globalias/globalias.plugin.zsh
-
-zinit ice wait'1' lucid
-zinit light wfxr/forgit
-
+zpm load wfxr/forgit
 forgit_log=glof
 forgit_diff=gdf
 forgit_add=gaf
@@ -57,28 +32,30 @@ forgit_restore=gcf
 forgit_clean=gclean
 forgit_stash_show=gsf
 
-zinit ice wait lucid atload'zicompinit; zicdreplay'
-zinit light zdharma/fast-syntax-highlighting
+zpm load ajeetdsouza/zoxide
 
-zinit light ajeetdsouza/zoxide
+zpm load @omz
+zpm load                \
+  @omz-lib/compfix      \
+  @omz-lib/completion   \
+  @omz-lib/directories  \
+  @omz-lib/functions    \
+  @omz-lib/git          \
+  @omz-lib/grep         \
+  @omz-lib/history      \
+  @omz-lib/key-bindings \
+  @omz-lib/misc
 
-# Auto manage zplug
-# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-# zplug "plugins/brew-cask", from:oh-my-zsh
-# zplug "plugins/osx", from:oh-my-zsh
-# zplug "plugins/pod", from:oh-my-zsh
+zpm load          \
+  @omz/virtualenv \
+  @omz/git        \
+  @omz/colored-man-pages        \
+  @omz/fzf        \
+  @omz/yarn       \
+  @omz/rsync      \
+  @omz/globalias
 
-# # From oh-my-zsh
-# zplug "plugins/globalias", from:oh-my-zsh
-# zplug "plugins/git", from:oh-my-zsh
-# zplug "plugins/colored-man-pages", from:oh-my-zsh
-# # zplug "plugins/cargo", from:oh-my-zsh
-# zplug "lib/key-bindings", from:oh-my-zsh
-# zplug "lib/completion", from:oh-my-zsh
-
-# # From Github
-# zplug "zpm-zsh/zpm", use:"plugins/{cd,git,zsh-core}"
-# zplug "zsh-users/zsh-completions"
+bindkey "ç" fzf-cd-widget
 
 # Theme
 eval "$(starship init zsh)"
@@ -95,10 +72,10 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^o' vi-cmd-mode
 
 # Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
+#bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -119,3 +96,6 @@ for config ($ZDOTDIR/**/*.zsh) source $config
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+eval "$(rbenv init -)"

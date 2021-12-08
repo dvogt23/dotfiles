@@ -13,12 +13,14 @@ map("n", "<leader>q", ":q!<CR>")
 map("n", "<leader>qq", ":qa!<CR>")
 map("i", "jj", "<ESC>")
 map("i", "jk", "<ESC>")
+map("v", "jk", "<ESC>")
 map("n", "<ESC><ESC>", ":noh<CR>")
 
 -- UI
-map("n", "<leader>n", ":NvimTreeToggle<CR>") -- TODO
+map("n", "<leader>n", ":NvimTreeFindFileToggle<CR>")
 map("n", "<leader>f", ":Files<CR>")
 map("n", "<leader>r", ":Rg<CR>", opts)
+map("n", "<leader>rr", ":Rg <C-R><C-W><CR>", opts) -- search for word under cursor
 map("n", "<C-t>", ":ToggleTerminal<CR>", opts)
 map("t", "<C-t>", "<C-\\><C-n>:ToggleTerminal<CR>", opts)
 map("n", "<leader>c", ":Commands<CR>")
@@ -26,6 +28,8 @@ map("n", "<leader>j", ":HopChar1<CR>")
 map("n", "<F12>", ":let @+ = expand('%:p')<CR>")
 map("n", "j", "gj")
 map("n", "k", "gk")
+map("n", "+", "<C-a>")
+map("n", "-", "<C-x>")
 
 -- Split
 map("n", "<C-J>", "<C-W><C-J>")
@@ -48,6 +52,7 @@ map("n", "L", "xp", {noremap = true})
 map("n", "H", "Xph", {noremap = true})
 
 -- Buffer
+map("n", "<leader><leader>", "<C-^>")
 map("n", "<leader>l", ":bnext<CR>")
 map("n", "<leader>h", ":bprev<CR>")
 map("n", "<leader>d", ":bd<CR>")
@@ -89,6 +94,7 @@ map('n', '<leader>sdp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 -- map("n", "<leader>sdp", ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
 
 -- Git
+map("n", "<leader>gg", ":lua require'neogit'.open({commit})<CR>")
 map("n", "<leader>ga", ":lua require'gitsigns'.stage_hunk()<CR>")
 map("n", "<leader>gr", ":lua require'gitsigns'.reset_hunk()<CR>")
 map("n", "<leader>gd", ":lua require'gitsigns'.preview_hunk()<CR>")
@@ -112,7 +118,7 @@ map("i", "<C-H>", "<Esc>/<++><CR><Esc><Esc>cf>")
 
 map("n", "<leader>sc", ":Commentary<CR>", {noremap = true})
 map("v", "<leader>sc", ":Commentary<CR>", {noremap = true})
-map("n", "<leader>gg", ":TZAtaraxis<CR>", {noremap = true})
+map("n", "<leader>gf", ":TZAtaraxis<CR>", {noremap = true})
 
 map("n", "<leader>ps", ":PackerSync<CR>", {noremap = true})
 map("n", "<leader>pu", ":PackerUpdate<CR>", {noremap = true})

@@ -1,15 +1,12 @@
 local M = {}
 
 function M.setup()
-  local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
-  local check_back_space = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" ~= nil
-  end
-
+  local luasnip = require("luasnip")
   local cmp = require "cmp"
 
   cmp.setup {
@@ -21,16 +18,14 @@ function M.setup()
         vim_item.menu = ({
           buffer = "[Buffer]",
           nvim_lsp = "[LSP]",
-          ultisnips = "[UltiSnips]",
+          luasnip = "[Luasnip]",
           nvim_lua = "[Lua]",
-          cmp_tabnine = "[TabNine]",
-          look = "[Look]",
+          tabnine = "[TabNine]",
           path = "[Path]",
           spell = "[Spell]",
           calc = "[Calc]",
           emoji = "[Emoji]",
           treesitter = "[treesitter]",
-          -- neorg = "[Neorg]",
         })[entry.source.name]
         return vim_item
       end,
@@ -43,94 +38,59 @@ function M.setup()
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-e>"] = cmp.mapping.close(),
+      ['<C-Space>'] = cmp.mapping.complete(),
       ["<CR>"] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       },
-      ["<C-Space>"] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-            return vim.fn.feedkeys(t "<C-R>=UltiSnips#ExpandSnippet()<CR>")
-          end
-          vim.fn.feedkeys(t "<C-n>", "n")
-        elseif check_back_space() then
-          vim.fn.feedkeys(t "<cr>", "n")
-        else
-          fallback()
-        end
-      end, {
-        "i",
-        "s",
-      }),
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        if vim.fn.complete_info()["selected"] == -1 and vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-          vim.fn.feedkeys(t "<C-R>=UltiSnips#ExpandSnippet()<CR>")
-        elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-          vim.fn.feedkeys(t "<ESC>:call UltiSnips#JumpForwards()<CR>")
-        elseif vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(t "<C-n>", "n")
-        elseif check_back_space() then
-          vim.fn.feedkeys(t "<tab>", "n")
-        else
-          fallback()
-        end
-      end, {
-        "i",
-        "s",
-      }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-          return vim.fn.feedkeys(t "<C-R>=UltiSnips#JumpBackwards()<CR>")
-        elseif vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(t "<C-p>", "n")
-        else
-          fallback()
-        end
-      end, {
-        "i",
-        "s",
-      }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
     },
     snippet = {
       expand = function(args)
-        vim.fn["UltiSnips#Anon"](args.body)
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
       end,
     },
-    sources = {
-      { name = "buffer" },
-      { name = "nvim_lsp" },
-      { name = "ultisnips" },
-      { name = "nvim_lua" },
-      { name = "look" },
-      { name = "path" },
-      { name = "calc" },
-      { name = "spell" },
-      { name = "emoji" },
-      { name = "treesitter" },
-      --{ name = "neorg" },
-      -- {name = 'cmp_tabnine'}
-    },
+    sources = cmp.config.sources({
+        {name = 'buffer'},
+        {name = 'nvim_lsp'},
+        {name = "luasnip"},
+        {name = "nvim_lua"},
+        {name = "path"},
+        {name = 'tabnine'},
+        {name = "calc"},
+        {name = "spell"},
+        {name = "emoji"},
+        {name = "treesitter"},
+    }, {
+      { name = 'buffer' },
+    }),
     completion = { completeopt = "menu,menuone,noinsert" },
-  }
-
-  -- Autopairs
-  require("nvim-autopairs.completion.cmp").setup {
-    map_cr = true,
-    map_complete = true,
-    auto_select = true,
   }
 
   -- TabNine
   local tabnine = require "cmp_tabnine.config"
   tabnine:setup { max_lines = 1000, max_num_results = 20, sort = true }
 
-  -- Database completion
-  vim.api.nvim_exec(
-    [[
-        autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
-    ]],
-    false
-  )
 end
 
 return M
