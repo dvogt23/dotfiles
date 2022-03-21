@@ -4,7 +4,7 @@ function M.setup()
     require'nvim-tree'.setup {
         disable_netrw       = true,
         hijack_netrw        = true,
-        open_on_setup       = true,
+        open_on_setup       = false,
         ignore_ft_on_setup  = {},
         auto_close          = true,
         open_on_tab         = false,
@@ -53,7 +53,7 @@ function M.setup()
     vim.g.nvim_tree_side = 'left'
     vim.g.nvim_tree_width = 30
     vim.g.nvim_tree_indent_markers = 1
-    vim.g.nvim_tree_gitignore = 0
+    -- vim.g.nvim_tree_gitignore = 0
     vim.g.nvim_tree_git_hl = 0
     vim.g.nvim_tree_root_folder_modifier = ':~'
     vim.g.nvim_tree_show_icons = {git = 0, folders = 1, files = 0}

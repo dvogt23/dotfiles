@@ -1,0 +1,83 @@
+brew tap homebrew/cask-fonts
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/dv/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+brew install --cask 
+  \ spotify
+  \ bitwarden
+  \ bitwarden-cli
+  \ kitty
+  \ slack
+  \ whatsapp
+  \ alacritty
+  \ appcleaner
+  \ brave-browser
+  \ caffeine
+  \ copyq
+  \ spotify
+  \ bitwarden
+  \ kitty
+  \ slack
+  \ whatsapp
+  \ alacritty
+  \ appcleaner
+  \ brave-browser
+  \ caffeine
+  \ copyq
+  \ firefox
+  \ deepl
+  \ docker
+  \ eul
+  \ gimp
+  \ iterm2
+  \ joplin
+  \ kap
+  \ obsidian
+  \ pock
+  \ pomotroid
+  \ rectangle
+  \ setapp
+  \ signal
+  \ telegram
+  \ ubersicht
+  \ vlc
+  \ visual-studio-code
+  \ starship
+  \ alfred
+  \ appcleaner
+  \ cheatsheet
+  \ google-chrome
+  \ sublime-text
+  \ superduper
+  \ transmission
+  \ nextcloud
+  \ font-iosevka
+  \ stats
+
+
+brew install 
+  \ zoxide
+  \ rbenv
+  \ starship
+  \ exa
+  \ neovim
+  \ ont-iosevka
+  \ tmux
+  \ bat ranger
+  \ luajit
+  \ yarn
+  \ pass
+  \ rg
+  \ fd
+  \ node
+  \ fzf
+  \ xbar
+  \ jq
+  \ diff-so-fancy
+  \ delta
+  \ font-hack-nerd-font
+  \ lf
+
+$(brew --prefix)/opt/fzf/install

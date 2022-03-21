@@ -70,8 +70,50 @@ function M.setup()
     use {"terryma/vim-multiple-cursors"}
     use {"dhruvasagar/vim-zoom"}
     use {"terrortylor/nvim-comment"}
-    use {'phaazon/hop.nvim'}
+    use {'phaazon/hop.nvim',
+      config = function()
+        require("hop").setup()
+      end,
+    }
 
+    use{
+      "mickael-menu/zk-nvim",
+      config = function()
+        require("zk").setup()
+      end
+    }
+
+    use {
+      'lukas-reineke/indent-blankline.nvim',
+      config = function ()
+        vim.cmd [[highlight IndentBlanklineIndent1 guifg=#1A1B29 gui=nocombine]]
+        require("indent_blankline").setup {
+          char_highlight_list = {
+            "IndentBlanklineIndent1",
+          }
+        }
+      end,
+    }
+
+    use{
+      'petertriho/nvim-scrollbar',
+      config = function()
+        local colors = require("tokyonight.colors").setup()
+        require("scrollbar").setup({
+          handle = {
+            color = colors.bg_highlight,
+          },
+          marks = {
+            Search = { color = colors.orange },
+            Error = { color = colors.error },
+            Warn = { color = colors.warning },
+            Info = { color = colors.info },
+            Hint = { color = colors.hint },
+            Misc = { color = colors.purple },
+          }
+        })        
+      end,
+    }
 
     -- Color scheme
     use { 'tiagovla/tokyodark.nvim'}
@@ -232,10 +274,10 @@ function M.setup()
 
     -- Status line
     use {
-      "glepnir/galaxyline.nvim",
-      branch = "main",
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
       config = function()
-        require("config.galaxyline").setup()
+        require("config.lualine").setup {}
       end,
     }
 
@@ -270,7 +312,7 @@ function M.setup()
         require('config.vimwiki').setup()
       end
     }
-    use {"michal-h21/vim-zettel"}
+    -- use {"michal-h21/vim-zettel"}
 
 
     -- Markdown

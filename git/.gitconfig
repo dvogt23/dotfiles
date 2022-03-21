@@ -4,6 +4,8 @@
     unstage = reset HEAD
     uncommit = reset --soft HEAD^
 
+    track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD) $(git symbolic-ref --short HEAD)"
+
 # Verbose view
     b = branch -v
     r = remote -v
@@ -135,12 +137,18 @@
     precomposeunicode = false
     autocrlf = input
     pager = diff-so-fancy | less --tabs=2 -RFX
+    ; pager = delta | less
+	; pager = less
 
 [delta]
     features = line-numbers decorations files
     syntax-theme = Dracula
     minus-style = red bold
     plus-style = green bold
+    navigate = true
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
 
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
@@ -156,7 +164,7 @@
     line-numbers-plus-style = green
 
 ; [interactive]
-    ; diffFilter = delta --color-only --file-decoration-style=omit
+;     diffFilter = delta --color-only --features=interactive
 
 [color]
 
@@ -242,6 +250,6 @@
     changed = green
     untracked = cyan
 [gpg]
-    program = gpg2
+    program = gpg
 [pull]
     rebase = false

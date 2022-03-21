@@ -44,7 +44,7 @@ function M.setup()
 			},
 			integrations = {
 				vim_gitgutter = false,
-				galaxyline = true,
+				lualine = false,
 				tmux = false,
 				gitsigns = false,
 				nvim_bufferline = false,

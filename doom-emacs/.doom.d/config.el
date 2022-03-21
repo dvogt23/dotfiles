@@ -118,6 +118,11 @@
                    )
                   )))))
 
+(defun org-config-fill-prefix ()
+  "Set `fill-prefix' to the empty string."
+  (setq fill-prefix ""))
+
+(add-hook 'org-mode-hook #'org-config-fill-prefix)
 
 ;(after! org
 ;  (appendq! +ligatures-extra-symbols

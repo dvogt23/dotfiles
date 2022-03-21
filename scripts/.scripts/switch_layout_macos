@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+ioreg -p IOUSB
+
+xkbswitch -se USInternational-PC
+xkbswitch -se German
+
+# vim: ft=bash

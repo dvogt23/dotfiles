@@ -53,6 +53,7 @@ zpm load          \
   @omz/fzf        \
   @omz/yarn       \
   @omz/rsync      \
+  @omz/docker-compose      \
   @omz/globalias
 
 bindkey "ç" fzf-cd-widget
@@ -99,3 +100,7 @@ for config ($ZDOTDIR/**/*.zsh) source $config
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(rbenv init -)"
+source "$HOME/.rvm/scripts/rvm"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
