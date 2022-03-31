@@ -1,7 +1,8 @@
 export CURRENT_PROJECT=$HOME/Projects/eco.banking/compeon_reverse_fe
 # env vars !printenv
-export GITHUB_TOKEN=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
 export PAGER='diff-so-fancy | less -R'
+
+export ZNAP_HOME='$HOME/.znap'
 
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 

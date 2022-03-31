@@ -79,5 +79,9 @@ brew install
   \ delta
   \ font-hack-nerd-font
   \ lf
+  \ htop
+  \ gh
+  \ jq
+  \ antigen
 
 $(brew --prefix)/opt/fzf/install

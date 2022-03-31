@@ -2,27 +2,42 @@ export ZDOTDIR=$HOME/.zsh
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-if [[ ! -f ~/.zpm/zpm.zsh ]]; then
-  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
-fi
-source ~/.zpm/zpm.zsh
+source /opt/homebrew/share/antigen/antigen.zsh
 
-# Plugins
-zpm load zsh-users/zsh-completions,async
-zpm load \
-  zpm-zsh/core-config         \
-  zpm-zsh/ignored-users,async \
-  zpm-zsh/check-deps,async    \
-  zpm-zsh/ls,async            \
-  zpm-zsh/colorize,async      \
-  zpm-zsh/ssh,async           \
-  zpm-zsh/dot,async           \
-  zpm-zsh/zsh-history-substring-search,async          \
-  zpm-zsh/zsh-autosuggestions,async                   \
-  zdharma-continuum/fast-syntax-highlighting,async    \
-  zdharma-continuum/history-search-multi-word,fpath:/,async
+antigen use oh-my-zsh
+antigen bundles <<BUNDLES 
+  compfix
+  completion
+  directories
+  functions
+  git
+  grep
+  history
+  key-bindings
+  misc
+  sudo
 
-zpm load wfxr/forgit
+  yarn
+  globalias
+  fzf
+  git
+  colored-man-pages
+BUNDLES
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions 
+antigen bundle zsh-users/zsh-history-substring-search 
+
+antigen bundle zdharma-continuum/fast-syntax-highlighting
+
+antigen bundle zpm-zsh/colorize
+antigen bundle zpm-zsh/ssh
+antigen bundle zpm-zsh/dot
+# antigen bundle ajeetdsouza/zoxide
+
+antigen bundle wfxr/forgit
 forgit_log=glof
 forgit_diff=gdf
 forgit_add=gaf
@@ -32,29 +47,7 @@ forgit_restore=gcf
 forgit_clean=gclean
 forgit_stash_show=gsf
 
-zpm load ajeetdsouza/zoxide
-
-zpm load @omz
-zpm load                \
-  @omz-lib/compfix      \
-  @omz-lib/completion   \
-  @omz-lib/directories  \
-  @omz-lib/functions    \
-  @omz-lib/git          \
-  @omz-lib/grep         \
-  @omz-lib/history      \
-  @omz-lib/key-bindings \
-  @omz-lib/misc
-
-zpm load          \
-  @omz/virtualenv \
-  @omz/git        \
-  @omz/colored-man-pages        \
-  @omz/fzf        \
-  @omz/yarn       \
-  @omz/rsync      \
-  @omz/docker-compose      \
-  @omz/globalias
+antigen apply
 
 bindkey "ç" fzf-cd-widget
 
@@ -95,11 +88,11 @@ setopt share_history
 
 for config ($ZDOTDIR/**/*.zsh) source $config
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(rbenv init -)"
+eval "$(zoxide init zsh)"
 source "$HOME/.rvm/scripts/rvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

@@ -3,12 +3,6 @@ local M = {}
 function M.setup()
   local packer = require "packer"
 
-  -- local util = require "packer.util"
-  -- packer.init({
-  --     compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua',
-  --                                    'packer_compiled.lua')
-  -- })
-
   packer.startup(function(use)
     -- Packer can manage itself as an optional plugin
     use { "wbthomason/packer.nvim", opt = true }
