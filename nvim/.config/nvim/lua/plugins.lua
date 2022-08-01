@@ -31,7 +31,9 @@ function M.setup()
         require("neogit").setup {}
       end,
     }
-    use { "rhysd/conflict-marker.vim" }
+    use {'akinsho/git-conflict.nvim', config = function()
+      require('git-conflict').setup()
+    end}
     use { "sindrets/diffview.nvim" }
     use { "ap/vim-buftabline" }
     use {"junegunn/fzf", run = ":call fzf#install()" }
@@ -245,10 +247,15 @@ function M.setup()
     use { "nvim-treesitter/nvim-treesitter-textobjects" }
     use { "nvim-treesitter/playground" }
     use { "JoosepAlviste/nvim-ts-context-commentstring" }
+    use {'https://gitlab.com/yorickpeterse/nvim-pqf.git',
+      config = function()
+        require("pqf").setup {}
+      end,
+    }
     use {
       "romgrk/nvim-treesitter-context",
       config = function()
-        require("treesitter-context.config").setup { enable = true }
+        require("treesitter-context").setup { enable = true }
       end,
     }
     use {

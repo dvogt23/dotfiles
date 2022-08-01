@@ -5,6 +5,7 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/dv/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 brew install --cask 
+  \ vnc-viewer
   \ spotify
   \ bitwarden
   \ bitwarden-cli
@@ -55,17 +56,24 @@ brew install --cask
   \ nextcloud
   \ font-iosevka
   \ stats
+  \ basictex
+  \ xelatex
+  \ postman
+  \ moneymoney
+  \ balenaetcher
+  \ cheatsheet
+  \ numi
 
 
 brew install 
   \ zoxide
-  \ rbenv
   \ starship
   \ exa
   \ neovim
-  \ ont-iosevka
+  \ font-iosevka
   \ tmux
-  \ bat ranger
+  \ bat
+  \ ranger
   \ luajit
   \ yarn
   \ pass
@@ -73,15 +81,21 @@ brew install
   \ fd
   \ node
   \ fzf
-  \ xbar
+  \ xbar # menubar scripts
   \ jq
   \ diff-so-fancy
   \ delta
   \ font-hack-nerd-font
-  \ lf
+  \ lf # ranger alternative
   \ htop
   \ gh
   \ jq
   \ antigen
+  \ pass-otp
+  \ pandoc
+  \ frum # ruby env manager
+  \ gitui
+  \ peco # interactive filtering
+  \ rga # ripgrep-all, zip etc
 
 $(brew --prefix)/opt/fzf/install

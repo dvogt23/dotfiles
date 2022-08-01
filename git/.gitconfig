@@ -94,7 +94,7 @@
     contributors = shortlog --summary --numbered
 
 # Clean up branches from local origin that merged
-    prune = "! for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
+    prune = "!git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
 
 # switch indentity
     id = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
@@ -253,3 +253,14 @@
     program = gpg
 [pull]
     rebase = false
+
+[includeIf "gitdir:~/Projects/work/"]
+  path = ~/Projects/work/.gitconfig
+
+[maintenance]
+	repo = /Users/dv/Users/dv/.znap/ohmyzsh
+	repo = /Users/dv/Users/dv/.znap/zsh-completions
+	repo = /Users/dv/Users/dv/.znap/zsh-snap
+	repo = /Users/dv/Users/dv/.znap/zsh-syntax-highlighting
+[init]
+	defaultBranch = main

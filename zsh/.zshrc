@@ -16,6 +16,8 @@ antigen bundles <<BUNDLES
   key-bindings
   misc
   sudo
+  rails
+  bundler
 
   yarn
   globalias
@@ -36,6 +38,8 @@ antigen bundle zpm-zsh/colorize
 antigen bundle zpm-zsh/ssh
 antigen bundle zpm-zsh/dot
 # antigen bundle ajeetdsouza/zoxide
+
+antigen bundle smeagol74/zsh-fzf-pass@main
 
 antigen bundle wfxr/forgit
 forgit_log=glof
@@ -91,9 +95,13 @@ for config ($ZDOTDIR/**/*.zsh) source $config
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
+eval "$(frum init)"
 eval "$(zoxide init zsh)"
 source "$HOME/.rvm/scripts/rvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

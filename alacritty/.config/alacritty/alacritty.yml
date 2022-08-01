@@ -29,6 +29,8 @@ window:
     x: 2
     y: 2
 
+  opacity: 0.9
+
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
 
@@ -88,7 +90,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 8.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -187,7 +189,6 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
 
 # Mouse bindings
 #
@@ -326,13 +327,27 @@ live_config_reload: true
 #
 #   Example:
 #       `command: { program: "alacritty", args: ["-e", "vttest"] }`
-#
-# Values for `mode`:
+# 
+# Values for `mode`: 
 #   - ~AppCursor
 #   - AppCursor
 #   - ~AppKeypad
 #   - AppKeypad
+
+alt_send_esc: false
+
 key_bindings:
+  - { key: Comma,     mods: Command,      command:
+      {program: "open", args: ["~/.config/alacritty/alacritty.yml"]}     }
+  - { key: N,         mods: Command,      action: SpawnNewInstance       }
+  - { key: Space,     mods: Alt,          chars: " "                     }
+  - { key: Period,     mods: Command,          chars: ":CocFix\n"        }
+  - { key: Backslash,mods: Command,          chars: ":vsp\n"             }
+  - { key: P,        mods: Command|Shift,    chars: ":Files\n"          }
+  - { key: I,        mods: Command|Shift,    chars: ":OrganizeImport\n"  }
+  - { key: F,        mods: Command,    chars: ":Rg "                     }
+  - { key: S,        mods: Command,   chars: ":w\n"                      }
+  - { key: M,        mods: Command|Shift,    chars: ":CocList diagnostics\n"}
   - { key: V,        mods: Control|Shift,    action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
   - { key: Paste,                   action: Paste                        }
@@ -341,10 +356,12 @@ key_bindings:
   - { key: W,        mods: Command, action: Quit                         }
   - { key: Insert,   mods: Shift,   action: PasteSelection               }
   - { key: Key0,     mods: Control, action: ResetFontSize                }
-  - { key: Add,   mods: Control, action: IncreaseFontSize             }
-  - { key: Subtract, mods: Control, action: DecreaseFontSize             }
-  - { key: L,        mods: Control, action: ClearLogNotice               }
+  - { key: Plus,      mods: Control, action: IncreaseFontSize             }
+  - { key: Minus, mods: Control, action: DecreaseFontSize             }
+  - { key: L,        mods: Alt,     chars: "\x40"                        }
+  - { key: Key7,     mods: Alt,     chars: "\x7C"                        }
   - { key: L,        mods: Control, chars: "\x0c"                        }
+  - { key: X,        mods: Alt,     chars: "\x1bx"                       }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }

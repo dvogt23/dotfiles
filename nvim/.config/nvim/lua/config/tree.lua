@@ -6,7 +6,6 @@ function M.setup()
         hijack_netrw        = true,
         open_on_setup       = false,
         ignore_ft_on_setup  = {},
-        auto_close          = true,
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
@@ -52,7 +51,7 @@ function M.setup()
     tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_side = 'left'
     vim.g.nvim_tree_width = 30
-    vim.g.nvim_tree_indent_markers = 1
+    -- vim.g.nvim_tree_indent_markers = 1
     -- vim.g.nvim_tree_gitignore = 0
     vim.g.nvim_tree_git_hl = 0
     vim.g.nvim_tree_root_folder_modifier = ':~'

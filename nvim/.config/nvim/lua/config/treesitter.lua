@@ -12,7 +12,6 @@ function M.setup()
   -- }
 
   require("nvim-treesitter.configs").setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,
       disable = {},
@@ -72,8 +71,8 @@ function M.setup()
       },
       swap = {
         enable = true,
-        swap_next = { ["<Leader>rx"] = "@parameter.inner" },
-        swap_previous = { ["<Leader>rX"] = "@parameter.inner" },
+        swap_next = { ["<leader>spn"] = "@parameter.inner" },
+        swap_previous = { ["<leader>spp"] = "@parameter.inner" },
       },
       lsp_interop = {
         enable = true,

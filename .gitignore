@@ -13,3 +13,10 @@ nvim/.config/nvim/autoload
 nvim/.config/nvim.old
 nvim/.config/nvim/plugin
 nvim/.config/nvim/lua/packer_compiled.lua
+zsh/.zsh/.zcompcache/brew_all_commands
+zsh/.zsh/.zsh_history
+zsh/.zsh/.zsh_sessions
+zsh/.zsh/.zshrc.zwc
+zsh/.zsh/alias.zsh.zwc
+zsh/.zsh/env.zsh.zwc
+zsh/.zsh/function.zsh.zwc

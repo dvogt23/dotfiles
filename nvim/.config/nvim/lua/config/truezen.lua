@@ -13,9 +13,6 @@ function M.setup()
 					showcmd = false,
 					cmdheight = 1,
 				},
-				top = {
-					showtabline = 0,
-				},
 				left = {
 					number = false,
 					relativenumber = false,
