@@ -1,5 +1,0 @@
-require "settings.fold"
-require "settings.keybinds"
-require "settings.autocmds"
-require "settings.globals"
-require "settings.options"
