@@ -97,5 +97,13 @@ brew install
   \ gitui
   \ peco # interactive filtering
   \ rga # ripgrep-all, zip etc
+  \ prettier
+  \ yq
+  \ lolcat
+  \ lua-language-server
+  \ frum
+  \ solargraph
+  \ prettier
+  \ xsv
 
 $(brew --prefix)/opt/fzf/install

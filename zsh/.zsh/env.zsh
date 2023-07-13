@@ -41,23 +41,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export PATH="$PATH:$HOME/Projects/misc/flutter/bin"
 export PATH="$PATH:/Users/dv/Library/Python/3.8/bin"
 export GPG_TTY=$(tty)
-# export COPYQ_SETTINGS_PATH="$HOME/.config/copyq.conf"
-
-
-# Rust
-RUST_SRC="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-if [ -d $RUST_SRC ]; then
-    export RUST_SRC_PATH=$RUST_SRC
-fi
-
-unset RUST_SRC
-export PATH="$HOME/.cargo/bin:$PATH"
 
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --exclude .obsidian --ignore-file .gitignore'
 export FZF_TMUX=1
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd -H -t d'
+export FZF_ALT_C_COMMAND='fd -H -t d -E node_modules -E .git -E rubocop_cache -E Library/Caches'
 export FZF_ALT_C_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
 # pass possible vars

@@ -66,9 +66,9 @@ alias show_options='shopt'                  # Show_options: display bash options
 alias r='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; cd `cat $HOME/.config/ranger/rangerdir`'
 alias n='notes'
+alias ns='notes search'
 alias nw='nvim +VimwikiIndex'
 alias nn='notes new'
 alias no='notes open'
 alias nd='nvim +VimwikiMakeDiaryNote'
 alias j='z'
-

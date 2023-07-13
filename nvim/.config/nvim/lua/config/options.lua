@@ -57,6 +57,8 @@ opt.formatoptions = opt.formatoptions
   + "j" -- Auto-remove comments if possible.
   - "2" -- I'm not in gradeschool anymore
 
+g.mapleader = ' '
+g.maplocalleader = ' '
 g.ultest_icons = 1
 g.dap_virtual_text = true
 g.dict = "/Users/void/.config/word10k.txt"

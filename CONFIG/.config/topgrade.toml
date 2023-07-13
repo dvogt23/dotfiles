@@ -2,7 +2,7 @@
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["cargo", "rustup", "git_repos", "gem", "flutter", "shell", "tmux", "gem", "tlmgr", "containers"]
+disable = ["cargo", "rustup", "git_repos", "gem", "flutter", "shell", "tmux", "gem", "tlmgr", "containers", "node", "pnpm", "pip3"]
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]

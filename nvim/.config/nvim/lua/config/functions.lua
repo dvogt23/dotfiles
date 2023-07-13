@@ -1,5 +1,5 @@
 vim.api.nvim_exec(
-[[
+  [[
 command! CloseHiddenBuffers call CloseHiddenBuffers()
 function! CloseHiddenBuffers()
   let open_buffers = []
@@ -15,4 +15,5 @@ function! CloseHiddenBuffers()
   endfor
 endfunction
 ]],
-true)
+  true
+)

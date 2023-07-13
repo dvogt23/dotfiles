@@ -2,10 +2,20 @@
 add_newline = false
 
 # Replace the "❯" symbol in the prompt with "➜"
-[character]      # The name of the module we are configuring is "character"
-success_symbol = "[⋅ ➜](bold green)"
-error_symbol = "[! ➜](bold red)"
-vicmd_symbol = "[⋅](bold yellow)"
+[character]      # The name of the module we are configuring is "character" ▻ ➛
+success_symbol = "[⋅⋅➤](bold green)"
+error_symbol = "[⋅!➤](bold red)"
+vicmd_symbol = "[⋅⋅➤](bold yellow)"
+
+[git_metrics]
+added_style = 'bold blue'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+staged = '[++\($count\)](green)'
 
 [jobs]
 symbol = "★"
