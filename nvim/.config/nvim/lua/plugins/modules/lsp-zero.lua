@@ -25,6 +25,7 @@ return {
     },
     config = function()
       local lsp = require("lsp-zero").preset("recommended")
+      local lspconfig = require("lspconfig")
 
       lsp.ensure_installed({
         "tsserver",
@@ -75,7 +76,6 @@ return {
         },
       })
 
-      local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({
         settings = {
           Lua = {
@@ -101,7 +101,7 @@ return {
         },
       })
 
-      require("lspconfig").eslint.setup({
+      lspconfig.eslint.setup({
         filestypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
         settings = {
           workingDirectory = { mode = "auto" },
@@ -111,6 +111,8 @@ return {
       })
 
       lsp.skip_server_setup({ "rust_analyzer" })
+
+      -- lspconfig.biome.setup{}
 
       lsp.setup()
 

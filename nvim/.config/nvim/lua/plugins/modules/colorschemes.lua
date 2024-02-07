@@ -1,9 +1,23 @@
 return {
-  { "nyoom-engineering/oxocarbon.nvim" },
+  { "nyoom-engineering/oxocarbon.nvim",
+      config = function()
+        vim.opt.background = "dark"
+        vim.cmd.colorscheme 'oxocarbon'
+      end
+  },
+  {
+      'AlexvZyl/nordic.nvim',
+      lazy = false,
+      priority = 1000,
+      config = function()
+          require 'nordic' .load()
+          -- vim.cmd.colorscheme 'nordic'
+      end
+  },
   {
     "catppuccin/nvim",
     enabled = true,
-    priority = 150,
+    priority = 1000,
     name = "catppuccin",
     config = function()
       require("catppuccin").setup({
@@ -125,7 +139,7 @@ return {
       vim.o.background = "dark"
       vim.g.gruvbox_material_background = "hard"
       -- vim.g.gruvbox_material_transparent_background = 1
-      vim.cmd.colorscheme 'gruvbox-material'
+      -- vim.cmd.colorscheme 'gruvbox-material'
     end,
   },
   {
@@ -142,7 +156,6 @@ return {
       require('github-theme').setup({
         -- ...
       })
-
       -- vim.cmd('colorscheme github_dark_dimmed')
     end,
   }

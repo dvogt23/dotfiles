@@ -26,6 +26,7 @@ return {
             "--line-number",
             "--column",
             "--smart-case",
+            "--fixed-strings",
           },
           prompt_prefix = "   ",
           selection_caret = "  ",
@@ -68,7 +69,9 @@ return {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
             },
-            n = { ["q"] = actions.close },
+            n = {
+              ["q"] = actions.close ,
+            },
           },
         },
         pickers = {
@@ -143,6 +146,9 @@ return {
               },
             },
           },
+          colorscheme = {
+            enable_preview = true
+          },
         },
         extensions = {
           fzf = {
@@ -153,19 +159,44 @@ return {
           },
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({
-              previewer        = false,
-              initial_mode     = "normal",
-              sorting_strategy = 'ascending',
-              layout_strategy  = 'horizontal',
-              layout_config    = {
-                horizontal = {
-                  width = 0.5,
-                  height = 0.4,
-                  preview_width = 0.6,
-                },
-              },
+              -- previewer        = false,
+              -- initial_mode     = "normal",
+              -- sorting_strategy = 'ascending',
+              -- layout_strategy  = 'horizontal',
+              -- layout_config    = {
+              --   horizontal = {
+              --     width = 0.5,
+              --     height = 0.4,
+              --     preview_width = 0.6,
+              --   },
+              -- },
             })
           },
+        },
+
+        { search_notes = function()
+          telescope.find_files {
+            cwd = "$NOTES_DIR",
+            prompt_title = "Notes",
+            layout_config = {
+              height = 0.85
+            }
+          }
+        end
+        },
+
+        {
+          grep_notes = function()
+            telescope.live_grep {
+              cwd = "$NOTES_DIR",
+              prompt_title = "Notes",
+              layout_strategy = "vertical",
+              layout_config = {
+                height = 0.85,
+                width = 0.75
+              }
+            }
+          end
         }
       }
       telescope.load_extension('fzf')

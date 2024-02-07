@@ -12,7 +12,8 @@ map("i", "jj", "<ESC>")
 map({ "i", "v" }, "jk", "<ESC>")
 
 -- Quits
-map({ "i", "v", "n" }, "<C-s>", "<cmd>noa w<CR>")
+map({ "i", "v", "n" }, "<C-s>", "<cmd>w!<CR>")
+-- map({ "i", "v", "n" }, "<C-s>", "<cmd>noa w<CR>")
 
 -- remove annoying exmode
 map("n", "Q", "<Nop>", { noremap = true })
@@ -40,7 +41,7 @@ map("v", ">", ">gv")
 -- Utils
 map("n", "<leader>fc", "<cmd>let @+ = expand('%:p')<CR>", { desc = "Filename (absolute) -> clipboard" })
 map("v", ".", ":normal .<CR>")
-map("n", "<ESC><ESC>", ":noh<CR>", {desc = "Escape highlight"})
+map("n", "<ESC><ESC>", ":noh<CR>", {desc = "Escape highlight", silent = true})
 map("n", "0", "^")
 map("v", "$", "g_")
 map("n", "$", "g_")

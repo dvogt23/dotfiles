@@ -5,12 +5,12 @@ return {
   ["<C-p>"] = { ":Telescope commands<CR>", "Show commands" },
   ["<BS>"] = { "<C-^>", "Last buffer" },
   w = { ":w!<CR>", "Save" },
+  W = { ":noa w!<CR>", "Save (no-format)" },
   x = { ":lua print(vim.inspect(vim.api.nvim_list_runtime_paths()))<CR>", "Print runtimepath" },
   q = {
     name = "+Quit",
     q = { ":qa!<CR>", "Quit (all)" },
     w = { ":wqa!<CR>", "Write & quit (all)" },
-    W = { ":noa w!<CR>", "Write (no-format)" },
   },
   j = { ":HopChar1<CR>", "Jump to char" },
   c = { ":bd<CR>", "Close Buffer" },
@@ -21,10 +21,12 @@ return {
   n = {
     name = "+Notes",
     i = { "<cmd>e $NOTES_DIR/SUMMARY.md<CR>cd $NOTES_DIR", "notes index" },
+    f = { function() require("telescope.builtin").find_files({ cwd = "$NOTES_DIR", prompt_title = "Notes", layout_config = { height = 0.85 } }) end, "Search notes"},
+    s = { function() require("telescope.builtin").live_grep({ cwd = "$NOTES_DIR", prompt_title = "Notes", layout_config = { height = 0.85 } }) end, "Grep notes"},
   },
   r = {
     name = "Replace",
-    r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
+    -- r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
     f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
   },
@@ -133,6 +135,9 @@ return {
     T = { "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme" },
     x = { "<cmd>TodoTrouble<cr>", "Todo (Trouble)" },
     X = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr><cr>", "Todo/Fix/Fixme (Trouble)" },
+  },
+  o = {
+    g = { ':Gen<CR>', "AI prompts" },
   },
   d = {
     name = "Debug",

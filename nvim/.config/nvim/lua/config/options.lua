@@ -20,6 +20,7 @@ end
 
 cmd("syntax enable")
 cmd("filetype plugin indent on")
+cmd("set nofoldenable")
 
 bo.shiftwidth = indent
 bo.tabstop = indent
@@ -39,7 +40,7 @@ o.cmdheight = 1
 o.sidescrolloff = 8
 o.sessionoptions = "blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 o.history = 100
-o.lazyredraw = true
+-- o.lazyredraw = true
 o.synmaxcol = 240
 
 wo.number = true
@@ -128,7 +129,6 @@ apply_options({
   hidden = true, -- keep hidden buffers
   hlsearch = true, -- highlight matching search
   ignorecase = true, -- case insensitive on search
-  lazyredraw = true, -- lazyredraw to make macro faster
   list = false, -- display listchars
   number = true, -- enable number
   relativenumber = true, -- enable relativenumber
@@ -148,7 +148,8 @@ apply_options({
   omnifunc = "v:lua.vim.lsp.omnifunc",
   formatoptions = "1jcroql", -- improve editor formatting
   encoding = "UTF-8", -- set encoding
-  fillchars = "vert:│,fold:·,diff:,msgsep:‾,eob:\\ ,foldopen:▾,foldsep:│,foldclose:▸,diff:╱", -- make vertical split sign better
+  fillchars = "vert:│,fold:.,diff:,msgsep:‾,eob:\\ ,foldopen:▾,foldsep:│,foldclose:▸,diff:╱", -- make vertical split sign better
+  -- fillchars = "vert:│,fold:·,diff:,msgsep:‾,eob:\\ ,foldopen:▾,foldsep:│,foldclose:▸,diff:╱", -- make vertical split sign better
   inccommand = "split", -- incrementally show result of command
   listchars = "tab:→\\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»",
   -- listchars = "eol:↲,tab:∘\\ ,trail:•", -- set listchars
@@ -161,9 +162,11 @@ apply_options({
   undodir = "/tmp/",
   wildignore = ".lock,.sass-cache,.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**",
   -- grepprg = "rg --hidden --glob '!.git' --no-heading --smart-case --vimgrep --follow $*",
-  foldtext = "v:lua.folds_render()",
-  foldmethod = "syntax",
-  foldlevelstart = 99,
+  -- foldtext = "v:lua.folds_render()",
+  -- foldmethod = "syntax",
+  -- foldlevelstart = 99,
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()",
   laststatus = 3, -- always enable statusline
   pumheight = 20, -- limit completion items
   re = 0, -- set regexp engine to auto

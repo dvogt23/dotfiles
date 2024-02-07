@@ -29,6 +29,9 @@
 # open all changes in vim
     edit = !"$EDITOR `git status -s | awk '{print $2}'`"
 
+# open diff view to master
+    review = !"$EDITOR -c 'DiffviewOpen master'"
+
 # Pull in remote changes for the current repository and all its submodules
     p = !"git pull; git submodule foreach git pull origin master"
 
@@ -37,6 +40,7 @@
 
 # Commit all changes
     ca = !git add -A && git commit -av
+    save = !git add -A && git commit -m
 #
 # checkout with fzf
     cof = "!git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout"

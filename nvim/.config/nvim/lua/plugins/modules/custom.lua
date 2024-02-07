@@ -1,12 +1,55 @@
+local keymap = vim.keymap.set
+local default_opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true }
+
 return {
   -- { 'Bekaboo/dropbar.nvim' },
+  -- {'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async', },
   { 'christoomey/vim-tmux-navigator' },
+  { 'akinsho/git-conflict.nvim',       version = "*",      config = true },
   { "JoosepAlviste/palenightfall.nvim" },
-  { "folke/zen-mode.nvim", event = "VeryLazy", config = true },
-  { "catppuccin/nvim", name = "catppuccin" },
+  { "folke/zen-mode.nvim",             event = "VeryLazy", config = true },
   { "phelipetls/jsonpath.nvim" },
+  { 'nvim-telescope/telescope-ui-select.nvim', event = "VeryLazy" },
+  -- {
+  --   'stevearc/dressing.nvim',
+  --   opts = {},
+  -- },
   {
-    "TimUntersberger/neogit",
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+  },
+  {
+    "rest-nvim/rest.nvim",
+    event = "VeryLazy",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("rest-nvim").setup({})
+    end,
+    keys = {
+      keymap("n", "<leader>rr", "<Plug>RestNvim", { desc = "Run Rest.nvim" }),
+    }
+  },
+  {
+    'lukas-reineke/headlines.nvim',
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = true, -- or `opts = {}`
+  },
+  -- { -- shade in-active windows
+  --   "miversen33/sunglasses.nvim",
+  --   config = function()
+  --     require("sunglasses").setup({
+  --       filter_type = "SHADE",
+  --       filter_percent = .15
+  --     })
+  --   end,
+  --   event = "UIEnter"
+  -- },
+  {
+    'NeogitOrg/neogit',
     config = function()
       require("neogit").setup({
         integrations = {
@@ -19,14 +62,16 @@ return {
       "sindrets/diffview.nvim",
     },
   },
-  { "nvim-lua/plenary.nvim", dependencies = {
-    "MunifTanjim/nui.nvim",
-    "dpayne/CodeGPT.nvim",
-  } },
+  {
+    "nvim-lua/plenary.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "dpayne/CodeGPT.nvim",
+    }
+  },
   { "weizheheng/ror.nvim" },
 
   { "sindrets/diffview.nvim" },
-  { "nyoom-engineering/oxocarbon.nvim" },
 
   {
     "lewis6991/hover.nvim",
@@ -83,9 +128,28 @@ return {
   -- },
   { "folke/tokyonight.nvim" },
   { "tpope/vim-dispatch" },
-  { "tpope/vim-fugitive", event = "VeryLazy" },
-  { "tpope/vim-surround" },
+  { "tpope/vim-fugitive",   event = "VeryLazy" },
   { "tpope/vim-commentary" },
+  {
+    'anuvyklack/pretty-fold.nvim',
+    config = function()
+      require('pretty-fold').setup({
+        config = {
+          fill_char = '.',
+          matchup_patterns = {
+            { '^%s*do$',       'end' }, -- do ... end blocks
+            { '^%s*if',        'end' }, -- if ... end
+            { '^%s*for',       'end' }, -- for
+            { 'function%s*%(', 'end' }, -- 'function( or 'function (''
+            { '{',             '}' },
+            { '%(',            ')' },   -- % to escape lua pattern char
+            { '%[',            ']' },   -- % to escape lua pattern char
+          },
+        }
+      })
+    end
+  },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl",       opts = {},    config = true },
   { "tpope/vim-rhubarb" },
   { "tpope/vim-unimpaired" },
   { "tpope/vim-vinegar" },
@@ -97,7 +161,7 @@ return {
   { "dnlhc/glance.nvim" },
   { "freddiehaddad/feline.nvim" },
   { "mg979/vim-visual-multi" }, -- multi cursor
-  { "norcalli/nvim-colorizer.lua", event = "VeryLazy", config = true },
+  { "norcalli/nvim-colorizer.lua",         event = "VeryLazy", config = true },
 
   {
     "vimwiki/vimwiki",
@@ -136,7 +200,13 @@ return {
           nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
         },
         daily_notes = {
-          folder = "diary",
+          folder = "private/diary/2023",
+          template = "dairy.md",
+          alias_format = "%Y-%m-%d",
+        },
+        overwrite_mappings = true,
+        templates = {
+          subdir = "templates",
         },
       })
     end,
@@ -145,6 +215,15 @@ return {
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
+    event = { "VeryLazy" },
+    config = function()
+      require("peek").setup({
+        filetype = { 'markdown' },
+      })
+      -- refer to `configuration to change defaults`
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
     keys = {
       {
         "<leader>op",
