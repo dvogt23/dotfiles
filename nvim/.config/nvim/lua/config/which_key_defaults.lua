@@ -16,13 +16,32 @@ return {
   c = { ":bd<CR>", "Close Buffer" },
   h = { ":nohlsearch<CR>", "No Highlight" },
   p = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
-  f = { "<cmd>lua require('plugins.utils').telescope_git_or_file()<CR>", "Find Files" },
+  f = { "<cmd>lua require('config.utils').telescope_git_or_file()<CR>", "Find Files" },
   F = { ":ZenMode<CR>", "Focus mode (toggle)" },
   n = {
     name = "+Notes",
     i = { "<cmd>e $NOTES_DIR/SUMMARY.md<CR>cd $NOTES_DIR", "notes index" },
-    f = { function() require("telescope.builtin").find_files({ cwd = "$NOTES_DIR", prompt_title = "Notes", layout_config = { height = 0.85 } }) end, "Search notes"},
-    s = { function() require("telescope.builtin").live_grep({ cwd = "$NOTES_DIR", prompt_title = "Notes", layout_config = { height = 0.85 } }) end, "Grep notes"},
+    d = { "<cmd>ObsidianToday<CR>", "Notes daily" },
+    f = {
+      function()
+        require("telescope.builtin").find_files({
+          cwd = "$NOTES_DIR",
+          prompt_title = "Notes",
+          layout_config = { height = 0.85 },
+        })
+      end,
+      "Search notes",
+    },
+    s = {
+      function()
+        require("telescope.builtin").live_grep({
+          cwd = "$NOTES_DIR",
+          prompt_title = "Notes",
+          layout_config = { height = 0.85 },
+        })
+      end,
+      "Grep notes",
+    },
   },
   r = {
     name = "Replace",
@@ -71,7 +90,7 @@ return {
       n = { "<Plug>(git-conflict-next-conflict)", "git conflict next" },
       p = { "<Plug>(git-conflict-prev-conflict)", "git conflict previous" },
       o = { "<Plug>(git-conflict-ours)", "git conflict Pick ours" },
-      t = { "<Plug>(git-conflict-theirs)", "git conflict Pick theirs" }
+      t = { "<Plug>(git-conflict-theirs)", "git conflict Pick theirs" },
     },
     C = {
       "<cmd>Telescope git_bcommits<cr>",
@@ -127,7 +146,7 @@ return {
       g = { "<cmd>Telescope dap configurations<cr>", "Dap Configurations" },
       v = { "<cmd>Telescope dap variables<cr>", "Dap Variables" },
       f = { "<cmd>Telescope dap frames<cr>", "Dap Frames" },
-    }
+    },
   },
   T = {
     name = "+Todo",
@@ -137,7 +156,7 @@ return {
     X = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr><cr>", "Todo/Fix/Fixme (Trouble)" },
   },
   o = {
-    g = { ':Gen<CR>', "AI prompts" },
+    g = { ":Gen<CR>", "AI prompts" },
   },
   d = {
     name = "Debug",
@@ -152,12 +171,12 @@ return {
     x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
   },
   t = {
-    name = "+Tests"
+    name = "+Tests",
   },
-  ['\\'] = {
+  ["\\"] = {
     name = "+Terminal",
     h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm direction=vertical size=100 <cr>", "Vertical" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-  }
+  },
 }

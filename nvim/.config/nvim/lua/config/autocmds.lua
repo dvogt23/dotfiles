@@ -108,6 +108,7 @@ cmd("au BufNewFile *.sh 0r ~/.config/nvim/templates/skeleton.sh")
 
 -- markdown
 cmd("au FileType markdown set wrap")
+cmd("au FileType markdown set conceallevel=2")
 
 -- yml
 cmd("au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab")
