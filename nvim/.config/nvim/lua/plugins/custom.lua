@@ -1,3 +1,4 @@
+local lspconfig = require("lspconfig")
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
 -- In your plugin files, you can:
@@ -14,6 +15,7 @@ return {
 
   -- disable trouble
   { "folke/trouble.nvim", enabled = false },
+  { "echasnovski/mini.diff", enabled = false },
 
   -- add symbols-outline
   {
@@ -56,6 +58,34 @@ return {
     -- },
   },
 
+  {
+    "lewis6991/gitsigns.nvim",
+    enabled = true,
+    -- opts will be merged with the parent spec
+    opts = { current_line_blame = true },
+  },
+  {
+    "andythigpen/nvim-coverage",
+    config = function()
+      require("coverage").setup({
+        commands = true, -- create commands
+        highlights = {
+          -- customize highlight groups created by the plugin
+          covered = { fg = "#C3E88D" }, -- supports style, fg, bg, sp (see :h highlight-gui)
+          uncovered = { fg = "#F07178" },
+        },
+        signs = {
+          -- use your own highlight groups or text markers
+          covered = { hl = "CoverageCovered", text = "▎" },
+          uncovered = { hl = "CoverageUncovered", text = "▎" },
+        },
+        summary = {
+          -- customize the summary pop-up
+          min_coverage = 80.0, -- minimum coverage threshold (used for highlighting)
+        },
+      })
+    end,
+  },
   -- add telescope-fzf-native
   {
     "telescope.nvim",
@@ -97,6 +127,17 @@ return {
       servers = {
         -- tsserver will be automatically installed with mason and loaded with lspconfig
         tsserver = {},
+        rubocop = {
+          -- See: https://docs.rubocop.org/rubocop/usage/lsp.html
+          cmd = { "bundle", "exec", "rubocop", "--lsp" },
+          root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
+        },
+        ruby_lsp = {
+          -- cmd = { "bundle", "exec", "ruby-lsp" },
+          -- init_options = {
+          --   formatter = "auto",
+          -- },
+        },
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig

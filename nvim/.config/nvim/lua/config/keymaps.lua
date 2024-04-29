@@ -41,7 +41,7 @@ map("v", ">", ">gv")
 -- Utils
 map("n", "<leader>fc", "<cmd>let @+ = expand('%:p')<CR>", { desc = "Filename (absolute) -> clipboard" })
 map("v", ".", ":normal .<CR>")
-map("n", "<ESC><ESC>", ":noh<CR>", {desc = "Escape highlight", silent = true})
+map("n", "<ESC><ESC>", ":noh<CR>", { desc = "Escape highlight", silent = true })
 map("n", "0", "^")
 map("v", "$", "g_")
 map("n", "$", "g_")
@@ -62,6 +62,13 @@ map("v", "p", "p`]")
 -- map("v", "<C-c>", '"+y')
 -- Paste from system clipboard with Ctrl + v
 -- map("i", "<C-v>", '<Esc>"+p')
+
+map("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+map("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+map("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+map("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+map("n", "<leader>gg", "<cmd>lua require'neogit'.open({commit})<CR>", { desc = "Neogit" })
+map("n", "<leader>gG", "")
 
 -- Use operator pending mode to visually select the whole buffer
 -- e.g. dA = delete buffer ALL, yA = copy whole buffer ALL
@@ -86,4 +93,4 @@ map("n", "<A-Down>", "<C-W>-5")
 -- LSP
 -- map("n", "K", require("hover").hover, { desc = "hover.nvim" })
 -- map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
--- map({ 'n', 'v' }, '<leader>cl', require('nvim-toggler').toggle)
+map({ "n", "v" }, "<leader>ct", require("nvim-toggler").toggle, { desc = "Toggle value" })

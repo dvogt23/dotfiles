@@ -69,12 +69,12 @@
 # Open all files changed since REVIEW_BASE in Vim tabs
 # Then, run fugitive's :Gdiff in each tab, and finally
 # tell vim-gitgutter to show +/- for changes since REVIEW_BASE
-    review = !nvim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+    # review = !nvim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 
 # Same as the above, except specify names of files as arguments,
 # instead of opening all files:
 # git reviewone foo.js bar.js
-    reviewone = !nvim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+    # reviewone = !nvim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 
 # Find branches containing commit
     fb = "!f() { git branch -a --contains $1; }; f"
@@ -144,35 +144,35 @@
 
     precomposeunicode = false
     autocrlf = input
-    pager = diff-so-fancy | less --tabs=2 -RFX
+    pager = delta # diff-so-fancy | less --tabs=2 -RFX
 
 [delta]
-    ; features = line-numbers decorations files
+    features = line-numbers decorations files
     ; syntax-theme = Dracula
     ; minus-style = red bold
     ; plus-style = green bold
     navigate = true
     light = false
-	features = decorations
+    features = decorations
 
-; [delta "interactive"]
-;     keep-plus-minus-markers = false
-;
-; [delta "decorations"]
-;     commit-decoration-style = bold yellow box ul
-;     file-style = yellow bold
-;     file-decoration-style = ul yellow bold
-;     hunk-header-style = omit
-;     hunk-header-decoration-style = cyan box ul
-;
-; [delta "line-numbers"]
-;     line-numbers-left-style = cyan
-;     line-numbers-right-style = cyan
-;     line-numbers-minus-style = red
-;     line-numbers-plus-style = green
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = yellow
+    file-decoration-style = ul yellow
+    hunk-header-style = omit
+    hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+    line-numbers-left-style = cyan
+    line-numbers-right-style = cyan
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
 
 ; [interactive]
-;     diffFilter = delta
+;     diffFilter = delta --color-only --features=interactive
 
 [color]
 
@@ -227,6 +227,10 @@
 
 [pager]
     difftool = true
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
 [difftool "icdiff"]
     cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
 [difftool]

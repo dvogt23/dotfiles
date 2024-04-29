@@ -5,7 +5,7 @@ export LC_ALL=en_US.UTF-8
 source /opt/homebrew/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
-antigen bundles <<BUNDLES 
+antigen bundles <<BUNDLES
   compfix
   completion
   directories
@@ -18,6 +18,8 @@ antigen bundles <<BUNDLES
   sudo
   rails
   bundler
+  docker-compose
+  docker
 
   yarn
   globalias
@@ -29,8 +31,8 @@ BUNDLES
 ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions 
-antigen bundle zsh-users/zsh-history-substring-search 
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search
 
 antigen bundle zdharma-continuum/fast-syntax-highlighting
 
@@ -62,6 +64,7 @@ eval "$(starship init zsh)"
 bindkey -v
 export KEYTIMEOUT=1
 
+bindkey "ç" fzf-cd-widget
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^w' backward-kill-word

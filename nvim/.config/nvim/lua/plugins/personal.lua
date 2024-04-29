@@ -1,22 +1,39 @@
 local keymap = vim.keymap.set
 
 return {
+  {
+    "luckasRanarison/nvim-devdocs",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {},
+  },
   { "christoomey/vim-tmux-navigator" },
   { "akinsho/git-conflict.nvim", version = "*", config = true },
   { "JoosepAlviste/palenightfall.nvim" },
   { "folke/zen-mode.nvim", event = "VeryLazy", config = true },
   { "phelipetls/jsonpath.nvim" },
   {
-    "rest-nvim/rest.nvim",
-    event = "VeryLazy",
-    dependencies = "nvim-lua/plenary.nvim",
+    "alexghergh/nvim-tmux-navigation",
     config = function()
-      require("rest-nvim").setup({})
+      require("nvim-tmux-navigation").setup({
+        disable_when_zoomed = true,
+      })
     end,
-    keys = {
-      keymap("n", "<leader>rr", "<Plug>RestNvim", { desc = "Run Rest.nvim" }),
-    },
   },
+  -- {
+  --   "rest-nvim/rest.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = "nvim-lua/plenary.nvim",
+  --   config = function()
+  --     require("rest-nvim").setup({})
+  --   end,
+  --   keys = {
+  --     keymap("n", "<leader>rr", "<Plug>RestNvim", { desc = "Run Rest.nvim" }),
+  --   },
+  -- },
   {
     "NeogitOrg/neogit",
     config = function()
@@ -31,7 +48,12 @@ return {
       "sindrets/diffview.nvim",
     },
   },
-  { "weizheheng/ror.nvim" },
+  {
+    "weizheheng/ror.nvim",
+    keys = {
+      { "<Leader>cc", ":lua require('ror.commands').list_commands()<CR>", desc = "Rails commands" },
+    },
+  },
 
   -- {
   --   "sindrets/diffview.nvim",
@@ -52,7 +74,6 @@ return {
   },
   { "tpope/vim-dispatch" },
   { "tpope/vim-fugitive", event = "VeryLazy" },
-  { "tpope/vim-rails" },
   { "thoughtbot/vim-rspec" },
   { "mg979/vim-visual-multi" }, -- multi cursor
   { "norcalli/nvim-colorizer.lua", event = "VeryLazy", config = true },
@@ -108,11 +129,17 @@ return {
         },
         daily_notes = {
           folder = string.format("private/diary/%s", os.date("*t").year),
-          template = "templates/dairy.md",
+          template = "dairy.md",
           alias_format = "%Y-%m-%d",
         },
         templates = {
           subdir = "templates",
+        },
+        ui = {
+          enable = true,
+          hl_groups = {
+            ObsidianHeader = { bg = "#75662e" },
+          },
         },
       })
     end,

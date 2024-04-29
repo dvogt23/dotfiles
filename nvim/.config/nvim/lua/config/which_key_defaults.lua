@@ -53,8 +53,8 @@ return {
     name = "Buffers",
     j = { "<cmd>BufferLinePick<cr>", "Jump" },
     f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-    b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-    n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
+    b = { "<cmd>bprevious<cr>", "Previous" },
+    n = { "<cmd>bnext<cr>", "Next" },
     D = { "<cmd>CloseHiddenBuffers<CR>", "Close all buffers (hidden)" },
     e = {
       "<cmd>BufferLinePickClose<cr>",

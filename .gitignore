@@ -21,4 +21,4 @@ zsh/.zsh/alias.zsh.zwc
 zsh/.zsh/env.zsh.zwc
 zsh/.zsh/function.zsh.zwc
 nvim/.config/nvim.old2
-**/*.tmp
+**/**.tmp

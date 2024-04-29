@@ -327,14 +327,12 @@ live_config_reload: true
 #
 #   Example:
 #       `command: { program: "alacritty", args: ["-e", "vttest"] }`
-# 
-# Values for `mode`: 
+#
+# Values for `mode`:
 #   - ~AppCursor
 #   - AppCursor
 #   - ~AppKeypad
 #   - AppKeypad
-
-alt_send_esc: false
 
 key_bindings:
   - { key: Comma,     mods: Command,      command:
