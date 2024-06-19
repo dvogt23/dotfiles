@@ -79,10 +79,14 @@ map("n", "+", "<C-a>")
 map("n", "-", "<C-x>")
 
 -- Split
-map("n", "<C-J>", "<C-W><C-J>")
-map("n", "<C-H>", "<C-W><C-H>")
-map("n", "<C-L>", "<C-W><C-L>")
-map("n", "<C-K>", "<C-W><C-K>")
+-- map("n", "<C-J>", "<C-W><C-J>")
+-- map("n", "<C-H>", "<C-W><C-H>")
+-- map("n", "<C-L>", "<C-W><C-L>")
+-- map("n", "<C-K>", "<C-W><C-K>")
+map("n", "<C-H>", "<Cmd>NvimTmuxNavigateLeft<CR>")
+map("n", "<C-J>", "<Cmd>NvimTmuxNavigateDown<CR>")
+map("n", "<C-L>", "<Cmd>NvimTmuxNavigateRight<CR>")
+map("n", "<C-K>", "<Cmd>NvimTmuxNavigateUp<CR>")
 
 -- Windows
 map("n", "<A-Right>", "<C-W>5<")

@@ -35,6 +35,19 @@ return {
     end,
   },
 
+  {
+    "https://git.sr.ht/~swaits/zellij-nav.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    keys = {
+      { "<c-h>", "<cmd>ZellijNavigateLeft<cr>", { silent = true, desc = "navigate left" } },
+      { "<c-j>", "<cmd>ZellijNavigateDown<cr>", { silent = true, desc = "navigate down" } },
+      { "<c-k>", "<cmd>ZellijNavigateUp<cr>", { silent = true, desc = "navigate up" } },
+      { "<c-l>", "<cmd>ZellijNavigateRight<cr>", { silent = true, desc = "navigate right" } },
+    },
+    opts = {},
+  },
+
   -- change some telescope options and a keymap to browse plugin files
   {
     "nvim-telescope/telescope.nvim",
@@ -48,14 +61,13 @@ return {
       },
     },
     -- change some options
-    -- opts = {
-    --   defaults = {
-    --     layout_strategy = "horizontal",
-    --     layout_config = { prompt_position = "top" },
-    --     sorting_strategy = "ascending",
-    --     winblend = 0,
-    --   },
-    -- },
+    opts = {
+      defaults = {
+        layout_strategy = "center",
+        layout_config = { width = 0.5 },
+        sorting_strategy = "ascending",
+      },
+    },
   },
 
   {
@@ -258,6 +270,7 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
+      opts.inlay_hints = { enabled = false }
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
