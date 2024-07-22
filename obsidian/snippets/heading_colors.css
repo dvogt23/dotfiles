@@ -1,0 +1,30 @@
+.cm-header-1 { color: #422680; }  
+.cm-header-1::before {
+    content: "█";
+    opacity: 0.5;
+}
+.cm-header-2 { color: #341671; }
+.cm-header-2::before {
+    content: "▉";
+    opacity: 0.5;
+}
+.cm-header-3 { color: #280659; }
+.cm-header-3::before {
+    content: "▌";
+    opacity: 0.5;
+}
+.cm-header-4 { color: #660f56; }
+.cm-header-4::before {
+    content: "▍";
+    opacity: 0.5;
+}
+.cm-header-5 { color: #ae2d68; }
+.cm-header-5::before {
+    content: "▎";
+    opacity: 0.5;
+}
+.cm-header-6 { color: #f54952; }
+.cm-header-6::before {
+    content: "▏";
+    opacity: 0.5;
+}
