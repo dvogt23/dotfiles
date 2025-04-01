@@ -1,7 +1,9 @@
 return {
   "David-Kunz/gen.nvim",
   opts = {
-    model = "codellama:latest", -- The default model to use.
+    model = "deepseek-coder-v2", -- The default model to use.
+    -- model = "qwen2.5-coder:latest", -- The default model to use.
+    -- model = "codellama:latest", -- The default model to use.
     -- model = "mistral", -- The default model to use.
     host = "localhost", -- The host running the Ollama service.
     port = "11434", -- The port on which the Ollama service is listening.

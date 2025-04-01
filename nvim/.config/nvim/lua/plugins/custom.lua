@@ -12,9 +12,49 @@ return {
     -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
   },
+  -- {
+  --   "sphamba/smear-cursor.nvim",
+  --   opts = {
+  --     legacy_computing_symbols_support = true,
+  --     hide_target_hack = false,
+  --     distance_stop_animating = 0.5,
+  --   },
+  -- },
+  {
+    "folke/flash.nvim",
+    enabled = false,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "suketa/nvim-dap-ruby",
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+    },
+    config = function()
+      require("dap-ruby").setup()
+      require("nvim-dap-virtual-text").setup({})
+      local dap, dapui = require("dap"), require("dapui")
+
+      dapui.setup()
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
+    end,
+  },
 
   -- disable trouble
-  { "folke/trouble.nvim", enabled = false },
+  -- { "folke/trouble.nvim", enabled = false },
   { "echasnovski/mini.diff", enabled = false },
 
   -- add symbols-outline
@@ -67,37 +107,44 @@ return {
         layout_config = { width = 0.5 },
         sorting_strategy = "ascending",
       },
+      -- pickers = {
+      --   find_files = {
+      --     theme =
+      --   },
+      -- },
     },
   },
 
   {
     "lewis6991/gitsigns.nvim",
+    -- tag = "v0.9.0",
+    -- event = "LazyFile",
     enabled = true,
     -- opts will be merged with the parent spec
     opts = { current_line_blame = true },
   },
-  {
-    "andythigpen/nvim-coverage",
-    config = function()
-      require("coverage").setup({
-        commands = true, -- create commands
-        highlights = {
-          -- customize highlight groups created by the plugin
-          covered = { fg = "#C3E88D" }, -- supports style, fg, bg, sp (see :h highlight-gui)
-          uncovered = { fg = "#F07178" },
-        },
-        signs = {
-          -- use your own highlight groups or text markers
-          covered = { hl = "CoverageCovered", text = "▎" },
-          uncovered = { hl = "CoverageUncovered", text = "▎" },
-        },
-        summary = {
-          -- customize the summary pop-up
-          min_coverage = 80.0, -- minimum coverage threshold (used for highlighting)
-        },
-      })
-    end,
-  },
+  -- {
+  --   "andythigpen/nvim-coverage",
+  --   config = function()
+  --     require("coverage").setup({
+  --       commands = true, -- create commands
+  --       highlights = {
+  --         -- customize highlight groups created by the plugin
+  --         covered = { fg = "#C3E88D" }, -- supports style, fg, bg, sp (see :h highlight-gui)
+  --         uncovered = { fg = "#F07178" },
+  --       },
+  --       signs = {
+  --         -- use your own highlight groups or text markers
+  --         covered = { hl = "CoverageCovered", text = "▎" },
+  --         uncovered = { hl = "CoverageUncovered", text = "▎" },
+  --       },
+  --       summary = {
+  --         -- customize the summary pop-up
+  --         min_coverage = 80.0, -- minimum coverage threshold (used for highlighting)
+  --       },
+  --     })
+  --   end,
+  -- },
   -- add telescope-fzf-native
   {
     "telescope.nvim",
@@ -111,14 +158,16 @@ return {
   },
 
   -- add pyright to lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {},
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   ---@class PluginLspOpts
+  --   opts = {
+  --     ---@type lspconfig.options
+  --     servers = {
+  --       'solargraph',
+  --     },
+  --   },
+  -- },
 
   -- add tsserver and setup with typescript.nvim instead of lspconfig
   {
@@ -128,34 +177,46 @@ return {
       init = function()
         require("lazyvim.util").lsp.on_attach(function(_, buffer)
           -- stylua: ignore
-          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+          vim.keymap.set("n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
           vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
         end)
       end,
     },
     ---@class PluginLspOpts
     opts = {
+      inlay_hints = { enabled = false },
       ---@type lspconfig.options
       servers = {
         -- tsserver will be automatically installed with mason and loaded with lspconfig
         tsserver = {},
         rubocop = {
           -- See: https://docs.rubocop.org/rubocop/usage/lsp.html
-          cmd = { "bundle", "exec", "rubocop", "--lsp" },
+          name = "rubocop",
+          -- cmd = { "bundle", "exec", "rubocop", "--lsp" },
+          cmd = {
+            "bundle",
+            "exec",
+            "rubocop",
+            "--no-server",
+            "--auto-correct-all",
+            "--stderr",
+            "--force-exclusion",
+            "--stdin",
+            "$FILENAME",
+          },
           root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
         },
         ruby_lsp = {
           -- cmd = { "bundle", "exec", "ruby-lsp" },
-          -- init_options = {
-          --   formatter = "auto",
-          -- },
+          init_options = {
+            formatter = "auto",
+          },
         },
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
       setup = {
-        -- example to setup with typescript.nvim
         tsserver = function(_, opts)
           require("typescript").setup({ server = opts })
           return true
@@ -253,6 +314,12 @@ return {
       return {}
     end,
   },
+  -- {
+  --   "garymjr/nvim-snippets",
+  --   opts = {
+  --     search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+  --   },
+  -- },
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",

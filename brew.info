@@ -1,0 +1,103 @@
+act: Run your GitHub Actions locally
+aichat: All-in-one AI-Powered CLI Chat & Copilot
+antigen: Plugin manager for zsh, inspired by oh-my-zsh and vundle
+asdf: Extendable version manager with support for Ruby, Node.js, Erlang & more
+autopep8: Automatically formats Python code to conform to the PEP 8 style guide
+bat: Clone of cat(1) with syntax highlighting and Git integration
+bat-extras: Bash scripts that integrate bat with various command-line tools
+cargo-audit: Audit Cargo.lock files for crates with security vulnerabilities
+check_postgres: Monitor Postgres databases
+circleci: Enables you to reproduce the CircleCI environment locally
+cmake: Cross-platform make
+cocoapods: Dependency manager for Cocoa projects
+codespell: Fix common misspellings in source code and text files
+htmltomd: Convert HTML files to markdown
+deno: Secure runtime for JavaScript and TypeScript
+diff-so-fancy: Good-lookin' diffs with diff-highlight and more
+difftastic: Diff that understands syntax
+direnv: Load/unload environment variables based on $PWD
+docker: Pack, ship and run any application as a lightweight container
+dokku: Command-line client for the Dokku PaaS
+tmux@3.2a: Terminal multiplexer
+entr: Run arbitrary commands when files change
+exa: Modern replacement for 'ls'
+fcrackzip: Zip password cracker
+fd: Simple, fast and user-friendly alternative to find
+ffmpeg: Play, record, convert, and stream audio and video
+fzf: Command-line fuzzy finder written in Go
+gh: GitHub command-line tool
+git-absorb: Automatic git commit --fixup
+git-delta: Syntax-highlighting pager for git and diff output
+git-filter-repo: Quickly rewrite git repository history
+gitui: Blazing fast terminal-ui for git written in rust
+gnu-sed: GNU implementation of the famous stream editor
+go-jira: Simple jira command-line client in Go
+graphviz: Graph visualization software from AT&T and Bell Labs
+hadolint: Smarter Dockerfile linter to validate best practices
+helix: Post-modern modal text editor
+hopenpgp-tools: Command-line tools for OpenPGP-related operations
+htop: Improved top (interactive process viewer)
+hugo: Configurable static site generator
+icdiff: Improved colored diff
+jq: Lightweight and flexible command-line JSON processor
+lazygit: Simple terminal UI for git commands
+lf: Terminal file manager
+libgit2@1.7: C library of Git core methods that is re-entrant and linkable
+libxslt: C XSLT library for GNOME
+lolcat: Rainbows and unicorns in your console!
+lua-language-server: Language Server for the Lua language
+luarocks: Package manager for the Lua programming language
+gh-stack: Cross-platform Text Expander written in Rust
+mdbook: Create modern online books from Markdown files
+midnight-commander: Terminal-based visual file manager
+ncdu: NCurses Disk Usage
+neovide: No Nonsense Neovim Client in Rust
+nmap: Port scanning utility for large networks
+nvm: Manage multiple Node.js versions
+offlineimap: Synchronizes emails between two repositories
+autokbisw: Automatic keyboard input language switching for macOS
+arm-gcc-bin@8: Pre-built GNU toolchain for Arm Cortex-M and Cortex-R processors
+overmind: Process manager for Procfile-based applications and tmux
+pandoc: Swiss-army knife of markup format conversion
+pass-otp: Pass extension for managing one-time-password tokens
+peco: Simplistic interactive filtering tool
+pinentry-mac: Pinentry for GPG on Mac
+pipx: Execute binaries from Python packages in isolated environments
+postgresql@14: Object-relational database system
+prettier: Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+protobuf: Protocol buffers (Google's data interchange format)
+pylint: It's not just a linter that annoys you!
+python@3.9: Interpreted, interactive, object-oriented programming language
+ranger: File browser
+ripgrep-all: Wrapper around ripgrep that adds multiple rich file types
+rust-analyzer: Experimental Rust compiler front-end for IDEs
+semgrep: Easily detect and prevent bugs and anti-patterns in your codebase
+shellcheck: Static analysis and lint tool, for (ba)sh scripts
+shfmt: Autoformat shell script source code
+slides: Terminal based presentation tool
+solargraph: Ruby language server
+spotify-tui: Terminal-based client for Spotify
+starship: Cross-shell prompt for astronauts
+stow: Organize software neatly under a single directory tree (e.g. /usr/local)
+stylua: Opinionated Lua code formatter
+television: General purpose fuzzy finder TUI
+telnet: User interface to the TELNET protocol
+tmate: Instant terminal sharing
+topgrade: Upgrade all the things
+trivy: Vulnerability scanner for container images, file systems, and Git repos
+ufraw: Unidentified Flying RAW: RAW image processing utility
+viddy: Modern watch command
+watch: Executes a program periodically, showing output fullscreen
+watchman: Watch files and take action when they change
+wget: Internet file retriever
+xsv: Fast CSV toolkit written in Rust
+yarn: JavaScript package manager
+yazi: Blazing fast terminal file manager written in Rust, based on async I/O
+ykman: Tool for managing your YubiKey configuration
+youtube-dl: Download YouTube videos from the command-line
+yq: Process YAML, JSON, XML, CSV and properties documents from the CLI
+zbar: Suite of barcodes-reading tools
+zellij: Pluggable terminal workspace, with terminal multiplexer as the base feature
+zlib: General-purpose lossless data-compression library
+zoxide: Shell extension to navigate your filesystem faster
+zsh: UNIX shell (command interpreter)

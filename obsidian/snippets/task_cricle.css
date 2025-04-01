@@ -1,0 +1,9 @@
+/*ul > li.plugin-tasks-list-item .task-list-item-checkbox {
+    margin-inline-start: 0;
+    margin: 5px 2px;
+    border-radius: 50%;
+}*/
+
+input[type=checkbox] {
+  border-radius: 8px;
+}

@@ -16,8 +16,10 @@
 # Running any decrypt, auth or sign will now ask you to insert Yubikey2
 # To switch to Yubikey1 at any time run this script to force GPG
 # to repoint the key stubs to the inserted Yubikey
+#
+# gpg-connect-agent "scd serialno" "learn --force" /bye
 
-read -p "Insert the Yubikey you want to use ....  "   ignore
+read -p "Insert the Yubikey you want to use ....  " ignore
 echo "Switching GPG to backup Yubikey ..."
 
 gpg-connect-agent "scd serialno" "learn --force" /bye

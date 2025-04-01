@@ -62,6 +62,7 @@ return {
     },
     p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
     P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
+    y = { '<cmd>let @+ = expand("%")<CR>', "Copy relative path to clipboard" },
   },
   g = {
     name = "+Git",
@@ -97,7 +98,7 @@ return {
       "Checkout commit(for current file)",
     },
     d = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
+      "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
       "Git Diff",
     },
   },

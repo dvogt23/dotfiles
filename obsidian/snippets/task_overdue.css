@@ -1,0 +1,19 @@
+/* A special color for the 'due' component if it's for today */
+.task-list-item[data-task-status-type="TODO"] .task-due[data-task-due="today"] span,
+.task-list-item[data-task-status-type="IN_PROGRESS"] .task-due[data-task-due="today"] span {
+    background: #ff2024;
+    border-radius: 10px;
+    padding: 2px 8px;
+}
+
+/* A special color for overdue due dates */
+.task-list-item[data-task-status-type="TODO"] .task-due[data-task-due^="past-"] span,
+.task-list-item[data-task-status-type="IN_PROGRESS"] .task-due[data-task-due^="past-"] span {
+    background: #ff595c;
+    border-radius: 10px;
+    padding: 2px 8px;
+}
+
+.task-list-item ul {
+    padding-left: 8px;
+}

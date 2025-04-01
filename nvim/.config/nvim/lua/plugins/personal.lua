@@ -10,7 +10,15 @@ return {
     },
     opts = {},
   },
-  { "christoomey/vim-tmux-navigator" },
+  -- { "supermaven-inc/supermaven-nvim", config = true, event = "VeryLazy" },
+  {
+    "smoka7/hop.nvim",
+    version = "*",
+    opts = {
+      keys = "etovxqpdygfblzhckisuran",
+    },
+  },
+  -- { "christoomey/vim-tmux-navigator" },
   { "akinsho/git-conflict.nvim", version = "*", config = true },
   { "JoosepAlviste/palenightfall.nvim" },
   { "folke/zen-mode.nvim", event = "VeryLazy", config = true },
@@ -51,16 +59,16 @@ return {
   {
     "weizheheng/ror.nvim",
     keys = {
-      { "<Leader>cc", ":lua require('ror.commands').list_commands()<CR>", desc = "Rails commands" },
+      { "<Leader>cr", ":lua require('ror.commands').list_commands()<CR>", desc = "Rails commands" },
     },
   },
 
-  -- {
-  --   "sindrets/diffview.nvim",
-  --   event = "VeryLazy",
-  --   config = true,
-  --   dependencies = { "nvim-lua/plenary.nvim" },
-  -- },
+  {
+    "sindrets/diffview.nvim",
+    event = "VeryLazy",
+    config = true,
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
   {
     "ruifm/gitlinker.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -90,6 +98,11 @@ return {
         remove_default_keybinds = true,
       })
     end,
+    -- keys = {
+    --   "<leader>ct",
+    --   require("nvim-toggler").toggle,
+    --   { desc = "Toggle value" },
+    -- },
   },
   {
     "toppair/peek.nvim",
@@ -124,9 +137,6 @@ return {
     config = function()
       require("obsidian").setup({
         dir = "$NOTES_DIR",
-        completion = {
-          nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
-        },
         daily_notes = {
           folder = string.format("private/diary/%s", os.date("*t").year),
           template = "dairy.md",

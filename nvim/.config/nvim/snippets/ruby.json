@@ -1,0 +1,10 @@
+{
+  "Insert pry call": {
+    "prefix": "pry",
+    "body": "binding.pry",
+    "luasnip": {
+      "priority": 2000,
+      "autotrigger": true
+    }
+  }
+}

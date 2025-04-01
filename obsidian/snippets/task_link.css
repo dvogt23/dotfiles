@@ -1,0 +1,6 @@
+li.plugin-tasks-list-item .internal-link {
+	text-decoration: underline;
+}
+li.plugin-tasks-list-item span.tasks-backlink .internal-link {
+	text-decoration: none;
+}

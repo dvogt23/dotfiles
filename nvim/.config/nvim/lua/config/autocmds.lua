@@ -82,7 +82,7 @@ cmd("au BufNewFile,BufRead .eslintignore,.prettierignore,.aliases setf conf")
 cmd("au BufNewFile,BufRead .eslintrc,.prettierrc,tsconfig.json setf json")
 
 -- cmd "au BufWritePost * FormatWrite"
--- cmd "au BufWritePre * lua vim.lsp.buf.format { async = true }"
+cmd("au BufWritePre * lua vim.lsp.buf.format()")
 -- cmd "au BufWritePost * normal! zv"
 
 cmd("au FileType gitcommit inoremap <buffer>jj <ESC>ZZ")
