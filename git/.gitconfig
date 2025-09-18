@@ -124,6 +124,8 @@
         git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
         fi \
         }; f"
+	fixup = !git log -n 50 --pretty=format:\"%h %s\" --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup
+	autofixup = !git commit --fixup $1 && git rebase --autosquash --interactive --rebase-merges $1~1 && echo \"autofixup finished\"
 [apply]
 
 # Detect whitespace errors when applying a patch

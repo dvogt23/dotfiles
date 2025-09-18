@@ -9,10 +9,19 @@ function chpwd() {
     ls -a
 }
 
-function swap()         
+function swap()
 {
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE
     mv "$2" "$1"
     mv $TMPFILE "$2"
+}
+
+function r() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
