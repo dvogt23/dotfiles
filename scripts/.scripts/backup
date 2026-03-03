@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Quick backup script: creates a .tar.gz of the given directory in /tmp
+# Usage: ./backup [dir]
+# If no dir is given, backs up the current working directory.
+
+set -euo pipefail
+
+# Use provided dir or default to current working directory
+SOURCE_DIR="${1:-$PWD}"
+
+# Resolve absolute path
+if [[ ! -d "$SOURCE_DIR" ]]; then
+  echo "Error: '$SOURCE_DIR' is not a directory."
+  exit 1
+fi
+
+# Normalize path and extract dir name
+ABS_PATH="$(realpath "$SOURCE_DIR")"
+DIR_NAME="$(basename "$ABS_PATH")"
+
+# Readable timestamp
+TIMESTAMP="$(date +'%Y-%m-%d_%H-%M-%S')"
+BACKUP_FILE="/tmp/${DIR_NAME}_${TIMESTAMP}.tar.gz"
+
+echo "Creating backup of '$ABS_PATH'..."
+tar -czf "$BACKUP_FILE" -C "$(dirname "$ABS_PATH")" "$DIR_NAME"
+
+# Print result with size
+SIZE="$(du -h "$BACKUP_FILE" | awk '{print $1}')"
+echo "✅ Backup completed!"
+echo "📦 File: $BACKUP_FILE"
+echo "📏 Size: $SIZE"

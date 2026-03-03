@@ -50,8 +50,6 @@ export LC_IDENTIFICATION=en_US.UTF-8
 export LC_ALL=
 export DOTFILES_DIR="$HOME/.dotfiles"
 export PROJECT_DIR="$HOME/Projects"
-export PATH="$HOME/.scripts:$PATH"
-export BROWSER="/usr/bin/firefox"
 export NOTES_DIR="$HOME/Nextcloud/Notes"
 export EDITOR="nvim"
 export GIT_EDITOR="$EDITOR"
@@ -59,10 +57,9 @@ export VISUAL="$EDITOR"
 export CLICOLOR=1
 export TERM=xterm-256color
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export PATH="$PATH:$HOME/Projects/misc/flutter/bin"
-export PATH="$PATH:/Users/dv/Library/Python/3.8/bin"
 export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export SSH_AUTH_SOCK=/Users/dv/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --exclude .obsidian --ignore-file .gitignore'
