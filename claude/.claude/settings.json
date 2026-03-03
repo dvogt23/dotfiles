@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Write(./**)",
+      "Edit(./**)",
+      "Read(~/.claude/**)",
+      "Read(~/.claude/skills/**)",
+      "Read(~/.claude/brands/**)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.local)",
+      "Read(./.env.development)",
+      "Read(./.env.production)",
+      "Read(./.env.staging)",
+      "Read(./.envrc)",
+      "Read(./.secrets)",
+      "Read(./.secret)",
+      "Read(./.vault)",
+      "Read(./**/.env)",
+      "Read(./**/.env.local)",
+      "Read(./**/.env.development)",
+      "Read(./**/.env.production)",
+      "Read(./**/.env.staging)",
+      "Read(./**/.envrc)",
+      "Read(./**/secrets/**)",
+      "Read(./**/credentials.json)",
+      "Read(./**/.credentials/**)",
+      "Read(~/.aws/**)",
+      "Write(./.env)",
+      "Write(./.env.local)",
+      "Write(./.env.development)",
+      "Write(./.env.production)",
+      "Write(./.env.staging)",
+      "Write(./.envrc)",
+      "Edit(./.env)",
+      "Edit(./.env.local)",
+      "Edit(./.env.development)",
+      "Edit(./.env.production)",
+      "Edit(./.env.staging)",
+      "Edit(./.envrc)",
+      "Bash(cat .env:*)",
+      "Bash(cat .envrc:*)",
+      "Bash(head .env:*)",
+      "Bash(tail .env:*)",
+      "Bash(less .env:*)",
+      "Bash(more .env:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -f:*)",
+      "Bash(git checkout .:*)",
+      "Bash(rm -rf:*)",
+      "Bash(rm -r:*)",
+      "Bash(gcloud compute instances delete:*)",
+      "Bash(gcloud container clusters delete:*)",
+      "Bash(gcloud dataproc batches delete:*)",
+      "Bash(gcloud dataproc clusters delete:*)",
+      "Bash(gcloud dataproc jobs delete:*)",
+      "Bash(gcloud functions delete:*)",
+      "Bash(gcloud iam service-accounts delete:*)",
+      "Bash(gcloud projects delete:*)",
+      "Bash(gcloud pubsub subscriptions delete:*)",
+      "Bash(gcloud pubsub topics delete:*)",
+      "Bash(gcloud run services delete:*)",
+      "Bash(gcloud scheduler jobs delete:*)",
+      "Bash(gcloud secrets delete:*)",
+      "Bash(gcloud sql instances delete:*)",
+      "Bash(gcloud storage rm:*)",
+      "Bash(gcloud workflows delete:*)",
+      "Bash(terraform destroy:*)",
+      "Bash(bq rm:*)"
+    ],
+    "defaultMode": "default"
+  },
+  "model": "sonnet",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.npmjs.org",
+        "registry.yarnpkg.com"
+      ],
+      "allowUnixSockets": [
+        "/var/run/docker.sock"
+      ],
+      "allowLocalBinding": true
+    },
+    "excludedCommands": [
+      "docker"
+    ]
+  },
+  "security": {
+    "prompt_injection_protection": true,
+    "block_external_urls_in_bash": true,
+    "warn_on_secrets_in_output": true,
+    "max_file_read_size_mb": 10
+  },
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true
+  }
+}
